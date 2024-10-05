@@ -1,1 +1,3 @@
 備忘錄or注意事項
+
+共用:https://hackmd.io/@g8ZPenCYRHSYrncHhtCrpQ/Byr0Tl6Rz?type=view
