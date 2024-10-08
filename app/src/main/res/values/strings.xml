@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="pagename">背包</string>
+    <string name="initial_pagename">初始設定</string>
+    <string name="regiontext">所在區域</string>
+    <string name="chartext">選擇角色</string>
+    <string-array name="city">
+        <item>新北市</item>
+        <item>台北市</item>
+        <item>基隆市</item>
+        <item>桃園市</item>
+        <item>新竹市</item>
+    </string-array>
 </resources>

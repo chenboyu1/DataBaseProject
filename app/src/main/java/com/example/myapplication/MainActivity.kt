@@ -2,8 +2,10 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import okhttp3.*
@@ -15,7 +17,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        JumptoActivity(PackageActivity::class.java)
         // 取得 UI 中的元件
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etPassword = findViewById<EditText>(R.id.etPassword)
@@ -45,6 +46,10 @@ class MainActivity : ComponentActivity() {
                 Toast.makeText(this, "請輸入帳號和密碼", Toast.LENGTH_SHORT).show()
             }
         }
+
+        val adapter = ArrayAdapter.createFromResource(this, R.array.city, android.R.layout.simple_spinner_dropdown_item)
+        val spinner: Spinner = findViewById(R.id.spinner)
+        spinner.adapter = adapter
     }
 
     // 註冊用戶的方法
@@ -76,6 +81,8 @@ class MainActivity : ComponentActivity() {
                 runOnUiThread {
                     if (response.isSuccessful) {
                         Toast.makeText(this@MainActivity, "註冊成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        //透過intent帶其他值給下一頁SecondActivity
+                        JumptoActivity(InitialActivity::class.java, username, password)
                     } else {
                         Toast.makeText(this@MainActivity, "註冊失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
@@ -113,7 +120,7 @@ class MainActivity : ComponentActivity() {
                 runOnUiThread {
                     if (response.isSuccessful) {
                         Toast.makeText(this@MainActivity, "登入成功: $responseBody", Toast.LENGTH_SHORT).show()
-                        JumptoActivity(PackageActivity::class.java)
+                        JumptoActivity(PackageActivity::class.java, username, password)
                     } else {
                         Toast.makeText(this@MainActivity, "登入失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
@@ -122,8 +129,11 @@ class MainActivity : ComponentActivity() {
         })
     }
 
-    private fun JumptoActivity(targetActivity: Class<*>) {
-        val intent = Intent(this, targetActivity)
+    private fun JumptoActivity(targetActivity: Class<*>, username: String, password: String) {
+        val intent = Intent(this, InitialActivity::class.java).apply {
+            putExtra("EXTRA_USERNAME", username)
+            putExtra("EXTRA_PASSWORD", password)
+        }
         startActivity(intent)
     }
 }

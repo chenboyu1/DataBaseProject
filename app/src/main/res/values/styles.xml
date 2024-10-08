@@ -5,4 +5,16 @@
         <item name="android:textColor">#0096F3</item>
         <item name="android:fontFamily">sans-serif</item> <!-- 如果需要自定义字体 -->
     </style>
+    <style name="initial_pagename">
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">#00BBFF</item>
+    </style>
+    <style name="regiontext">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">#00BBFF</item>
+    </style>
+    <style name="chartext">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">#00BBFF</item>
+    </style>
 </resources>

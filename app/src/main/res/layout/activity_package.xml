@@ -30,53 +30,45 @@
         android:layout_marginStart="160dp"
         android:layout_marginEnd="16dp"/>
 
-    <View
-        android:id="@+id/sidebox"
-        android:layout_width="380dp"
-        android:layout_height="match_parent"
-        android:background="#9DD3FC"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/decorate1"
-        android:layout_width="125dp"
-        android:layout_height="123dp"
-        android:background="@drawable/package_decorate"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/sidebox"
-        android:layout_marginTop="74dp"
-        android:layout_marginStart="74dp"/>
+        <!-- 滑动条
+        <SeekBar
+            android:id="@+id/slidebtn"
+            android:layout_width="26dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:max="100"
+            android:progress="0"
+            android:layout_marginEnd="20dp"
+            android:rotation="270"
+            android:thumb="@drawable/slider_thumb"
+            android:progressDrawable="@drawable/slider_progress"
+            android:background="#D9D9D9" />-->
 
-    <View
-        android:id="@+id/decorate2"
-        android:layout_width="125dp"
-        android:layout_height="123dp"
-        android:background="@drawable/package_decorate"
-        app:layout_constraintTop_toBottomOf="@+id/decorate1"
-        app:layout_constraintStart_toStartOf="@+id/sidebox"
-        android:layout_marginTop="115dp"
-        android:layout_marginStart="74dp"/>
+        <!-- 侧栏内容 -->
+        <ScrollView
+            android:id="@+id/sideboxScroll"
+            android:layout_width="380dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="#9DD3FC"
+            android:layout_marginEnd="46dp">
 
-    <View
-        android:id="@+id/decorate3"
-        android:layout_width="125dp"
-        android:layout_height="123dp"
-        android:background="@drawable/package_decorate"
-        app:layout_constraintTop_toBottomOf="@+id/decorate2"
-        app:layout_constraintStart_toStartOf="@+id/sidebox"
-        android:layout_marginTop="115dp"
-        android:layout_marginStart="74dp"/>
+            <LinearLayout
+                android:id="@+id/sidebox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- 动态生成按钮 -->
+            </LinearLayout>
+        </ScrollView>
 
-    <View
-        android:id="@+id/slidebtn"
-        android:layout_width="26dp"
-        android:layout_height="95dp"
-        android:background="#D9D9D9"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="31dp" />
+    </FrameLayout>
+
+
 
     <View
         android:id="@+id/retbtn"
