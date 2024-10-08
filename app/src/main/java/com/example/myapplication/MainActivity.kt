@@ -46,10 +46,6 @@ class MainActivity : ComponentActivity() {
                 Toast.makeText(this, "請輸入帳號和密碼", Toast.LENGTH_SHORT).show()
             }
         }
-
-        val adapter = ArrayAdapter.createFromResource(this, R.array.city, android.R.layout.simple_spinner_dropdown_item)
-        val spinner: Spinner = findViewById(R.id.spinner)
-        spinner.adapter = adapter
     }
 
     // 註冊用戶的方法
