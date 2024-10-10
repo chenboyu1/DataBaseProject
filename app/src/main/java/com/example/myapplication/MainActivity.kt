@@ -126,7 +126,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun JumptoActivity(targetActivity: Class<*>, username: String, password: String) {
-        val intent = Intent(this, InitialActivity::class.java).apply {
+        val intent = Intent(this, targetActivity::class.java).apply {
             putExtra("EXTRA_USERNAME", username)
             putExtra("EXTRA_PASSWORD", password)
         }
