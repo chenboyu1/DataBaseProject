@@ -50,10 +50,10 @@ class ChatAdapter(private val messageList: List<Message>) : RecyclerView.Adapter
         // 根據訊息類型設置背景顏色和文字顏色
         if (message.type == MessageType.AI) {
             holder.textView.setBackgroundResource(R.drawable.ai_message_background) // AI 訊息背景顏色
-            holder.textView.setTextColor(android.graphics.Color.WHITE) // AI 訊息的文字顏色
+            //holder.textView.setTextColor(android.graphics.Color.WHITE) // AI 訊息的文字顏色
         } else {
             holder.textView.setBackgroundResource(R.drawable.user_message_background) // 用戶訊息背景顏色
-            holder.textView.setTextColor(android.graphics.Color.BLACK) // 用戶訊息的文字顏色
+            //holder.textView.setTextColor(android.graphics.Color.BLACK) // 用戶訊息的文字顏色
         }
 
         // 調整訊息背景的長度，根據訊息內容的長度自適應
