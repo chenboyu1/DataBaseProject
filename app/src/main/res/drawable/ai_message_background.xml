@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 定義一個 InsetDrawable，設置內邊距 -->
 <inset xmlns:android="http://schemas.android.com/apk/res/android"
     android:insetLeft="16dp"
     android:insetRight="16dp"
     android:insetTop="8dp"
     android:insetBottom="8dp">
 
+    <!-- 定義形狀 -->
     <shape>
-        <solid android:color="#D1C4E9"/> <!-- 背景顏色 -->
-        <corners android:radius="8dp"/> <!-- 邊角圓度 -->
+        <!-- 設置背景顏色為淡紫色 -->
+        <solid android:color="#D1C4E9"/>
+        <!-- 設置邊角圓度為 8dp -->
+        <corners android:radius="8dp"/>
     </shape>
 </inset>
