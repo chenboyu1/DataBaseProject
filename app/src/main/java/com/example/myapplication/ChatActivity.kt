@@ -26,7 +26,12 @@ class ChatActivity : AppCompatActivity() {
         // 設置 RecyclerView 和 Adapter
         chatAdapter = ChatAdapter(messageList)
         recyclerViewChat.adapter = chatAdapter
-        recyclerViewChat.layoutManager = LinearLayoutManager(this)
+
+        // 更新 layoutManager 設置以從底部堆疊訊息
+        recyclerViewChat.layoutManager = LinearLayoutManager(this).apply {
+            stackFromEnd = true // 保證訊息從底部開始堆疊
+            reverseLayout = false // 不反轉佈局
+        }
 
         // 發送訊息按鈕事件
         buttonSend.setOnClickListener {

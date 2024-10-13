@@ -19,14 +19,25 @@ class ChatAdapter(private val messageList: List<Message>) : RecyclerView.Adapter
 
     // 視圖持有者
     inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(android.R.id.text1) // 使用預設的 TextView ID
+        val textView: TextView = view.findViewById(R.id.textViewMessage) // 使用自定義的 TextView ID
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        // 創建訊息視圖，這裡可以根據訊息類型設置不同的佈局
-        val view = LayoutInflater.from(parent.context).inflate(android.R.layout.simple_list_item_1, parent, false)
+        val layoutId = when (viewType) {
+            MessageType.USER.ordinal -> R.layout.item_user_message // 用戶訊息靠右
+            MessageType.AI.ordinal -> R.layout.item_ai_message // AI 訊息靠左
+            else -> throw IllegalArgumentException("Invalid view type")
+        }
+        val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return MessageViewHolder(view)
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return messageList[position].type.ordinal
+    }
+
+
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         // 根據訊息類型設置文本
@@ -47,7 +58,7 @@ class ChatAdapter(private val messageList: List<Message>) : RecyclerView.Adapter
         holder.textView.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
         val textWidth = holder.textView.measuredWidth
-        params.width = textWidth + 2 // 加上額外的邊距，例如 24dp (可根據需要調整)
+        params.width = textWidth // 加上額外的邊距，例如 24dp (可根據需要調整)
         holder.textView.layoutParams = params
     }
 
