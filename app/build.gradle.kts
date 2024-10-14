@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.gridlayout)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
