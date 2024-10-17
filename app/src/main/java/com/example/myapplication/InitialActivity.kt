@@ -17,6 +17,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
+import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.POST
 import java.io.IOException
 
 data class User(
@@ -24,6 +27,11 @@ data class User(
     val password: String,
     val region: String
 )
+
+interface ApiService {
+    @POST("your/endpoint/here")
+    fun submitUserData(@Body user: User): Call<Void>
+}
 
 class InitialActivity : ComponentActivity() {
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -38,8 +46,7 @@ class InitialActivity : ComponentActivity() {
         val spinner: Spinner = findViewById(R.id.spinner)
 
         // 定義下拉選項
-        val options = arrayOf("新北市", "台北市", "基隆市", "桃園市", "新竹市", "新竹縣", "苗栗縣", "台中市", "彰化縣", "南投縣", "雲林縣", "嘉義市", "嘉義縣", "台南市", "高雄市", "屏東縣", "宜蘭縣", "花蓮縣", "台東縣", "澎湖縣", "金門縣", "連江縣"
-        )
+        val options = arrayOf("台北市", "新北市", "基隆市", "桃園市", "新竹市", "新竹縣", "苗栗縣", "台中市", "彰化縣", "南投縣", "雲林縣", "嘉義市", "嘉義縣", "台南市", "高雄市", "屏東縣", "台東縣", "花蓮縣", "宜蘭縣", "澎湖縣", "金門縣", "連江縣")
 
         // 創建適配器
         val adapter = ArrayAdapter(this, R.layout.spinner_item, options)

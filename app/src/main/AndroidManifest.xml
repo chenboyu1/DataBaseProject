@@ -18,6 +18,21 @@
         <meta-data
             android:name="com.google.android.actions"
             android:value="@xml/network_security_config" />
+        <activity android:name=".ShopActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ChatActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".MainActivity"
@@ -37,6 +52,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".InitialActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Choosecharac"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
