@@ -16,6 +16,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         // 取得 UI 中的元件
         val etUsername = findViewById<EditText>(R.id.etUsername)
@@ -77,8 +78,9 @@ class MainActivity : ComponentActivity() {
                 runOnUiThread {
                     if (response.isSuccessful) {
                         Toast.makeText(this@MainActivity, "註冊成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        GlobalVariable.setName(username) //設置全域變數username
                         //透過intent帶其他值給下一頁SecondActivity
-                        JumptoActivity(InitialActivity::class.java, username, password)
+                        jumptoActivity(Choosecharac::class.java)
                     } else {
                         Toast.makeText(this@MainActivity, "註冊失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
@@ -116,7 +118,9 @@ class MainActivity : ComponentActivity() {
                 runOnUiThread {
                     if (response.isSuccessful) {
                         Toast.makeText(this@MainActivity, "登入成功: $responseBody", Toast.LENGTH_SHORT).show()
-                        JumptoActivity(PackageActivity::class.java, username, password)
+                        GlobalVariable.setName(username) //設置全域變數username
+                        jumptoActivity(Choosecharac::class.java)
+
                     } else {
                         Toast.makeText(this@MainActivity, "登入失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
@@ -125,11 +129,8 @@ class MainActivity : ComponentActivity() {
         })
     }
 
-    private fun JumptoActivity(targetActivity: Class<*>, username: String, password: String) {
-        val intent = Intent(this, targetActivity::class.java).apply {
-            putExtra("EXTRA_USERNAME", username)
-            putExtra("EXTRA_PASSWORD", password)
-        }
+    private fun jumptoActivity(targetActivity: Class<*>) {
+        val intent = Intent(this, targetActivity)
         startActivity(intent)
     }
 }

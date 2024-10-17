@@ -2,29 +2,31 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
-
-    <ScrollView
-        android:id="@+id/scrollView"
+    <FrameLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ScrollView
+        android:id="@+id/sideboxScroll"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:scrollbars="horizontal">
-            <LinearLayout
-                android:id="@+id/selectbox"
-                android:layout_width="600dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:background="@drawable/initial_selectbox"
-                app:layout_constraintTop_toBottomOf="@id/chartext"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp">
-            </LinearLayout>
-    </ScrollView>
+        android:layout_gravity="center"
+        android:background="#EDCDCE"
+        android:layout_marginEnd="46dp">
 
+        <LinearLayout
+            android:id="@+id/sidebox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 动态生成按钮 -->
+        </LinearLayout>
+    </ScrollView>
+    </FrameLayout>
     <TextView
         android:id="@+id/chartext"
         android:layout_width="0dp"
@@ -34,8 +36,10 @@
         android:gravity="center_horizontal|top"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/selectbox"
+        app:layout_constraintEnd_toStartOf="@id/sidebox"
         android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginStart="20dp"
+        tools:ignore="NotSibling"
+        android:background="@drawable/choosecha_title"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

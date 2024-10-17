@@ -1,9 +1,11 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.SeekBar
@@ -21,46 +23,39 @@ import java.io.IOException
 
 
 class Choosecharac : ComponentActivity() {
+    var imgId: IntArray = intArrayOf(
+        R.drawable.jewel02_amethyst, R.drawable.jewel05_emerald,
+        R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline, R.drawable.jewel03_aquamarine
+        , R.drawable.jewel12_tanzanite, R.drawable.jewel15_colorful);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choosecharac)
 
         // 獲取按鈕容器的引用
-        val buttonContainer: LinearLayout = findViewById(R.id.selectbox)
-
+        val buttonContainer = findViewById<LinearLayout>(R.id.sidebox)
+        val params = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            gravity = Gravity.CENTER // 將按鈕置中
+        }
         // 假設這是你希望生成的按鈕數量
-        val buttonCount = 10 // 可以根據需要修改這個數值
+        val buttonCount = 7 // 可以根據需要修改這個數值
 
         // 使用迴圈根據數量生成按鈕
-        for (i in 1..buttonCount) {
-            val button = Button(this).apply {
-                //id = View.generateViewId() // 動態生成ID
-                id = i;
-                layoutParams = LinearLayout.LayoutParams(
-                    200.dpToPx(), // 按鈕寬度
-                    200.dpToPx() // 按鈕高度
-                ).apply {
-                    // 設置按鈕之間的間距（例如上下各20dp）
-                    setMargins(0, 20.dpToPx(), 0, 20.dpToPx())
-                }
-                background = resources.getDrawable(R.drawable.background, null) // 設定背景
+        for (i in 0 until buttonCount) {
+            val button = ImageButton(this)
+            button.id = i
+            button.layoutParams = params
+            button.layoutParams = LinearLayout.LayoutParams(
+                200.dpToPx(), // 按鈕寬度
+                200.dpToPx() // 按鈕高度
+            ).apply {
+                gravity = Gravity.CENTER // 將按鈕置中
             }
-
-            // 設置按鈕點擊事件
-            button.setOnTouchListener { v, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        // 點擊按下時改變透明度
-                        v.alpha = 0.5f
-                    }
-                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                        // 點擊結束時恢復透明度
-                        v.alpha = 1f
-                    }
-                }
-                false
-            }
+            //button.background = resources.getDrawable(R.drawable.background, null) // 設定背景
+            button.setImageResource(imgId[i])
             button.setOnClickListener {
                 val selectedButtonId = button.id // 取得按鈕 ID 或其他資訊
                 Toast.makeText(this, "按鈕 $selectedButtonId 已被點擊", Toast.LENGTH_SHORT).show()
@@ -78,11 +73,10 @@ class Choosecharac : ComponentActivity() {
 
     private fun sendSelectedButtonToServer(charac: String) {
         val client = OkHttpClient()
-
+        val username = GlobalVariable.getName()
         val json = """
         {
-          "username": "a",
-          "password": "a",
+          "username": "$username",
           "charac": "$charac"
         }
         """
