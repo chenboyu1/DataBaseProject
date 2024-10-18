@@ -27,6 +27,8 @@
             android:orientation="vertical">
 
             <!-- 第一行商品按鈕 -->
+
+            <!-- 這裡可以添加更多的商品行 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
                         android:id="@+id/button_product_1"
@@ -52,54 +54,122 @@
                         android:id="@+id/description_product_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="描述商品 1"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:textColor="#000"
-                        android:layout_marginTop="10dp" />
+                        android:textSize="40sp" />
                 </LinearLayout>
+                <!-- 第1個 -->
 
-                <Button
-                    android:id="@+id/button_product_2"
+                <LinearLayout
                     android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
 
-                    android:text="商品 2" /> <!-- 按鈕間距 -->
+                    <Button
+                        android:id="@+id/button_product_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:text="商品 2" />
 
-                <Button
-                    android:id="@+id/button_product_3"
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description_product_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="描述商品 2"
+                        android:textAlignment="viewStart"
+                        android:textColor="#000"
+                        android:textSize="40sp" />
+                </LinearLayout>
+                <!-- 第2個 -->
+
+                <LinearLayout
                     android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
 
-                    android:text="商品 3" /> <!-- 按鈕間距 -->
+                    <Button
+                        android:id="@+id/button_product_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:text="商品 3" />
 
-                <Button
-                    android:id="@+id/button_product_4"
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description_product_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="描述商品 3"
+                        android:textAlignment="viewStart"
+                        android:textColor="#000"
+                        android:textSize="40sp" />
+                </LinearLayout>
+                <!-- 第3個 -->
+
+                <LinearLayout
                     android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:layout_weight="1"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
 
-                    android:text="商品 4" /> <!-- 按鈕間距 -->
+                    <Button
+                        android:id="@+id/button_product_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:text="商品 4" />
 
-                <Button
-                    android:id="@+id/button_product_5"
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description_product_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="描述商品 4"
+                        android:textAlignment="viewStart"
+                        android:textColor="#000"
+                        android:textSize="40sp" />
+                </LinearLayout>
+                <!-- 第4個 -->
+
+                <LinearLayout
                     android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:layout_weight="1"
+                    android:layout_weight="5"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
 
-                    android:text="商品 5" /> <!-- 按鈕間距 -->
+                    <Button
+                        android:id="@+id/button_product_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:text="商品 5" />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description_product_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="描述商品 5"
+                        android:textAlignment="viewStart"
+                        android:textColor="#000"
+                        android:textSize="40sp" />
+                </LinearLayout>
+                <!-- 第5個 -->
             </LinearLayout>
 
-            <!-- 這裡可以添加更多的商品行 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
                 android:orientation="horizontal"
                 android:padding="25dp">
 
