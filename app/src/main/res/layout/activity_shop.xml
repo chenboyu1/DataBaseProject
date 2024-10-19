@@ -2,13 +2,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B5C7C9"> <!-- 設置背景顏色 -->
+    android:background="#B5C7C9"
+    android:scrollbars="vertical"
+    android:fadeScrollbars="false"
+    android:scrollbarThumbVertical="@drawable/activity_shop_scrollbar"
+    android:paddingRight="10dp"> <!-- 保持滾動條可見 --> <!-- 設置背景顏色 -->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        ><!--按鈕的，下面三行為滾動條-->
+        ><!--按鈕的-->
 
         <!-- 背景圖
         <ImageView
