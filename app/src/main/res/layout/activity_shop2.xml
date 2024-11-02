@@ -72,14 +72,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_1"
+                        android:id="@+id/button2_product_1"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 1" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_1"
+                        android:id="@+id/description2_product_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -98,14 +98,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_2"
+                        android:id="@+id/button2_product_2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 2" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_2"
+                        android:id="@+id/description2_product_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -124,14 +124,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_3"
+                        android:id="@+id/button2_product_3"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 3" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_3"
+                        android:id="@+id/description2_product_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -150,14 +150,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_4"
+                        android:id="@+id/button2_product_4"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 4" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_4"
+                        android:id="@+id/description2_product_4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -176,14 +176,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_5"
+                        android:id="@+id/button2_product_5"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 5" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_5"
+                        android:id="@+id/description2_product_5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -209,14 +209,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_6"
+                        android:id="@+id/button2_product_6"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 6" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_6"
+                        android:id="@+id/description2_product_6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -235,14 +235,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_7"
+                        android:id="@+id/button2_product_7"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 7" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_7"
+                        android:id="@+id/description2_product_7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -261,14 +261,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_8"
+                        android:id="@+id/button2_product_8"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 8" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_8"
+                        android:id="@+id/description2_product_8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -287,14 +287,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_9"
+                        android:id="@+id/button2_product_9"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 9" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_9"
+                        android:id="@+id/description2_product_9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -313,14 +313,14 @@
                     android:orientation="vertical"><!-- 設定為垂直方向 -->
 
                     <Button
-                        android:id="@+id/button_product_10"
+                        android:id="@+id/button2_product_10"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:text="商品 10" />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
-                        android:id="@+id/description_product_10"
+                        android:id="@+id/description2_product_10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

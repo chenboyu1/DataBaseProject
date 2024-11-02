@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -10,6 +11,13 @@ class ShopActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop)
+
+        val page1Button = findViewById<Button>(R.id.button_page_1)
+        page1Button.setOnClickListener {
+            // 启动 NewActivity
+            val intent = Intent(this, ShopActivity2::class.java)
+            startActivity(intent)
+        }//跳轉按鈕
 
         // 獲取每個商品按鈕
         val buttonProduct1: Button = findViewById(R.id.button_product_1)
