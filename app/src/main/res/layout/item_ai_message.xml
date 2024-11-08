@@ -6,10 +6,15 @@
     android:padding="8dp">
 
 <TextView
-android:id="@+id/textViewMessage"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:background="@drawable/ai_message_background"
-android:padding="8dp"
-android:textColor="@android:color/black"/>
+    android:id="@+id/textViewMessage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:maxWidth="320dp"
+    android:background="@drawable/ai_message_background"
+    android:padding="8dp"
+    android:textColor="#000"
+    android:scrollHorizontally="false"
+    android:lineSpacingExtra="4dp"
+    android:breakStrategy="simple"
+    android:hyphenationFrequency="none" />
     </LinearLayout>
