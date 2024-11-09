@@ -1,1 +1,107 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <!-- 頂部的進度條和心形圖示 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start">
+
+        <ImageView
+            android:id="@+id/heart_icon"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/heart" />
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:progress="50" />
+    </LinearLayout>
+
+    <!-- 中間的遊戲角色 -->
+
+    <!-- 左邊的「互動」和「任務」按鈕 -->
+
+    <ImageView
+        android:id="@+id/game_character"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal|end"
+        android:src="@drawable/food1" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start">
+
+        <Button
+            android:id="@+id/interaction_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="互動" />
+
+        <Button
+            android:id="@+id/task_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="任務"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+    <!-- 右邊的「商城」和「背包」按鈕 -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+        <Button
+            android:id="@+id/shop_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="商城" />
+        <Button
+            android:id="@+id/backpack_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="背包"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+    <!-- 下方的文字框 -->
+    <TextView
+        android:id="@+id/message_box"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#EEEEEE"
+        android:text="這裡顯示訊息"
+        android:gravity="center"
+        android:layout_marginTop="16dp" />
+
+    <!-- 底部的個人按鈕 -->
+    <ImageView
+        android:id="@+id/profile_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/food1"
+        android:layout_marginTop="16dp"
+        android:gravity="start" />
+
+    <!-- 底部右下角的設定按鈕 -->
+    <ImageView
+        android:id="@+id/settings_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:gravity="end"
+        android:src="@drawable/food1" />
+</LinearLayout>
