@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B5C7C9"
@@ -75,7 +76,8 @@
                         android:id="@+id/button2_product_1"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 1" />
+                        android:background="@drawable/food1"
+                        android:text=" "/>
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -83,10 +85,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 1"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="割包"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        tools:ignore="RtlCompat" />  <!-- 文本居中 -->
+                    <!-- 文字水平居中 -->
+
                 </LinearLayout>
                 <!-- 第1個 -->
 
@@ -101,7 +106,8 @@
                         android:id="@+id/button2_product_2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 2" />
+                        android:background="@drawable/can_cola"
+                        android:text=" "/>
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -109,10 +115,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 2"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="可樂"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第2個 -->
 

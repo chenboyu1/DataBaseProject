@@ -5,7 +5,7 @@
     <!-- 定義形狀 -->
     <shape>
         <!-- 設置背景顏色為淡紫色 -->
-        <solid android:color="#D1C4E9"/>
+        <solid android:color="#D1E9E9"/>
         <!-- 設置邊角圓度為 8dp -->
         <corners android:radius="8dp"/>
     </shape>
