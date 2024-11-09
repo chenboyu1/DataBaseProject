@@ -29,7 +29,7 @@
                 android:id="@+id/button_page_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="跳转到新页面1" />
+                android:text="裝飾品" />
 
             <!-- 第二个跳转按钮 -->
             <Button
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="跳转到新页面2" />
+                android:text="食物" />
 
         </LinearLayout>
 
@@ -69,7 +69,7 @@
                         android:id="@+id/button2_product_1"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="@drawable/food1_kakuni_manju"
+                        android:background="@drawable/food1"
                         android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
