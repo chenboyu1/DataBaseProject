@@ -16,4 +16,6 @@
     <string name="message_hint">輸入訊息</string>
     <!-- 聊天室按鈕描述文字 -->
     <string name="send_button_description">發送</string>
+
+    <string name="chatroom_title">聊天室</string>
 </resources>

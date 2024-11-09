@@ -52,7 +52,7 @@ class ChatActivity : AppCompatActivity() {
 
     // 模擬 AI 回覆的函數
     private fun simulateAIResponse() {
-        val aiMessage = "這是模擬的 AI 回覆訊息"  // 可以替換成真正的 AI 回覆邏輯
+        val aiMessage = "這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息"  // 可以替換成真正的 AI 回覆邏輯
         messageList.add(Message(aiMessage, MessageType.AI)) // 添加 AI 回覆訊息到列表中
         chatAdapter.notifyDataSetChanged() // 通知 RecyclerView 更新顯示
     }

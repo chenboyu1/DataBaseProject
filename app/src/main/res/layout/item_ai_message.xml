@@ -9,7 +9,7 @@
     android:id="@+id/textViewMessage"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:maxWidth="320dp"
+    android:maxWidth="480dp"
     android:background="@drawable/ai_message_background"
     android:padding="16dp"
     android:textColor="#000"
