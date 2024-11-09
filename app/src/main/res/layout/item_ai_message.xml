@@ -3,19 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="start"
+    android:orientation="horizontal"
     android:padding="8dp">
 
-<TextView
-    android:id="@+id/textViewMessage"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:maxWidth="480dp"
-    android:background="@drawable/ai_message_background"
-    android:padding="16dp"
-    android:textColor="#000"
-    android:scrollHorizontally="false"
-    android:lineSpacingExtra="4dp"
-    android:breakStrategy="simple"
-    android:hyphenationFrequency="none"
-    android:textSize="24sp"/>
-    </LinearLayout>
+    <!-- 圓形頭像 -->
+    <ImageView
+        android:id="@+id/aiAvatar"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/food1"
+        android:background="@drawable/circle_button_background2"
+        android:scaleType="centerCrop" />
+
+    <!-- AI 訊息 -->
+    <TextView
+        android:id="@+id/textViewMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="480dp"
+        android:background="@drawable/ai_message_background"
+        android:padding="16dp"
+        android:textColor="#000"
+        android:scrollHorizontally="false"
+        android:lineSpacingExtra="4dp"
+        android:breakStrategy="simple"
+        android:hyphenationFrequency="none"
+        android:textSize="24sp"
+        android:layout_gravity="top"
+    android:lineHeight="32sp"/>
+</LinearLayout>
