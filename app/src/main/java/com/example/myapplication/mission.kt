@@ -28,7 +28,6 @@ class mission : AppCompatActivity() {
         // 建立 AlertDialog
         val builder = AlertDialog.Builder(this)
             .setView(dialogView)
-            .setTitle("每日任務")
 
         val dialog: AlertDialog = builder.create()
         dialog.show()

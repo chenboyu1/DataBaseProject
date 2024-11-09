@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- 使用 ScrollView 並將內容視窗縮小並置中 -->
+
+<!-- 使用 ScrollView 並將內容視窗縮小並置中 -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="700dp"
@@ -29,6 +31,18 @@
             android:orientation="vertical">
 
             <!-- 標題或描述文字 -->
+
+            <ImageButton
+                android:id="@+id/btn_exit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="-50dp"
+                android:layout_marginEnd="-320dp"
+                android:background="@color/white"
+                android:backgroundTint="#C5DAD1"
+                android:contentDescription="Close button"
+                android:src="@drawable/baseline_clear_24" />
+
             <TextView
                 android:id="@+id/tv_mission_title"
                 android:layout_width="wrap_content"
@@ -40,8 +54,10 @@
                 android:textStyle="bold" />
 
             <!-- 任務項目列表 -->
-
+            <!-- 任務項目請按需求添加 -->
             <!-- 任務1 -->
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,21 +157,17 @@
                     android:text="+25" />
             </LinearLayout>
 
+
+
         </LinearLayout>
     </ScrollView>
 
-    <!-- 退出按鈕放置在左上角 -->
-    <ImageButton
-        android:id="@+id/btn_exit"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="924dp"
-        android:layout_marginTop="148dp"
-        android:background="@color/white"
-        android:backgroundTint="#C5DAD1"
-        android:contentDescription="Close button"
-        android:src="@drawable/baseline_clear_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- 退出按鈕放置在右上角 -->
+    <!-- 將按鈕與右邊對齊 -->
+         <!-- 將按鈕與上邊對齊 -->
+    <!-- 從右邊邊緣保留一些距離 -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+          <!-- 從頂部邊緣保留一些距離 -->
+
+    <!-- 添加垂直的 Guideline，若需要適應響應式設計 -->
+
