@@ -28,7 +28,7 @@
                 android:id="@+id/button_page_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="跳转到新页面1" />
+                android:text="裝飾品" />
 
             <!-- 第二个跳转按钮 -->
             <Button
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="跳转到新页面2" />
+                android:text="食物" />
 
             <!-- 第三个跳转按钮 -->
             <Button

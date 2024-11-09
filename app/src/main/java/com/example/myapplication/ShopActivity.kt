@@ -12,8 +12,8 @@ class ShopActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop)
 
-        val page1Button = findViewById<Button>(R.id.button_page_1)
-        page1Button.setOnClickListener {
+        val page2Button = findViewById<Button>(R.id.button_page_2)
+        page2Button.setOnClickListener {
             // 启动 NewActivity
             val intent = Intent(this, ShopActivity2::class.java)
             startActivity(intent)
