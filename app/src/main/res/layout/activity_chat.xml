@@ -21,26 +21,38 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="8dp"
+        android:background="#1A237E"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
-            android:id="@+id/editTextMessage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="輸入訊息"
-            android:background="@drawable/edittext_background"
-            android:inputType="textMultiLine"
-            android:scrollHorizontally="false" />
+    <!-- 橢圓形的文字編輯區 -->
+    <EditText
+        android:id="@+id/editTextMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="輸入訊息"
+        android:background="@drawable/oval_edittext_background"
+        android:padding="8dp"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="false" />
 
-        <Button
-            android:id="@+id/buttonSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="發送"
-            android:backgroundTint="#F4E79F" />
+    <!-- 圓形傳送按鈕 -->
+    <ImageButton
+        android:id="@+id/buttonSend"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circle_button_background"
+        android:src="@drawable/ic_arrow_up"
+        android:contentDescription="發送"
+        android:layout_marginStart="8dp" />
+
+
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
