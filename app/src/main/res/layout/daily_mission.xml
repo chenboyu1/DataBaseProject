@@ -137,19 +137,18 @@
     </ScrollView>
 
     <!-- 退出按鈕放置在左上角 -->
-    <Button
+    <ImageButton
         android:id="@+id/btn_exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="1032dp"
         android:layout_marginTop="144dp"
         android:background="@color/white"
         android:backgroundTint="#B5C7C9"
-        android:text="X"
-        android:textColor="#E2A5AD"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:src="@drawable/baseline_clear_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Close button"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
