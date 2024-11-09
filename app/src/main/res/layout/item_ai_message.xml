@@ -11,10 +11,11 @@
     android:layout_height="wrap_content"
     android:maxWidth="320dp"
     android:background="@drawable/ai_message_background"
-    android:padding="8dp"
+    android:padding="16dp"
     android:textColor="#000"
     android:scrollHorizontally="false"
     android:lineSpacingExtra="4dp"
     android:breakStrategy="simple"
-    android:hyphenationFrequency="none" />
+    android:hyphenationFrequency="none"
+    android:textSize="24sp"/>
     </LinearLayout>

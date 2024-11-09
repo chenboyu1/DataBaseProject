@@ -42,7 +42,8 @@
             android:minHeight="48dp"
             android:inputType="textMultiLine"
             android:scrollHorizontally="false"
-            android:gravity="center_vertical|start" />
+            android:gravity="center_vertical|start"
+            android:textSize="24sp"/>
 
         <!-- 圓形傳送按鈕 -->
         <ImageButton
