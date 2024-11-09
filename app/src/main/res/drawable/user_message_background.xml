@@ -2,7 +2,7 @@
 <inset xmlns:android="http://schemas.android.com/apk/res/android">
 
 <shape>
-    <solid android:color="#BBDEFB"/> <!-- 藍色背景 -->
+    <solid android:color="#D3D3D3"/> <!-- 淺灰色背景 -->
     <corners android:radius="8dp"/> <!-- 邊角圓度 -->
 </shape>
 </inset>
