@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#B5C7C9"
+    android:background="#D1DFE8"
     android:scrollbars="vertical"
     android:fadeScrollbars="false"
     android:scrollbarThumbVertical="@drawable/activity_shop_scrollbar"
@@ -29,7 +29,8 @@
                 android:id="@+id/button_page_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="裝飾品" />
+                android:text="裝飾品"
+                android:backgroundTint="#EDE1E3"/>
 
             <!-- 第二个跳转按钮 -->
             <Button
@@ -37,7 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="食物" />
+                android:text="食物"
+                android:backgroundTint="#EDE1E3"/>
 
         </LinearLayout>
 
@@ -125,7 +127,7 @@
                         android:id="@+id/button_product_3"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="@drawable/decoration3_beret"
+                        android:background="@drawable/decoration3"
                         android:text=" "/>
 
                     <!-- 描述文字放在按鈕下方 -->
