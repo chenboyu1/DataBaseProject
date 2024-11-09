@@ -76,8 +76,9 @@
                         android:id="@+id/button2_product_1"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="@drawable/food1"
-                        android:text=" "/>
+                        android:background="@drawable/food1_kakuni_manju"
+                        android:text=" "
+                        android:scaleType="centerInside"/>
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -86,9 +87,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="割包"
+                        android:text="刈包"
                         android:textColor="#000"
-                        android:textSize="40sp"
+                        android:textSize="30sp"
                         tools:ignore="RtlCompat" />  <!-- 文本居中 -->
                     <!-- 文字水平居中 -->
 
@@ -106,7 +107,7 @@
                         android:id="@+id/button2_product_2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="@drawable/can_cola"
+                        android:background="@drawable/food2_can_cola"
                         android:text=" "/>
 
                     <!-- 描述文字放在按鈕下方 -->
@@ -118,7 +119,7 @@
                         android:gravity="center"
                         android:text="可樂"
                         android:textColor="#000"
-                        android:textSize="40sp"
+                        android:textSize="30sp"
                         tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第2個 -->
@@ -134,7 +135,8 @@
                         android:id="@+id/button2_product_3"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 3" />
+                        android:background="@drawable/food3_spaghetti"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -142,10 +144,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 3"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="義大利麵"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <!-- 第3個 -->
 
@@ -160,7 +163,8 @@
                         android:id="@+id/button2_product_4"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 4" />
+                        android:background="@drawable/food4_sweets_donuts_box"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -168,10 +172,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 4"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="甜甜圈"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <!-- 第4個 -->
 
@@ -186,7 +191,8 @@
                         android:id="@+id/button2_product_5"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 5" />
+                        android:background="@drawable/food5_sweets_purin"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -194,10 +200,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 5"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="布丁"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <!-- 第5個 -->
             </LinearLayout>
@@ -219,7 +226,8 @@
                         android:id="@+id/button2_product_6"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 6" />
+                        android:background="@drawable/food6_macarons"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -227,10 +235,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 6"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="馬卡龍"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <!-- 第6個 -->
 
@@ -245,7 +254,8 @@
                         android:id="@+id/button2_product_7"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 7" />
+                        android:background="@drawable/food7_carved_fish_grill"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -253,10 +263,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 7"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="鯛魚燒冰淇淋"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第7個 -->
 
@@ -271,7 +282,8 @@
                         android:id="@+id/button2_product_8"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 8" />
+                        android:background="@drawable/food8_sundae"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -279,10 +291,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 8"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="聖代"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <!-- 第8個 -->
 
@@ -297,7 +310,8 @@
                         android:id="@+id/button2_product_9"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 9" />
+                        android:background="@drawable/food9_local_ice"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -305,10 +319,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 9"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="在地冰淇淋"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <!-- 第9個 -->
 
@@ -323,7 +338,8 @@
                         android:id="@+id/button2_product_10"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 10" />
+                        android:background="@drawable/food10"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -331,10 +347,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 10"
-                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:text="豪華餐車"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <!-- 第10個 -->
             </LinearLayout>
