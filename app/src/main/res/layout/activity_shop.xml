@@ -39,13 +39,6 @@
                 android:layout_marginStart="20dp"
                 android:text="食物" />
 
-            <!-- 第三个跳转按钮 -->
-            <Button
-                android:id="@+id/button_page_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="跳转到新页面3" />
         </LinearLayout>
 
 
