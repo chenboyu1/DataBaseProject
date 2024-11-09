@@ -12,34 +12,38 @@
         android:layout_height="wrap_content"
         android:gravity="start">
 
+        <!-- 心形圖示 -->
         <ImageView
             android:id="@+id/heart_icon"
             android:layout_width="24dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
             android:src="@drawable/heart" />
+
+        <!-- 好感度進度條 -->
         <ProgressBar
-            android:id="@+id/progress_bar"
+            android:id="@+id/progressBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:progress="50"
             android:indeterminate="false"
-            android:progressDrawable="@drawable/progress_bar" />
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/custom_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:gravity="center"/>
     </LinearLayout>
 
     <!-- 中間的遊戲角色 -->
-
-    <!-- 左邊的「互動」和「任務」按鈕 -->
-
     <ImageView
         android:id="@+id/game_character"
         android:layout_width="match_parent"
         android:layout_height="184dp"
         android:layout_marginTop="16dp"
-        android:gravity="center_horizontal|end"
+        android:gravity="center_horizontal"
         android:src="@drawable/food1" />
 
+    <!-- 左邊的「互動」和「任務」按鈕 -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
