@@ -30,29 +30,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- 橢圓形的文字編輯區 -->
-    <EditText
-        android:id="@+id/editTextMessage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="輸入訊息"
+        <!-- 橢圓形的文字編輯區 -->
+        <EditText
+            android:id="@+id/editTextMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/message_hint"
         android:background="@drawable/oval_edittext_background"
-        android:padding="8dp"
+        android:padding="16dp"
+        android:minHeight="48dp"
         android:inputType="textMultiLine"
-        android:scrollHorizontally="false" />
+        android:scrollHorizontally="false"
+        android:gravity="center_vertical|start" />
 
-    <!-- 圓形傳送按鈕 -->
-    <ImageButton
-        android:id="@+id/buttonSend"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/circle_button_background"
-        android:src="@drawable/ic_arrow_up"
-        android:contentDescription="發送"
+        <!-- 圓形傳送按鈕 -->
+        <ImageButton
+            android:id="@+id/buttonSend"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circle_button_background"
+            android:src="@drawable/ic_arrow_up"
+            android:contentDescription="@string/send_button_description"
         android:layout_marginStart="8dp" />
-
-
     </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
