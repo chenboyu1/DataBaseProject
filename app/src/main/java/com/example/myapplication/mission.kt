@@ -8,9 +8,9 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
-class mission {
 
-    class MainActivity : AppCompatActivity() {
+
+    class mission : AppCompatActivity() {
 
         var money = 0
 
@@ -71,4 +71,3 @@ class mission {
         }
     }
 
-}
