@@ -139,7 +139,6 @@
                     android:backgroundTint="@color/white"
                     android:textColor="@color/black"
                     android:text="+25" />
-
             </LinearLayout>
 
         </LinearLayout>
