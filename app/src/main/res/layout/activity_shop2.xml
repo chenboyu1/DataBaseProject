@@ -39,13 +39,6 @@
                 android:layout_marginStart="20dp"
                 android:text="跳转到新页面2" />
 
-            <!-- 第三个跳转按钮 -->
-            <Button
-                android:id="@+id/button_page_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="跳转到新页面3" />
         </LinearLayout>
 
 
@@ -77,8 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="@drawable/food1_kakuni_manju"
-                        android:text=" "
-                        android:scaleType="centerInside"/>
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -117,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="可樂"
+                        android:text="肥宅快樂水"
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat"/>

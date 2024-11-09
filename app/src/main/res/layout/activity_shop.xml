@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#B5C7C9"
     android:scrollbars="vertical"
     android:fadeScrollbars="false"
@@ -75,7 +76,8 @@
                         android:id="@+id/button_product_1"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 1" />
+                        android:background="@drawable/decoration1_graduation_cap"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -83,10 +85,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 1"
-                        android:textAlignment="viewStart"
+                        android:text="畢業帽"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第1個 -->
 
@@ -101,7 +104,8 @@
                         android:id="@+id/button_product_2"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 2" />
+                        android:background="@drawable/decoration2_hbd_hat"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -109,10 +113,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 2"
-                        android:textAlignment="viewStart"
+                        android:text="生日帽"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第2個 -->
 
@@ -127,7 +132,8 @@
                         android:id="@+id/button_product_3"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 3" />
+                        android:background="@drawable/decoration3_beret"
+                        android:text=" "/>
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -135,10 +141,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 3"
-                        android:textAlignment="viewStart"
+                        android:text="貝雷帽"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第3個 -->
 
@@ -153,7 +160,8 @@
                         android:id="@+id/button_product_4"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 4" />
+                        android:background="@drawable/decoration4_red_fur_hat"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -161,10 +169,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 4"
-                        android:textAlignment="viewStart"
+                        android:text="紅毛帽"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第4個 -->
 
@@ -179,7 +188,8 @@
                         android:id="@+id/button_product_5"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 5" />
+                        android:background="@drawable/decoration5_rosette"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -187,10 +197,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 5"
-                        android:textAlignment="viewStart"
+                        android:text="蝴蝶結"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第5個 -->
             </LinearLayout>
@@ -212,7 +223,8 @@
                         android:id="@+id/button_product_6"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 6" />
+                        android:background="@drawable/decoration6_dandelion"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -220,10 +232,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 6"
-                        android:textAlignment="viewStart"
+                        android:text="蒲公英"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第6個 -->
 
@@ -238,7 +251,8 @@
                         android:id="@+id/button_product_7"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 7" />
+                        android:background="@drawable/decoration7_fire"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -246,10 +260,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 7"
-                        android:textAlignment="viewStart"
+                        android:text="火焰"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第7個 -->
 
@@ -264,7 +279,8 @@
                         android:id="@+id/button_product_8"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 8" />
+                        android:background="@drawable/decoration8_star"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -272,10 +288,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 8"
-                        android:textAlignment="viewStart"
+                        android:text="星光閃閃"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第8個 -->
 
@@ -290,7 +307,8 @@
                         android:id="@+id/button_product_9"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 9" />
+                        android:background="@drawable/decoration9_leaves"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -298,10 +316,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 9"
-                        android:textAlignment="viewStart"
+                        android:text="銀杏葉"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第9個 -->
 
@@ -316,7 +335,8 @@
                         android:id="@+id/button_product_10"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:text="商品 10" />
+                        android:background="@drawable/decoration10_leaf"
+                        android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
                     <TextView
@@ -324,10 +344,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="描述商品 10"
-                        android:textAlignment="viewStart"
+                        android:text="嫩葉"
                         android:textColor="#000"
-                        android:textSize="40sp" />
+                        android:textSize="40sp"
+                        android:gravity="center"
+                        tools:ignore="RtlCompat"/>
                 </LinearLayout>
                 <!-- 第10個 -->
             </LinearLayout>
