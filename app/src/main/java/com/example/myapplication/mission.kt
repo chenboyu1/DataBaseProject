@@ -48,17 +48,16 @@ import androidx.appcompat.app.AppCompatActivity
             btnConfirm.setOnClickListener {
                 // 按下確認按鈕後的操作
                 money += 25 // 增加25點
-                dialog.dismiss()
             }
             btnConfirm2.setOnClickListener {
                 // 按下確認按鈕後的操作
                 money += 25 // 增加25點
-                dialog.dismiss()
+
             }
             btnConfirm3.setOnClickListener {
                 // 按下確認按鈕後的操作
                 money += 25 // 增加25點
-                dialog.dismiss()
+
             }
             btnConfirm4.setOnClickListener {
                 // 按下確認按鈕後的操作
