@@ -150,30 +150,33 @@
                 android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
         </LinearLayout>
 
+        <!-- 玩耍按鈕 -->
         <ImageButton
             android:id="@+id/play_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_interaction"
+            android:src="@drawable/ic_play"
             android:background="@drawable/circle_button_background3"
             android:contentDescription="玩耍按鈕"
             android:layout_marginStart="-150dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <!-- 送禮按鈕 -->
         <ImageButton
             android:id="@+id/gift_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_interaction"
+            android:src="@drawable/ic_gift"
             android:background="@drawable/circle_button_background3"
             android:contentDescription="送禮按鈕"
             android:layout_marginStart="-150dp"
             android:layout_marginTop="60dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <!-- 聊天按鈕 -->
         <ImageButton
             android:id="@+id/chat_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_interaction"
+            android:src="@drawable/ic_chat"
             android:background="@drawable/circle_button_background3"
             android:contentDescription="聊天按鈕"
             android:layout_marginStart="-150dp"
