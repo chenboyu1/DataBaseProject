@@ -86,6 +86,15 @@
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />  <!-- 文本居中 -->
                     <!-- 文字水平居中 -->
+                    <TextView
+                        android:id="@+id/price2_product_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
                 <!-- 第1個 -->
@@ -115,6 +124,17 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat"/>
+
+                    <TextView
+                        android:id="@+id/price2_product_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+
                 </LinearLayout>
                 <!-- 第2個 -->
 
@@ -143,6 +163,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第3個 -->
 
@@ -171,6 +201,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第4個 -->
 
@@ -199,6 +239,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第5個 -->
             </LinearLayout>
@@ -234,6 +284,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第6個 -->
 
@@ -262,6 +322,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat"/>
+
+                    <TextView
+                        android:id="@+id/price2_product_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第7個 -->
 
@@ -290,6 +360,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第8個 -->
 
@@ -318,6 +398,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第9個 -->
 
@@ -346,6 +436,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第10個 -->
             </LinearLayout>
