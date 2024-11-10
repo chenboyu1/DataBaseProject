@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F8DAE2" /> <!-- 鵝黃色背景 -->
+    <corners android:radius="50dp" /> <!-- 圓形背景，半徑與按鈕大小相同 -->
+    <stroke
+        android:color="#FDF2F0"
+    android:width="2dp" /> <!-- 邊框寬度 -->
+</shape>
