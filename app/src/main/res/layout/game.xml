@@ -109,7 +109,7 @@
         <!-- 中間的遊戲角色，增大角色 -->
         <ImageView
             android:id="@+id/game_character"
-            android:layout_width="400dp"
+            android:layout_width="350dp"
             android:layout_height="400dp"
             android:src="@drawable/jewel15_colorful" />
 
