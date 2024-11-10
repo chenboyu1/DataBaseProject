@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFEFF1"
+    android:scrollbars="vertical"
+    android:fadeScrollbars="false"
+    android:scrollbarThumbVertical="@drawable/activity_shop_scrollbar"
+    android:paddingRight="10dp"> <!-- 保持滾動條可見 --> <!-- 設置背景顏色 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        ><!--按鈕的-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:paddingStart="60dp">
+
+            <!-- 第一个跳转按钮 -->
+            <Button
+                android:id="@+id/button_page_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="裝飾品"
+                android:backgroundTint="#C9CBE0"/>
+
+            <!-- 第二个跳转按钮 -->
+            <Button
+                android:id="@+id/button_page_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="食物"
+                android:backgroundTint="#C9CBE0"/>
+
+        </LinearLayout>
+
+
+        <!-- 內容區域 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 第一行商品按鈕 -->
+
+            <!-- 這裡可以添加更多的商品行 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:orientation="horizontal"
+                android:padding="25dp">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food1"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="刈包"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />  <!-- 文本居中 -->
+                    <!-- 文字水平居中 -->
+                    <TextView
+                        android:id="@+id/price2_product_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <!-- 第1個 -->
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food2_can_cola"
+                        android:text=" "/>
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="肥宅快樂水"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat"/>
+
+                    <TextView
+                        android:id="@+id/price2_product_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <!-- 第2個 -->
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food3_spaghetti"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="義大利麵"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <!-- 第3個 -->
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food4_sweets_donuts_box"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="甜甜圈"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <!-- 第4個 -->
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="5"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food5_sweets_purin"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="布丁"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <!-- 第5個 -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="25dp">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="5"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food6_macarons"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="馬卡龍"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <!-- 第6個 -->
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="5"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food7_fish"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="鯛魚燒冰淇淋"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat"/>
+
+                    <TextView
+                        android:id="@+id/price2_product_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <!-- 第7個 -->
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="5"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food8_sundae"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="聖代"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <!-- 第8個 -->
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="5"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food9_local_ice"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="在地冰淇淋"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <!-- 第9個 -->
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_weight="5"
+                    android:orientation="vertical"><!-- 設定為垂直方向 -->
+
+                    <Button
+                        android:id="@+id/button2_product_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/food10"
+                        android:text=" " />
+
+                    <!-- 描述文字放在按鈕下方 -->
+                    <TextView
+                        android:id="@+id/description2_product_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="豪華餐車"
+                        android:textColor="#000"
+                        android:textSize="30sp"
+                        tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <!-- 第10個 -->
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

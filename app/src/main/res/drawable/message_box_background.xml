@@ -1,0 +1,29 @@
+<!-- res/drawable/message_box_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景陰影 -->
+    <item>
+        <shape>
+            <corners android:radius="20dp" />
+            <solid android:color="#FFFAE3" /> <!-- 淺黃色背景 -->
+            <padding
+                android:left="6dp"
+                android:top="6dp"
+                android:right="6dp"
+                android:bottom="6dp" />
+        </shape>
+    </item>
+
+    <!-- 黃色內部和白色邊框 -->
+    <item android:bottom="4dp" android:left="4dp" android:right="4dp">
+        <shape>
+            <gradient
+                android:startColor="#FFFDE7"
+                android:endColor="#FFFAE3"
+                android:angle="135"/>
+            <corners android:radius="20dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF"/> <!-- 白色邊框 -->
+        </shape>
+    </item>
+</layer-list>

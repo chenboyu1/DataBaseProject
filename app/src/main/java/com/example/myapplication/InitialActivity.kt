@@ -65,7 +65,7 @@ class InitialActivity : ComponentActivity() {
             ) {
                 val selectedRegion = parent.getItemAtPosition(position).toString().apply {
                     //val user = User(username, password, selectedRegion)
-                    saveRegion(username.toString(), password.toString(), this)
+                    saveRegion(this)
                 }
             }
 
@@ -74,13 +74,12 @@ class InitialActivity : ComponentActivity() {
             }
         }
     }
-    private fun saveRegion(username: String, password: String, region: String) {
+    private fun saveRegion(region: String) {
         val client = OkHttpClient()
-
+        val username = GlobalVariable.getName();
         val json = """
         {
           "username": "$username",
-          "password": "$password",
           "region": "$region"
         }
         """

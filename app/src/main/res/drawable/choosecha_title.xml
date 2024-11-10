@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/rounded_bg.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 設置背景顏色 -->
+    <solid android:color="#FFCDD2" /> <!-- 背景顏色，你可以根據需求調整 -->
+
+    <!-- 設置圓角半徑 -->
+    <corners android:radius="16dp" /> <!-- 圓角的半徑，可以根據需求調整 -->
+
+    <!-- 可選：設置邊框 -->
+    <stroke
+        android:width="2dp"
+        android:color="#D32F2F" /> <!-- 邊框的顏色和寬度 -->
+</shape>

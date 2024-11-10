@@ -3,50 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/pagename"
-        android:layout_width="420dp"
-        android:layout_height="78dp"
-        android:text="@string/initial_pagename"
-        android:textAppearance="@style/initial_pagename"
-        android:gravity="center_horizontal|top"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginTop="43dp"/>
+    android:layout_height="match_parent"
+    android:background="@drawable/background1">
 
     <View
         android:id="@+id/region"
         android:layout_width="624dp"
         android:layout_height="70dp"
-        android:background="@drawable/initial_region"
-        app:layout_constraintTop_toBottomOf="@id/pagename"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="200dp"
+        android:background="@drawable/choosecha_title"/>
 
-    <!--<ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="horizontal">
-            <LinearLayout
-                android:id="@+id/selectbox"
-                android:layout_width="300dp"
-                android:layout_height="327dp"
-                android:orientation="vertical"
-                android:layout_gravity="end"
-                android:background="@drawable/initial_selectbox"
-                app:layout_constraintTop_toBottomOf="@id/region"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp">
-            </LinearLayout>
-    </ScrollView>-->
 
     <TextView
         android:id="@+id/regiontext"
@@ -55,11 +25,12 @@
         android:text="@string/regiontext"
         android:textAppearance="@style/regiontext"
         android:gravity="center_horizontal|top"
-        app:layout_constraintTop_toBottomOf="@id/pagename"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/region"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/choosecha_title"/>
 
     <Spinner
         android:id="@+id/spinner"
@@ -70,19 +41,6 @@
         app:layout_constraintBottom_toBottomOf="@id/regiontext"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <!--<TextView
-        android:id="@+id/chartext"
-        android:layout_width="0dp"
-        android:layout_height="66dp"
-        android:text="@string/chartext"
-        android:textAppearance="@style/chartext"
-        android:gravity="center_horizontal|top"
-        app:layout_constraintTop_toBottomOf="@id/regiontext"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/region"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"/>-->
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
