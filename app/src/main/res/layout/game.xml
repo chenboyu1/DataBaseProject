@@ -1,11 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D0EFFF"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:padding="16dp">
 
     <!-- 頂部的進度條和心形圖示 -->
+
+    <!-- 一個空的 View，這個 View 會把 TextView 推到底部 -->
+
+    <!-- 中間的遊戲角色和四個按鈕 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,30 +22,26 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="4dp"
-            android:src="@drawable/heart2"
-            />
+            android:src="@drawable/heart2" />
 
         <!-- 好感度進度條 -->
         <ProgressBar
             android:id="@+id/progressBar"
             style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
             android:indeterminate="false"
             android:max="100"
-            android:progress="50"
-            android:progressDrawable="@drawable/custom_progress" />
+            android:progress="50" />
+
+
+
     </LinearLayout>
 
-    <!-- 一個空的 View，這個 View 會把 TextView 推到底部 -->
-
-    <!-- 中間的遊戲角色和四個按鈕 -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:gravity="center_horizontal">
 
         <!-- 中間的遊戲角色，增大角色 -->
@@ -59,7 +59,7 @@
             android:layout_alignStart="@id/game_character"
             android:layout_alignTop="@id/game_character"
             android:layout_marginStart="-300dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/circle_button_background3"
             android:text="互動"
             android:textColor="#000000"
@@ -73,7 +73,7 @@
             android:layout_alignStart="@id/game_character"
             android:layout_alignBottom="@id/game_character"
             android:layout_marginStart="-300dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/circle_button_background3"
             android:text="任務"
             android:textColor="#000000"
@@ -86,7 +86,7 @@
             android:layout_height="100dp"
             android:layout_alignTop="@id/game_character"
             android:layout_alignEnd="@id/game_character"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="-300dp"
             android:background="@drawable/circle_button_background3"
             android:text="商城"
@@ -101,7 +101,7 @@
             android:layout_alignEnd="@id/game_character"
             android:layout_alignBottom="@id/game_character"
             android:layout_marginEnd="-300dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/circle_button_background3"
             android:text="背包"
             android:textColor="#000000"
@@ -112,8 +112,8 @@
     <TextView
         android:id="@+id/message_box"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/message_box_background"
         android:elevation="6dp"
         android:gravity="center"
