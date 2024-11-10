@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D0EFFF"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <!-- 心形圖示 -->
@@ -18,30 +18,25 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="4dp"
-            android:src="@drawable/heart2"
-            />
+            android:src="@drawable/heart2" />
 
         <!-- 好感度進度條 -->
         <ProgressBar
             android:id="@+id/progressBar"
             style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="0dp"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:layout_marginTop="5dp"
             android:indeterminate="false"
             android:max="100"
-            android:progress="50"
-            android:progressDrawable="@drawable/custom_progress" />
+            android:progress="50" />
     </LinearLayout>
-
-    <!-- 一個空的 View，這個 View 會把 TextView 推到底部 -->
 
     <!-- 中間的遊戲角色和四個按鈕 -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:gravity="center_horizontal">
 
         <!-- 中間的遊戲角色，增大角色 -->
@@ -52,68 +47,141 @@
             android:src="@drawable/jewel15_colorful" />
 
         <!-- 左上角的「互動」按鈕 -->
-        <Button
-            android:id="@+id/interaction_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_alignStart="@id/game_character"
             android:layout_alignTop="@id/game_character"
             android:layout_marginStart="-300dp"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/circle_button_background3"
-            android:text="互動"
-            android:textColor="#000000"
-            android:textSize="24sp"/>
+            android:layout_marginTop="20dp">
+
+            <!-- 圖片按鈕 -->
+            <ImageButton
+                android:id="@+id/interaction_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_interaction"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="互動按鈕" />
+
+            <!-- 顯示文字 "互動" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="互動"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
+        </LinearLayout>
 
         <!-- 左下角的「任務」按鈕 -->
-        <Button
-            android:id="@+id/task_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_alignStart="@id/game_character"
             android:layout_alignBottom="@id/game_character"
             android:layout_marginStart="-300dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/circle_button_background3"
-            android:text="任務"
-            android:textColor="#000000"
-            android:textSize="24sp"/>
+            android:layout_marginBottom="20dp">
+
+            <!-- 圖片按鈕 -->
+            <ImageButton
+                android:id="@+id/task_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_task"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="任務按鈕" />
+
+            <!-- 顯示文字 "任務" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任務"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
+        </LinearLayout>
 
         <!-- 右上角的「商城」按鈕 -->
-        <Button
-            android:id="@+id/shop_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_alignTop="@id/game_character"
             android:layout_alignEnd="@id/game_character"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="-300dp"
-            android:background="@drawable/circle_button_background3"
-            android:text="商城"
-            android:textColor="#000000"
-            android:textSize="24sp"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="-300dp">
+
+            <!-- 圖片按鈕 -->
+            <ImageButton
+                android:id="@+id/shop_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_shop"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="商城按鈕" />
+
+            <!-- 顯示文字 "商城" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商城"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
+        </LinearLayout>
 
         <!-- 右下角的「背包」按鈕 -->
-        <Button
-            android:id="@+id/backpack_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_alignEnd="@id/game_character"
             android:layout_alignBottom="@id/game_character"
             android:layout_marginEnd="-300dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/circle_button_background3"
-            android:text="背包"
-            android:textColor="#000000"
-            android:textSize="24sp"/>
+            android:layout_marginBottom="20dp">
+
+            <!-- 圖片按鈕 -->
+            <ImageButton
+                android:id="@+id/backpack_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_backpack"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="背包按鈕" />
+
+            <!-- 顯示文字 "背包" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="背包"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
+        </LinearLayout>
+
     </RelativeLayout>
 
     <!-- 下方的文字框，將文字框推到底部 -->
     <TextView
         android:id="@+id/message_box"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/message_box_background"
         android:elevation="6dp"
         android:gravity="center"
