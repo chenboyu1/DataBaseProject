@@ -1,7 +1,7 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -11,8 +11,8 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var messageBox: TextView
-    private lateinit var interactionButton: Button
-    private lateinit var taskButton: Button
+    private lateinit var interactionButton: ImageButton  // 修改為 ImageButton
+    private lateinit var taskButton: ImageButton  // 修改為 ImageButton
     private lateinit var gameCharacter: ImageView
 
     private var affectionLevel = 50 // 初始親密度為 50
@@ -24,8 +24,8 @@ class GameActivity : AppCompatActivity() {
         // 取得進度條和其他 UI 元件
         progressBar = findViewById(R.id.progressBar)
         messageBox = findViewById(R.id.message_box)
-        interactionButton = findViewById(R.id.interaction_button)
-        taskButton = findViewById(R.id.task_button)
+        interactionButton = findViewById(R.id.interaction_button)  // 改為 ImageButton
+        taskButton = findViewById(R.id.task_button)  // 改為 ImageButton
         gameCharacter = findViewById(R.id.game_character)
 
         // 設定進度條最大值

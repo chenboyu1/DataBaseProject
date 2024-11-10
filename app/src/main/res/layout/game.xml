@@ -62,7 +62,6 @@
                 android:id="@+id/interaction_button"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_interaction"
                 android:background="@drawable/circle_button_background3"
                 android:contentDescription="互動按鈕" />
@@ -75,9 +74,9 @@
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:gravity="center"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
         </LinearLayout>
-
 
         <!-- 左下角的「任務」按鈕 -->
         <LinearLayout
@@ -95,7 +94,6 @@
                 android:id="@+id/task_button"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_task"
                 android:background="@drawable/circle_button_background3"
                 android:contentDescription="任務按鈕" />
@@ -108,7 +106,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:gravity="center"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
         </LinearLayout>
 
         <!-- 右上角的「商城」按鈕 -->
@@ -127,7 +126,6 @@
                 android:id="@+id/shop_button"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_shop"
                 android:background="@drawable/circle_button_background3"
                 android:contentDescription="商城按鈕" />
@@ -140,7 +138,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:gravity="center"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
         </LinearLayout>
 
         <!-- 右下角的「背包」按鈕 -->
@@ -159,7 +158,6 @@
                 android:id="@+id/backpack_button"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_backpack"
                 android:background="@drawable/circle_button_background3"
                 android:contentDescription="背包按鈕" />
@@ -172,7 +170,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:gravity="center"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" /> <!-- 文字距離圖片按鈕 8dp -->
         </LinearLayout>
 
     </RelativeLayout>
