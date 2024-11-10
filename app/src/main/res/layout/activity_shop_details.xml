@@ -30,6 +30,17 @@
         android:paddingTop="10dp"
         android:textColor="#000" />
 
+    <!-- 確認是否購買 -->
+    <TextView
+        android:id="@+id/confirmation_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="確認是否購買"
+        android:textSize="15sp"
+        android:textColor="	#808080"
+        android:gravity="center" />
+
     <!-- 按鈕區域 -->
     <LinearLayout
         android:layout_width="match_parent"
