@@ -102,7 +102,7 @@ class GameActivity : AppCompatActivity() {
         affectionLevel += 10
         // 更新进度条和消息框
         progressBar.progress = affectionLevel
-        messageBox.text = "你和角色玩耍，增加了好感度！当前好感度：$affectionLevel"
+        messageBox.text = "你和角色玩耍，增加了好感度！當前好感度：$affectionLevel"
 
         // 隐藏互动按钮
         playButton.visibility = View.GONE
@@ -115,12 +115,12 @@ class GameActivity : AppCompatActivity() {
 
     private fun giftInteraction() {
         // 送礼逻辑
-        messageBox.text = "送礼中..."
+        messageBox.text = "送禮中..."
     }
 
     private fun chatInteraction() {
         // 进入聊天界面
-        messageBox.text = "开启聊天..."
+        messageBox.text = "開啟聊天..."
     }
 
     private fun openChatScreen() {
@@ -142,7 +142,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun ShopInteraction() {
         // 进入商城界面
-        messageBox.text = "开启商城..."
+        messageBox.text = "開啟商城..."
     }
 
     private fun openShopScreen() {
@@ -153,7 +153,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun openBackpackScreen() {
         // 进入背包界面
-        messageBox.text = "开启背包..."
+        messageBox.text = "開啟背包..."
     }
 
     private fun updateUI() {
@@ -161,6 +161,6 @@ class GameActivity : AppCompatActivity() {
         progressBar.progress = affectionLevel  // 使用当前好感度来更新进度条
         levelText.text = "Lv. 100"  // 假设等级为100
         moneyAmount.text = "100000"  // 假设金钱为100000
-        characterName.text = "俗头"  // 假设角色名称为「俗头」
+        characterName.text = "俗頭"  // 假设角色名称为「俗头」
     }
 }
