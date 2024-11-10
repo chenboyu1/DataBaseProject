@@ -134,9 +134,15 @@ class GameActivity : AppCompatActivity() {
         messageBox.text = "开启任务..."
     }
 
-    private fun openShopScreen() {
+    private fun ShopInteraction() {
         // 进入商城界面
         messageBox.text = "开启商城..."
+    }
+
+    private fun openShopScreen() {
+        // 跳转到聊天界面
+        val intent = Intent(this, ShopActivity::class.java)
+        startActivity(intent)
     }
 
     private fun openBackpackScreen() {
