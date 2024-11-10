@@ -17,17 +17,17 @@ class GameActivity : AppCompatActivity() {
     private lateinit var levelText: TextView
     private lateinit var moneyAmount: TextView
     private lateinit var characterName: TextView
-
     private lateinit var interactionButton: ImageButton
     private lateinit var playButton: ImageButton
     private lateinit var giftButton: ImageButton
     private lateinit var chatButton: ImageButton
-
     private lateinit var taskButton: ImageButton
     private lateinit var shopButton: ImageButton
     private lateinit var backpackButton: ImageButton
-
     private lateinit var messageBox: TextView
+
+    // 定义好感度
+    private var affectionLevel = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,9 +98,19 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun playInteraction() {
-        // 播放角色互动动画或逻辑
-        // 更新 UI 或显示消息
-        messageBox.text = "正在进行互动..."
+        // 增加好感度
+        affectionLevel += 10
+        // 更新进度条和消息框
+        progressBar.progress = affectionLevel
+        messageBox.text = "你和角色玩耍，增加了好感度！当前好感度：$affectionLevel"
+
+        // 隐藏互动按钮
+        playButton.visibility = View.GONE
+        giftButton.visibility = View.GONE
+        chatButton.visibility = View.GONE
+
+        // 更新 UI
+        updateUI()
     }
 
     private fun giftInteraction() {
@@ -136,7 +146,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun updateUI() {
         // 更新心形进度条、等级、金钱等显示
-        progressBar.progress = 50  // 假设进度为50%
+        progressBar.progress = affectionLevel  // 使用当前好感度来更新进度条
         levelText.text = "Lv. 100"  // 假设等级为100
         moneyAmount.text = "100000"  // 假设金钱为100000
         characterName.text = "俗头"  // 假设角色名称为「俗头」
