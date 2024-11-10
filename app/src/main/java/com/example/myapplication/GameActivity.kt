@@ -129,9 +129,15 @@ class GameActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun openTaskScreen() {
+    private fun missionnteraction() {
         // 进入任务界面
         messageBox.text = "开启任务..."
+    }
+
+    private fun openTaskScreen() {
+        // 跳转到任務界面
+        val intent = Intent(this, mission::class.java)
+        startActivity(intent)
     }
 
     private fun ShopInteraction() {
@@ -140,7 +146,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun openShopScreen() {
-        // 跳转到聊天界面
+        // 跳转到商城界面
         val intent = Intent(this, ShopActivity::class.java)
         startActivity(intent)
     }
