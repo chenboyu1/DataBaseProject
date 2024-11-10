@@ -14,11 +14,9 @@ class GameActivity : AppCompatActivity() {
     private lateinit var messageBox: TextView
     private lateinit var interactionButton: Button
     private lateinit var taskButton: Button
-    private lateinit var profileButton: ImageView
-    private lateinit var settingsButton: ImageView
     private lateinit var gameCharacter: ImageView
 
-    private var affectionLevel = 10 // 初始好感度為 50
+    private var affectionLevel = 10 // 初始好感度為 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +31,7 @@ class GameActivity : AppCompatActivity() {
 
         // 設定進度條最大值
         progressBar.max = 100
-        progressBar.progress = affectionLevel // 初始化好感度為 50%
+        progressBar.progress = affectionLevel // 初始化好感度為 10%
 
         // 設定初始訊息
         updateMessage("遊戲開始！")
@@ -45,14 +43,6 @@ class GameActivity : AppCompatActivity() {
 
         taskButton.setOnClickListener {
             onTaskButtonClicked()
-        }
-
-        profileButton.setOnClickListener {
-            onProfileButtonClicked()
-        }
-
-        settingsButton.setOnClickListener {
-            onSettingsButtonClicked()
         }
 
         // 開始遊戲邏輯
@@ -91,15 +81,6 @@ class GameActivity : AppCompatActivity() {
         updateAffectionLevel()
     }
 
-    private fun onProfileButtonClicked() {
-        // 顯示個人資料或處理其他邏輯
-        updateMessage("顯示個人資料...")
-    }
-
-    private fun onSettingsButtonClicked() {
-        // 顯示設定選項或處理其他邏輯
-        updateMessage("設定選項...")
-    }
 
     private fun updateAffectionLevel() {
         // 更新進度條的進度
