@@ -29,8 +29,6 @@ class GameActivity : AppCompatActivity() {
         messageBox = findViewById(R.id.message_box)
         interactionButton = findViewById(R.id.interaction_button)
         taskButton = findViewById(R.id.task_button)
-        profileButton = findViewById(R.id.profile_button)
-        settingsButton = findViewById(R.id.settings_button)
         gameCharacter = findViewById(R.id.game_character)
 
         // 設定進度條最大值

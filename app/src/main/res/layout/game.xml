@@ -1,17 +1,16 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D0EFFF"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#D0EFFF">
+    android:padding="16dp">
 
     <!-- 頂部的進度條和心形圖示 -->
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start">
+        android:gravity="start"
+        android:orientation="horizontal">
 
         <!-- 心形圖示 -->
         <ImageView
@@ -24,102 +23,92 @@
         <!-- 好感度進度條 -->
         <ProgressBar
             android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:indeterminate="false"
             android:max="100"
             android:progress="50"
-            android:progressDrawable="@drawable/custom_progress"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:gravity="center"/>
+            android:progressDrawable="@drawable/custom_progress" />
     </LinearLayout>
 
-    <!-- 中間的遊戲角色 -->
+    <!-- 一個空的 View，這個 View 會把 TextView 推到底部 -->
+
+    <!-- 中間的遊戲角色和四個按鈕 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:gravity="center_horizontal">
+
+    <!-- 中間的遊戲角色，增大角色 -->
     <ImageView
         android:id="@+id/game_character"
-        android:layout_width="240dp"
-        android:layout_height="180dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:src="@drawable/food1" />
+        android:src="@drawable/jewel15_colorful" />
 
-    <!-- 左邊的「互動」和「任務」按鈕 -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start">
+    <!-- 左上角的「互動」按鈕 -->
+    <Button
+        android:id="@+id/interaction_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@id/game_character"
+        android:layout_alignTop="@id/game_character"
+        android:layout_marginStart="-24dp"
+        android:layout_marginTop="-24dp"
+        android:text="互動" />
 
-        <Button
-            android:id="@+id/interaction_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="互動" />
+    <!-- 左下角的「任務」按鈕 -->
+    <Button
+        android:id="@+id/task_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@id/game_character"
+        android:layout_alignBottom="@id/game_character"
+        android:layout_marginStart="-24dp"
+        android:layout_marginBottom="-24dp"
+        android:text="任務" />
 
-        <Button
-            android:id="@+id/task_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="任務"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
+    <!-- 右上角的「商城」按鈕 -->
+    <Button
+        android:id="@+id/shop_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@id/game_character"
+        android:layout_alignEnd="@id/game_character"
+        android:layout_marginTop="-24dp"
+        android:layout_marginEnd="-24dp"
+        android:text="商城" />
 
-    <!-- 右邊的「商城」和「背包」按鈕 -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="end">
-        <Button
-            android:id="@+id/shop_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="商城" />
+        <!-- 右下角的「背包」按鈕 -->
         <Button
             android:id="@+id/backpack_button"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:text="背包"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
+            android:layout_alignEnd="@id/game_character"
+            android:layout_alignBottom="@id/game_character"
+            android:layout_marginEnd="-24dp"
+            android:layout_marginBottom="-24dp"
+            android:text="背包" />
+    </RelativeLayout>
 
+
+
+    <!-- 下方的文字框，將文字框推到底部 -->
     <TextView
         android:id="@+id/message_box"
         android:layout_width="match_parent"
-        android:layout_height="197dp"
-        android:layout_marginTop="16dp"
-        android:padding="20dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/message_box_background"
+        android:elevation="6dp"
         android:gravity="center"
+        android:padding="20dp"
         android:text="這裡顯示訊息"
         android:textColor="#333333"
-        android:textSize="16sp"
-        android:elevation="6dp"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- 底部的個人按鈕 (左下角) -->
-        <ImageView
-            android:id="@+id/profile_button"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_margin="8dp"
-            android:src="@drawable/food1" />
-
-        <!-- 底部右下角的設定按鈕 -->
-        <ImageView
-            android:id="@+id/settings_button"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
-            android:src="@drawable/food1" />
-    </RelativeLayout>
-
+        android:textSize="16sp" />
 </LinearLayout>
