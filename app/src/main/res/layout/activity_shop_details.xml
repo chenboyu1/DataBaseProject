@@ -30,6 +30,18 @@
         android:paddingTop="10dp"
         android:textColor="#000" />
 
+    <!-- 在 button_buy 之上添加 TextView 用來顯示金額 -->
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="NT$ 0"
+        android:textSize="18sp"
+        android:textColor="#000" />
+
+
     <!-- 確認是否購買 -->
     <TextView
         android:id="@+id/confirmation_text"
