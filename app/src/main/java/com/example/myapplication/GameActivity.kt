@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -10,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class GameActivity : AppCompatActivity() {
 
-    // 定義元件
+    // 定义组件
     private lateinit var heartIcon: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var levelText: TextView
@@ -30,9 +31,9 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.game)  // 你的 XML 佈局文件名稱
+        setContentView(R.layout.game)  // 你的 XML 布局文件名称
 
-        // 初始化元件
+        // 初始化组件
         heartIcon = findViewById(R.id.heart_icon)
         progressBar = findViewById(R.id.progressBar)
         levelText = findViewById(R.id.level_text)
@@ -50,43 +51,43 @@ class GameActivity : AppCompatActivity() {
 
         messageBox = findViewById(R.id.message_box)
 
-        // 設置按鈕點擊事件
+        // 设置按钮点击事件
         interactionButton.setOnClickListener {
-            // 顯示額外的按鈕
+            // 显示额外的按钮
             showAdditionalButtons()
         }
 
         playButton.setOnClickListener {
-            // 觸發「玩耍」動作，增加好感度等
+            // 触发「玩耍」动作，增加好感度等
             playInteraction()
         }
 
         giftButton.setOnClickListener {
-            // 送禮邏輯
+            // 送礼逻辑
             giftInteraction()
         }
 
         chatButton.setOnClickListener {
-            // 進入聊天界面
-            chatInteraction()
+            // 跳转到聊天界面
+            openChatScreen()
         }
 
         taskButton.setOnClickListener {
-            // 觸發「任務」界面
+            // 触发「任务」界面
             openTaskScreen()
         }
 
         shopButton.setOnClickListener {
-            // 觸發「商城」界面
+            // 触发「商城」界面
             openShopScreen()
         }
 
         backpackButton.setOnClickListener {
-            // 觸發「背包」界面
+            // 触发「背包」界面
             openBackpackScreen()
         }
 
-        // 顯示初始數值
+        // 显示初始数值
         updateUI()
     }
 
@@ -97,41 +98,47 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun playInteraction() {
-        // 播放角色互動動畫或邏輯
-        // 更新 UI 或顯示訊息
-        messageBox.text = "正在進行互動..."
+        // 播放角色互动动画或逻辑
+        // 更新 UI 或显示消息
+        messageBox.text = "正在进行互动..."
     }
 
     private fun giftInteraction() {
-        // 送禮邏輯
-        messageBox.text = "送禮中..."
+        // 送礼逻辑
+        messageBox.text = "送礼中..."
     }
 
     private fun chatInteraction() {
-        // 進入聊天界面
-        messageBox.text = "開啟聊天..."
+        // 进入聊天界面
+        messageBox.text = "开启聊天..."
+    }
+
+    private fun openChatScreen() {
+        // 跳转到聊天界面
+        val intent = Intent(this, ChatActivity::class.java)
+        startActivity(intent)
     }
 
     private fun openTaskScreen() {
-        // 進入任務界面
-        messageBox.text = "開啟任務..."
+        // 进入任务界面
+        messageBox.text = "开启任务..."
     }
 
     private fun openShopScreen() {
-        // 進入商城界面
-        messageBox.text = "開啟商城..."
+        // 进入商城界面
+        messageBox.text = "开启商城..."
     }
 
     private fun openBackpackScreen() {
-        // 進入背包界面
-        messageBox.text = "開啟背包..."
+        // 进入背包界面
+        messageBox.text = "开启背包..."
     }
 
     private fun updateUI() {
-        // 更新心形進度條、等級、金錢等顯示
-        progressBar.progress = 50  // 假設進度為50%
-        levelText.text = "Lv. 100"  // 假設等級為100
-        moneyAmount.text = "100000"  // 假設金錢為100000
-        characterName.text = "俗頭"  // 假設角色名稱為「俗頭」
+        // 更新心形进度条、等级、金钱等显示
+        progressBar.progress = 50  // 假设进度为50%
+        levelText.text = "Lv. 100"  // 假设等级为100
+        moneyAmount.text = "100000"  // 假设金钱为100000
+        characterName.text = "俗头"  // 假设角色名称为「俗头」
     }
 }
