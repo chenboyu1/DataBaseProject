@@ -18,7 +18,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var settingsButton: ImageView
     private lateinit var gameCharacter: ImageView
 
-    private var affectionLevel = 50 // 初始好感度為 50
+    private var affectionLevel = 10 // 初始好感度為 50
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

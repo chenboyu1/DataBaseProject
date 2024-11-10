@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#D0EFFF">
 
     <!-- 頂部的進度條和心形圖示 -->
     <LinearLayout
@@ -37,8 +38,8 @@
     <!-- 中間的遊戲角色 -->
     <ImageView
         android:id="@+id/game_character"
-        android:layout_width="match_parent"
-        android:layout_height="184dp"
+        android:layout_width="240dp"
+        android:layout_height="180dp"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:src="@drawable/food1" />
@@ -83,32 +84,42 @@
             android:layout_marginTop="16dp" />
     </LinearLayout>
 
-    <!-- 下方的文字框 -->
     <TextView
         android:id="@+id/message_box"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#EEEEEE"
+        android:layout_height="197dp"
+        android:layout_marginTop="16dp"
+        android:padding="20dp"
+        android:background="@drawable/message_box_background"
+        android:gravity="center"
         android:text="這裡顯示訊息"
         android:textColor="#333333"
-        android:gravity="center"
-        android:layout_marginTop="16dp" />
+        android:textSize="16sp"
+        android:elevation="6dp"/>
 
-    <!-- 底部的個人按鈕 -->
-    <ImageView
-        android:id="@+id/profile_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/food1"
-        android:layout_marginTop="16dp"
-        android:gravity="start" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- 底部右下角的設定按鈕 -->
-    <ImageView
-        android:id="@+id/settings_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:gravity="end"
-        android:src="@drawable/food1" />
+        <!-- 底部的個人按鈕 (左下角) -->
+        <ImageView
+            android:id="@+id/profile_button"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="8dp"
+            android:src="@drawable/food1" />
+
+        <!-- 底部右下角的設定按鈕 -->
+        <ImageView
+            android:id="@+id/settings_button"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:src="@drawable/food1" />
+    </RelativeLayout>
+
 </LinearLayout>
