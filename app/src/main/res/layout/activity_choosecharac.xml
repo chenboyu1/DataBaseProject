@@ -12,18 +12,60 @@
         android:layout_height="match_parent">
     <ScrollView
         android:id="@+id/sideboxScroll"
-        android:layout_width="300dp"
+        android:layout_width="400dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="#EDCDCE"
-        android:layout_marginEnd="46dp">
+        android:background="#EDCDCE">
 
         <LinearLayout
             android:id="@+id/sidebox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!-- 动态生成按钮 -->
+
+            <Button
+                android:id="@+id/character_1"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="@drawable/jewel02_amethyst"
+                android:text=" " />
+            <Button
+                android:id="@+id/character_2"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="@drawable/jewel03_aquamarine"
+                android:text=" " />
+            <Button
+                android:id="@+id/character_3"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="@drawable/jewel05_emerald"
+                android:text=" " />
+            <Button
+                android:id="@+id/character_4"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="@drawable/jewel06_moonstone"
+                android:text=" " />
+            <Button
+                android:id="@+id/character_5"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="@drawable/jewel08_peridot"
+                android:text=" " />
+            <Button
+                android:id="@+id/character_6"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="@drawable/jewel10_pink_tourmaline"
+                android:text=" " />
+
         </LinearLayout>
     </ScrollView>
     </FrameLayout>
@@ -39,6 +81,19 @@
         app:layout_constraintEnd_toStartOf="@id/sidebox"
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
+        tools:ignore="NotSibling"
+        android:background="@drawable/choosecha_title"/>
+    <Button
+        android:id="@+id/nextstep"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:text="下一步"
+        android:textAppearance="@style/chartext"
+        android:gravity="center_horizontal|top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="20dp"
         tools:ignore="NotSibling"
         android:background="@drawable/choosecha_title"/>
 
