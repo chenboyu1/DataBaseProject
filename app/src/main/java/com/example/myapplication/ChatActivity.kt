@@ -1,11 +1,12 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.EditText
-import androidx.appcompat.widget.AppCompatImageButton  // 引入 AppCompatImageButton
 
 class ChatActivity : AppCompatActivity() {
 
@@ -14,6 +15,7 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var chatAdapter: ChatAdapter
     private lateinit var editTextMessage: EditText
     private lateinit var buttonSend: AppCompatImageButton  // 修改為 AppCompatImageButton
+    private lateinit var buttonBack: ImageButton  // 圓形返回按鈕
     private val messageList = mutableListOf<Message>() // 儲存訊息列表
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,7 @@ class ChatActivity : AppCompatActivity() {
         recyclerViewChat = findViewById(R.id.recyclerViewChat)
         editTextMessage = findViewById(R.id.editTextMessage)
         buttonSend = findViewById(R.id.buttonSend)  // 找到 ImageButton
+        buttonBack = findViewById(R.id.buttonBack)  // 找到返回按鈕
 
         // 設置 RecyclerView 和 Adapter
         chatAdapter = ChatAdapter(messageList) // 使用訊息列表初始化 Adapter
@@ -48,11 +51,16 @@ class ChatActivity : AppCompatActivity() {
                 simulateAIResponse() // 呼叫模擬 AI 回覆的函數
             }
         }
+
+        // 設置返回按鈕點擊事件
+        buttonBack.setOnClickListener {
+            finish()  // 結束當前活動並返回到前一個活動（GameActivity）
+        }
     }
 
     // 模擬 AI 回覆的函數
     private fun simulateAIResponse() {
-        val aiMessage = "這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息這是模擬的 AI 回覆訊息"  // 可以替換成真正的 AI 回覆邏輯
+        val aiMessage = "這是模擬的 AI 回覆訊息。"  // 可以替換成真正的 AI 回覆邏輯
         messageList.add(Message(aiMessage, MessageType.AI)) // 添加 AI 回覆訊息到列表中
         chatAdapter.notifyDataSetChanged() // 通知 RecyclerView 更新顯示
     }
