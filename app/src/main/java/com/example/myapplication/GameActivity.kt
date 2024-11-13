@@ -118,31 +118,16 @@ class GameActivity : AppCompatActivity() {
         messageBox.text = "送禮中..."
     }
 
-    private fun chatInteraction() {
-        // 进入聊天界面
-        messageBox.text = "開啟聊天..."
-    }
-
     private fun openChatScreen() {
         // 跳转到聊天界面
         val intent = Intent(this, ChatActivity::class.java)
         startActivity(intent)
     }
 
-    private fun missionnteraction() {
-        // 进入任务界面
-        messageBox.text = "开启任务..."
-    }
-
     private fun openTaskScreen() {
         // 跳转到任務界面
         val intent = Intent(this, mission::class.java)
         startActivity(intent)
-    }
-
-    private fun ShopInteraction() {
-        // 进入商城界面
-        messageBox.text = "開啟商城..."
     }
 
     private fun openShopScreen() {
@@ -152,8 +137,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun openBackpackScreen() {
-        // 进入背包界面
-        messageBox.text = "開啟背包..."
+        // 跳转到商城界面
+        val intent = Intent(this, PackageActivity::class.java)
+        startActivity(intent)
     }
 
     private fun updateUI() {
