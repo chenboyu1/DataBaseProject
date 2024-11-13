@@ -160,6 +160,18 @@
             android:contentDescription="玩耍按鈕"
             android:layout_marginStart="-180dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/play_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="玩耍"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="13dp"
+            android:layout_marginStart="-110dp"
+            android:visibility="gone" />
         <!-- 送禮按鈕 -->
         <ImageButton
             android:id="@+id/gift_button"
@@ -171,6 +183,18 @@
             android:layout_marginStart="-150dp"
             android:layout_marginTop="60dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/gift_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="送禮"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="73dp"
+            android:layout_marginStart="-80dp"
+            android:visibility="gone"/>
         <!-- 聊天按鈕 -->
         <ImageButton
             android:id="@+id/chat_button"
@@ -182,6 +206,18 @@
             android:layout_marginStart="-180dp"
             android:layout_marginTop="120dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/chat_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="聊天"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="133dp"
+            android:layout_marginStart="-110dp"
+            android:visibility="gone" />
 
         <!-- 左下角的「任務」按鈕 -->
         <LinearLayout

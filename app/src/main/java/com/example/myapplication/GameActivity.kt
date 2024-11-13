@@ -17,10 +17,15 @@ class GameActivity : AppCompatActivity() {
     private lateinit var levelText: TextView
     private lateinit var moneyAmount: TextView
     private lateinit var characterName: TextView
+
     private lateinit var interactionButton: ImageButton
     private lateinit var playButton: ImageButton
+    private lateinit var playText: TextView
     private lateinit var giftButton: ImageButton
+    private lateinit var giftText: TextView
     private lateinit var chatButton: ImageButton
+    private lateinit var chatText: TextView
+
     private lateinit var taskButton: ImageButton
     private lateinit var shopButton: ImageButton
     private lateinit var backpackButton: ImageButton
@@ -42,8 +47,11 @@ class GameActivity : AppCompatActivity() {
 
         interactionButton = findViewById(R.id.interaction_button)
         playButton = findViewById(R.id.play_button)
+        playText = findViewById(R.id.play_text)
         giftButton = findViewById(R.id.gift_button)
+        giftText = findViewById(R.id.gift_text)
         chatButton = findViewById(R.id.chat_button)
+        chatText = findViewById(R.id.chat_text)
 
         taskButton = findViewById(R.id.task_button)
         shopButton = findViewById(R.id.shop_button)
@@ -95,6 +103,9 @@ class GameActivity : AppCompatActivity() {
         playButton.visibility = View.VISIBLE
         giftButton.visibility = View.VISIBLE
         chatButton.visibility = View.VISIBLE
+        playText.visibility = View.VISIBLE
+        giftText.visibility = View.VISIBLE
+        chatText.visibility = View.VISIBLE
     }
 
     private fun playInteraction() {
@@ -108,6 +119,9 @@ class GameActivity : AppCompatActivity() {
         playButton.visibility = View.GONE
         giftButton.visibility = View.GONE
         chatButton.visibility = View.GONE
+        playText.visibility = View.GONE
+        giftText.visibility = View.GONE
+        chatText.visibility = View.GONE
 
         // 更新 UI
         updateUI()
@@ -116,6 +130,14 @@ class GameActivity : AppCompatActivity() {
     private fun giftInteraction() {
         // 送礼逻辑
         messageBox.text = "送禮中..."
+
+        // 隐藏互动按钮
+        playButton.visibility = View.GONE
+        giftButton.visibility = View.GONE
+        chatButton.visibility = View.GONE
+        playText.visibility = View.GONE
+        giftText.visibility = View.GONE
+        chatText.visibility = View.GONE
     }
 
     private fun openChatScreen() {
