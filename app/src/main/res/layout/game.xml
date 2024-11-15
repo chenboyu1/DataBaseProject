@@ -324,8 +324,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="20dp"
         android:visibility="gone"
+        android:layout_marginBottom="5dp"
         >
 
         <!-- 送禮選項 1：鮮花 -->
@@ -338,10 +338,10 @@
 
             <ImageButton
                 android:id="@+id/gift_flower_button"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:src="@drawable/food1"
-                android:background="@drawable/circle_button_background3"
+                android:background="@drawable/circle_button_background4"
                 android:contentDescription="@string/gift_option_flower"
                 android:scaleType="fitCenter" />
 
@@ -367,10 +367,10 @@
 
             <ImageButton
                 android:id="@+id/gift_chocolate_button"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:src="@drawable/food2_can_cola"
-                android:background="@drawable/circle_button_background3"
+                android:background="@drawable/circle_button_background4"
                 android:contentDescription="@string/gift_option_chocolate"
                 android:scaleType="fitCenter" />
 
@@ -397,10 +397,10 @@
 
             <ImageButton
                 android:id="@+id/gift_toy_button"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:src="@drawable/food3_spaghetti"
-                android:background="@drawable/circle_button_background3"
+                android:background="@drawable/circle_button_background4"
                 android:contentDescription="@string/gift_option_toy"
                 android:scaleType="fitCenter" />
 
