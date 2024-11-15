@@ -160,6 +160,18 @@
             android:contentDescription="玩耍按鈕"
             android:layout_marginStart="-180dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/play_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="玩耍"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="13dp"
+            android:layout_marginStart="-110dp"
+            android:visibility="gone" />
         <!-- 送禮按鈕 -->
         <ImageButton
             android:id="@+id/gift_button"
@@ -171,6 +183,18 @@
             android:layout_marginStart="-150dp"
             android:layout_marginTop="60dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/gift_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="送禮"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="73dp"
+            android:layout_marginStart="-80dp"
+            android:visibility="gone"/>
         <!-- 聊天按鈕 -->
         <ImageButton
             android:id="@+id/chat_button"
@@ -182,6 +206,18 @@
             android:layout_marginStart="-180dp"
             android:layout_marginTop="120dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/chat_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="聊天"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="133dp"
+            android:layout_marginStart="-110dp"
+            android:visibility="gone" />
 
         <!-- 左下角的「任務」按鈕 -->
         <LinearLayout
@@ -281,6 +317,107 @@
 
     </RelativeLayout>
 
+    <!-- 送禮選項按鈕布局，初始隱藏 -->
+    <LinearLayout
+        android:id="@+id/gift_options_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="5dp"
+        >
+
+        <!-- 送禮選項 1：鮮花 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:id="@+id/gift_flower_button"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:src="@drawable/food1"
+                android:background="@drawable/circle_button_background4"
+                android:contentDescription="@string/gift_option_flower"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/gift_flower_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="鮮花"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- 送禮選項 2：巧克力 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:id="@+id/gift_chocolate_button"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:src="@drawable/food2_can_cola"
+                android:background="@drawable/circle_button_background4"
+                android:contentDescription="@string/gift_option_chocolate"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/gift_chocolate_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="巧克力"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                />
+        </LinearLayout>
+
+        <!-- 送禮選項 3：玩具 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:id="@+id/gift_toy_button"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:src="@drawable/food3_spaghetti"
+                android:background="@drawable/circle_button_background4"
+                android:contentDescription="@string/gift_option_toy"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/gift_toy_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="玩具"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
     <!-- 下方的文字框，將文字框推到底部 -->
     <TextView
         android:id="@+id/message_box"
@@ -293,5 +430,6 @@
         android:text="這裡顯示訊息"
         android:textColor="#333333"
         android:textSize="28sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        />
 </LinearLayout>

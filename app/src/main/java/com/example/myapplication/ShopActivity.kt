@@ -3,6 +3,8 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 
@@ -11,6 +13,20 @@ class ShopActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop)
+
+        val buttonBack = findViewById<ImageButton>(R.id.buttonBack_shop1)
+        buttonBack.setOnClickListener {
+            // 如果你需要返回特定的主畫面 Activity，而不是僅僅結束當前 Activity
+            val intent = Intent(this, GameActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
+
+        val moneyAmount = findViewById<TextView>(R.id.money_amount)
+        fun updateUI() {
+            // 更新心形进度条、等级、金钱等显示
+            moneyAmount.text = "100000"  // 假设金钱为100000
+        }
 
         val page2Button = findViewById<Button>(R.id.button_page_2)
         page2Button.setOnClickListener {

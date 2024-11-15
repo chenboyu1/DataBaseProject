@@ -24,4 +24,25 @@
     <string name="chatroom_title">聊天室</string>
     <string name="back_button_description">返回</string>
 
+    <!-- 主畫面原有的字符串 -->
+    <string name="level_text">Lv. 100</string>
+    <string name="money_amount">100000</string>
+    <string name="character_name">俗頭</string>
+    <string name="interaction_text">互動</string>
+    <string name="task_text">任務</string>
+    <string name="shop_text">商城</string>
+    <string name="backpack_text">背包</string>
+    <string name="message_box_default">這裡顯示訊息</string>
+
+    <!-- 主畫面新增的字符串 -->
+    <string name="play_interaction_message">你和角色玩耍，增加了好感度！當前好感度：%1$d</string>
+    <string name="gift_interaction_message">送禮中</string>
+    <string name="chat_interaction_message">開啟聊天</string>
+    <string name="backpack_interaction_message">開啟背包</string>
+    <string name="task_interaction_message">開啟任務</string>
+    <string name="shop_interaction_message">開啟商城</string>
+    <string name="gift_option_flower">感謝你送的鮮花！</string>
+    <string name="gift_option_chocolate">感謝你送的巧克力！</string>
+    <string name="gift_option_toy">感謝你送的玩具！</string>
+
 </resources>
