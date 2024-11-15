@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
 
         val request = Request.Builder()
-            .url("http://10.0.2.2:3000/register") // 如果使用模擬器，請使用這個地址
+            .url("http://140.136.151.129:3000/register") // 如果使用模擬器，請使用這個地址
             .post(body)
             .build()
 
@@ -102,7 +102,7 @@ class MainActivity : ComponentActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
 
         val request = Request.Builder()
-            .url("http://10.0.2.2:3000/login") // 如果使用模擬器，請使用這個地址
+            .url("http://140.136.151.129:3000/login") // 如果使用模擬器，請使用這個地址
             .post(body)
             .build()
 

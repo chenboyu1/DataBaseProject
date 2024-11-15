@@ -24,6 +24,7 @@ import java.io.IOException
 
 class PackageActivity : ComponentActivity() {
     val values = IntArray(10)
+    var charac = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_package)
@@ -32,7 +33,10 @@ class PackageActivity : ComponentActivity() {
         // 获取 ScrollView 和按钮容器
         val sideboxScroll = findViewById<ScrollView>(R.id.sideboxScroll)
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
-
+        getcharac()
+        if(charac==2){
+            imageView.setImageResource(R.drawable.jewel02_amethyst)
+        }
         fetchData()
         if(values[0]==1){
             val button = Button(this)
@@ -121,7 +125,35 @@ class PackageActivity : ComponentActivity() {
     private fun Int.dpToPx(): Int {
         return (this * resources.displayMetrics.density).toInt()
     }
+    fun getcharac(){
+        val client = OkHttpClient()
+        val username = 'a';//GlobalVariable.getName();
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/package?username=$username")
+            .get()
+            .build()
 
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@PackageActivity, "第一種失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onResponse(call: okhttp3.Call, response: Response) {
+                val responseBody = response.body?.string() // 先保存response body，避免多次調用
+
+                runOnUiThread {
+                    if (response.isSuccessful && responseBody != null) {
+                        Toast.makeText(this@PackageActivity, "成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        charac = responseBody?.toInt()!!
+                    } else {
+                        println("無法取得資料，狀態碼: ${response.code}，訊息: ${response.message}")
+                        Toast.makeText(this@PackageActivity, "第二種失敗: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
     fun fetchData() {
         val client = OkHttpClient()
         val username = 'a';//GlobalVariable.getName();
