@@ -317,6 +317,107 @@
 
     </RelativeLayout>
 
+    <!-- 送禮選項按鈕布局，初始隱藏 -->
+    <LinearLayout
+        android:id="@+id/gift_options_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        >
+
+        <!-- 送禮選項 1：鮮花 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:id="@+id/gift_flower_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/food1"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="@string/gift_option_flower"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/gift_flower_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="鮮花"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- 送禮選項 2：巧克力 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:id="@+id/gift_chocolate_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/food2_can_cola"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="@string/gift_option_chocolate"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/gift_chocolate_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="巧克力"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                />
+        </LinearLayout>
+
+        <!-- 送禮選項 3：玩具 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="8dp">
+
+            <ImageButton
+                android:id="@+id/gift_toy_button"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/food3_spaghetti"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="@string/gift_option_toy"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/gift_toy_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="玩具"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
     <!-- 下方的文字框，將文字框推到底部 -->
     <TextView
         android:id="@+id/message_box"
@@ -329,5 +430,6 @@
         android:text="這裡顯示訊息"
         android:textColor="#333333"
         android:textSize="28sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        />
 </LinearLayout>

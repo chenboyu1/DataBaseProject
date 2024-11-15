@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class GameActivity : AppCompatActivity() {
 
-    // 定义组件
+    // 定義組件
     private lateinit var heartIcon: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var levelText: TextView
@@ -31,14 +32,20 @@ class GameActivity : AppCompatActivity() {
     private lateinit var backpackButton: ImageButton
     private lateinit var messageBox: TextView
 
-    // 定义好感度
+    // 定義送禮選項按鈕布局及按鈕
+    private lateinit var giftOptionsLayout: LinearLayout
+    private lateinit var giftFlowerButton: ImageButton
+    private lateinit var giftChocolateButton: ImageButton
+    private lateinit var giftToyButton: ImageButton
+
+    // 定義好感度
     private var affectionLevel = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.game)  // 你的 XML 布局文件名称
+        setContentView(R.layout.game)  // 你的 XML 布局文件名稱
 
-        // 初始化组件
+        // 初始化組件
         heartIcon = findViewById(R.id.heart_icon)
         progressBar = findViewById(R.id.progressBar)
         levelText = findViewById(R.id.level_text)
@@ -59,43 +66,62 @@ class GameActivity : AppCompatActivity() {
 
         messageBox = findViewById(R.id.message_box)
 
-        // 设置按钮点击事件
+        // 初始化送禮選項按鈕
+        giftOptionsLayout = findViewById(R.id.gift_options_layout)
+        giftFlowerButton = findViewById(R.id.gift_flower_button)
+        giftChocolateButton = findViewById(R.id.gift_chocolate_button)
+        giftToyButton = findViewById(R.id.gift_toy_button)
+
+        // 設置按鈕點擊事件
         interactionButton.setOnClickListener {
-            // 显示额外的按钮
+            // 顯示額外的按鈕
             showAdditionalButtons()
         }
 
         playButton.setOnClickListener {
-            // 触发「玩耍」动作，增加好感度等
+            // 觸發「玩耍」動作，增加好感度等
             playInteraction()
         }
 
         giftButton.setOnClickListener {
-            // 送礼逻辑
-            giftInteraction()
+            // 顯示送禮選項
+            showGiftOptions()
         }
 
         chatButton.setOnClickListener {
-            // 跳转到聊天界面
+            // 跳轉到聊天界面
             openChatScreen()
         }
 
         taskButton.setOnClickListener {
-            // 触发「任务」界面
+            // 跳轉到任務界面
             openTaskScreen()
         }
 
         shopButton.setOnClickListener {
-            // 触发「商城」界面
+            // 跳轉到商城界面
             openShopScreen()
         }
 
         backpackButton.setOnClickListener {
-            // 触发「背包」界面
+            // 跳轉到背包界面
             openBackpackScreen()
         }
 
-        // 显示初始数值
+        // 設置送禮選項按鈕的點擊事件
+        giftFlowerButton.setOnClickListener {
+            selectGift("flower")
+        }
+
+        giftChocolateButton.setOnClickListener {
+            selectGift("chocolate")
+        }
+
+        giftToyButton.setOnClickListener {
+            selectGift("toy")
+        }
+
+        // 顯示初始數值
         updateUI()
     }
 
@@ -108,67 +134,90 @@ class GameActivity : AppCompatActivity() {
         chatText.visibility = View.VISIBLE
     }
 
-    private fun playInteraction() {
-        // 增加好感度
-        affectionLevel += 10
-        // 更新进度条和消息框
-        progressBar.progress = affectionLevel
-        messageBox.text = "你和角色玩耍，增加了好感度！當前好感度：$affectionLevel"
-
-        // 隐藏互动按钮
+    private fun hideAdditionalButtons() {
         playButton.visibility = View.GONE
         giftButton.visibility = View.GONE
         chatButton.visibility = View.GONE
         playText.visibility = View.GONE
         giftText.visibility = View.GONE
         chatText.visibility = View.GONE
+    }
+
+    private fun playInteraction() {
+        // 增加好感度
+        affectionLevel += 10
+        // 更新進度條和訊息框
+        progressBar.progress = affectionLevel
+        messageBox.text = getString(R.string.play_interaction_message, affectionLevel)
+
+        // 隱藏互動按鈕
+        hideAdditionalButtons()
 
         // 更新 UI
         updateUI()
     }
 
-    private fun giftInteraction() {
-        // 送礼逻辑
-        messageBox.text = "送禮中..."
+    private fun showGiftOptions() {
+        // 顯示送禮選項布局
+        giftOptionsLayout.visibility = View.VISIBLE
+        // 隱藏主要的互動按鈕
+        hideAdditionalButtons()
+        // 清空訊息框
+        messageBox.text = ""
+    }
 
-        // 隐藏互动按钮
-        playButton.visibility = View.GONE
-        giftButton.visibility = View.GONE
-        chatButton.visibility = View.GONE
-        playText.visibility = View.GONE
-        giftText.visibility = View.GONE
-        chatText.visibility = View.GONE
+    private fun selectGift(giftType: String) {
+        when (giftType) {
+            "flower" -> {
+                affectionLevel += 10
+                messageBox.text = getString(R.string.gift_option_flower)
+            }
+            "chocolate" -> {
+                affectionLevel += 10
+                messageBox.text = getString(R.string.gift_option_chocolate)
+            }
+            "toy" -> {
+                affectionLevel += 10
+                messageBox.text = getString(R.string.gift_option_toy)
+            }
+        }
+        // 更新進度條
+        progressBar.progress = affectionLevel
+        // 隱藏送禮選項
+        giftOptionsLayout.visibility = View.GONE
+        // 更新 UI
+        updateUI()
     }
 
     private fun openChatScreen() {
-        // 跳转到聊天界面
+        // 跳轉到聊天界面
         val intent = Intent(this, ChatActivity::class.java)
         startActivity(intent)
     }
 
     private fun openTaskScreen() {
-        // 跳转到任務界面
-        val intent = Intent(this, mission::class.java)
+        // 跳轉到任務界面
+        val intent = Intent(this, mission::class.java) // 假設任務活動名為 MissionActivity
         startActivity(intent)
     }
 
     private fun openShopScreen() {
-        // 跳转到商城界面
+        // 跳轉到商城界面
         val intent = Intent(this, ShopActivity::class.java)
         startActivity(intent)
     }
 
     private fun openBackpackScreen() {
-        // 跳转到商城界面
-        val intent = Intent(this, PackageActivity::class.java)
+        // 跳轉到背包界面
+        val intent = Intent(this, PackageActivity::class.java) // 假設背包活動名為 PackageActivity
         startActivity(intent)
     }
 
     private fun updateUI() {
-        // 更新心形进度条、等级、金钱等显示
-        progressBar.progress = affectionLevel  // 使用当前好感度来更新进度条
-        levelText.text = "Lv. 100"  // 假设等级为100
-        moneyAmount.text = "100000"  // 假设金钱为100000
-        characterName.text = "俗頭"  // 假设角色名称为「俗头」
+        // 更新心形進度條、等級、金錢等顯示
+        progressBar.progress = affectionLevel  // 使用當前好感度來更新進度條
+        levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
+        moneyAmount.text = getString(R.string.money_amount)  // 通過字符串資源動態顯示金錢
+        characterName.text = getString(R.string.character_name)  // 通過字符串資源動態顯示角色名稱
     }
 }
