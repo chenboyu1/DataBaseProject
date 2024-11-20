@@ -106,7 +106,7 @@
 
 
 
-    <View
+    <Button
         android:id="@+id/retbtn"
         android:layout_width="79dp"
         android:layout_height="77dp"

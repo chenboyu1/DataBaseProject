@@ -1,6 +1,9 @@
 package com.example.myapplication
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
 import android.widget.Button
@@ -11,6 +14,11 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.example.myapplication.GlobalVariable.Companion.decorate
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -23,8 +31,19 @@ import java.io.IOException
 
 
 class PackageActivity : ComponentActivity() {
-    val values = IntArray(10)
     var charac = 0;
+    var currentdecorate = 0;
+    var imgId = arrayOf(
+        R.drawable.jewel02_amethyst, R.drawable.jewel05_emerald,
+        R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline, R.drawable.jewel03_aquamarine
+        , R.drawable.jewel12_tanzanite, R.drawable.jewel15_colorful);
+    var decorationId = arrayOf(
+        R.drawable.decoration1_graduation_cap, R.drawable.decoration2_hbd_hat, R.drawable.decoration3,
+        R.drawable.decoration4_red_fur_hat, R.drawable.decoration5_rosette, R.drawable.decoration6_dandelion
+        , R.drawable.decoration7_fire, R.drawable.decoration8_star, R.drawable.decoration9_leaves,
+        R.drawable.decoration10_leaf)
+    var retbtn = findViewById<Button>(R.id.retbtn)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_package)
@@ -33,163 +52,83 @@ class PackageActivity : ComponentActivity() {
         // 获取 ScrollView 和按钮容器
         val sideboxScroll = findViewById<ScrollView>(R.id.sideboxScroll)
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
-        getcharac()
-        if(charac==2){
-            imageView.setImageResource(R.drawable.jewel02_amethyst)
-        }
-        fetchData()
-        if(values[0]==1){
-            val button = Button(this)
-            button.layoutParams = LinearLayout.LayoutParams(
-                225.dpToPx(), // 按鈕寬度
-                223.dpToPx() // 按鈕高度
-            ).apply {
-                gravity = Gravity.CENTER // 將按鈕置中
-            }
-            button.setBackgroundResource(R.drawable.decoration1_graduation_cap)
-            sidebox.addView(button)
-        }else{
-            //Toast.makeText(this@PackageActivity, "${values[0]}${values[1]}${values[2]}${values[3]}", Toast.LENGTH_SHORT).show()
-        }
-        if(values[1]==1){
-            val button = Button(this)
-            button.layoutParams = LinearLayout.LayoutParams(
-                225.dpToPx(), // 按鈕寬度
-                223.dpToPx() // 按鈕高度
-            ).apply {
-                gravity = Gravity.CENTER // 將按鈕置中
-            }
-            button.setBackgroundResource(R.drawable.decoration2_hbd_hat)
-            sidebox.addView(button)
-            button.setOnTouchListener { v, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        v.alpha = 0.5f // 按下时按钮变得透明
-                    }
-                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                        v.alpha = 1f // 松开或取消时恢复透明度
-                    }
-                }
-                decorativeIcon.setImageResource(R.drawable.decoration2_hbd_hat)
-                false
-            }
-        }
-        if(values[2]==1){
-            val button = Button(this)
-            button.layoutParams = LinearLayout.LayoutParams(
-                225.dpToPx(), // 按鈕寬度
-                223.dpToPx() // 按鈕高度
-            ).apply {
-                gravity = Gravity.CENTER // 將按鈕置中
-            }
-            button.setBackgroundResource(R.drawable.decoration3)
-            sidebox.addView(button)
-            button.setOnTouchListener { v, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        v.alpha = 0.5f // 按下时按钮变得透明
-                    }
-                    MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                        v.alpha = 1f // 松开或取消时恢复透明度
-                    }
-                }
-                decorativeIcon.setImageResource(R.drawable.decoration3)
-                false
-            }
-        }
-        if(values[3]==1){
-            val button = Button(this)
-            button.layoutParams = LinearLayout.LayoutParams(
-                225.dpToPx(), // 按鈕寬度
-                223.dpToPx() // 按鈕高度
-            ).apply {
-                gravity = Gravity.CENTER // 將按鈕置中
-            }
-            button.setBackgroundResource(R.drawable.decoration4_red_fur_hat)
-            sidebox.addView(button)
-        }
 
-// 动态生成按钮
-        /*val buttonCount = 20 // 你可以通过变量动态调整按钮数量
-        for (i in 0 until buttonCount) {
-            val button = Button(this)
-            button.layoutParams = LinearLayout.LayoutParams(
-                225.dpToPx(), // 按鈕寬度
-                223.dpToPx() // 按鈕高度
-            )
-
-            sidebox.addView(button)
-        }*/
-
+        GlobalScope.launch(Dispatchers.Main) {
+            // 等待 getcharac() 函式的返回結果
+            GlobalVariable.setName("b")
+            charac = GlobalVariable.getCharac()
+            currentdecorate = GlobalVariable.getcurrentdecorate()
+            Log.d("currentdecorate", "$currentdecorate")
+            Log.d("charac", "$charac")
+            imageView.setImageResource(imgId[charac])
+            decorativeIcon.setImageResource(decorationId[currentdecorate])
+        }
+        for (i in 0 until 10){
+            if(decorate[i] == 1){
+                createDecorativeButton(this, sidebox, i);
+            }
+        }
+        retbtn.setOnClickListener {
+            jumptoActivity(GameActivity::class.java)
+        }
     }
     private fun Int.dpToPx(): Int {
         return (this * resources.displayMetrics.density).toInt()
     }
-    fun getcharac(){
-        val client = OkHttpClient()
-        val username = 'a';//GlobalVariable.getName();
-        val request = Request.Builder()
-            .url("http://140.136.151.129:3000/package?username=$username")
-            .get()
-            .build()
+    fun createDecorativeButton(context: Context, parentLayout: LinearLayout, id: Int) {
+        val button = Button(context)
+        button.id = id
+        // Set up layout parameters
+        button.layoutParams = LinearLayout.LayoutParams(
+            225.dpToPx(),  // Button width
+            223.dpToPx()   // Button height
+        ).apply {
+            gravity = Gravity.CENTER  // Center the button within its parent
+        }
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: okhttp3.Call, e: IOException) {
-                runOnUiThread {
-                    Toast.makeText(this@PackageActivity, "第一種失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+        // Set button background resource
+        button.setBackgroundResource(decorationId[id])
+
+        // Add the button to the parent layout
+        parentLayout.addView(button)
+
+        // Set the touch listener to handle opacity changes on touch events
+        button.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f  // Make the button semi-transparent when pressed
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f  // Restore opacity when released or canceled
                 }
             }
-            override fun onResponse(call: okhttp3.Call, response: Response) {
-                val responseBody = response.body?.string() // 先保存response body，避免多次調用
-
-                runOnUiThread {
-                    if (response.isSuccessful && responseBody != null) {
-                        Toast.makeText(this@PackageActivity, "成功: $responseBody", Toast.LENGTH_SHORT).show()
-                        charac = responseBody?.toInt()!!
-                    } else {
-                        println("無法取得資料，狀態碼: ${response.code}，訊息: ${response.message}")
-                        Toast.makeText(this@PackageActivity, "第二種失敗: $responseBody", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
+            sendSelectedButtonToServer(id)
+            val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
+            // Set the decoration icon image
+            decorativeIcon.setImageResource(decorationId[button.id])
+            button.text = "已選擇"
+            // Return false to allow other touch events to be processed
+            false
+        }
     }
-    fun fetchData() {
+    fun sendSelectedButtonToServer(id: Int) {
         val client = OkHttpClient()
-        val username = 'a';//GlobalVariable.getName();
+        val username = GlobalVariable.getName()
+        val json = """
+        {
+          "username": "$username",
+          "decoration": $id
+        }
+        """
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
         val request = Request.Builder()
-            .url("http://140.136.151.129:3000/package?username=$username")
-            .get()
+            .url("http://140.136.151.129:3000/decoration") // 如果使用模擬器，請使用這個地址
+            .post(body)
             .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: okhttp3.Call, e: IOException) {
-                runOnUiThread {
-                    Toast.makeText(this@PackageActivity, "第一種失敗: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onResponse(call: okhttp3.Call, response: Response) {
-                val responseBody = response.body?.string() // 先保存response body，避免多次調用
-
-                runOnUiThread {
-                    if (response.isSuccessful && responseBody != null) {
-                        Toast.makeText(this@PackageActivity, "成功: $responseBody", Toast.LENGTH_SHORT).show()
-                        try {
-                            val jsonObject = JSONObject(responseBody)
-                            for (i in 0 until 10) {
-                                values[i] = jsonObject.getInt("decorate${i + 1}")
-                            }
-                            Toast.makeText(this@PackageActivity, "${values[0]}${values[1]}${values[2]}${values[3]}", Toast.LENGTH_SHORT).show()
-                        } catch (e: Exception) {
-                            println("解析回應資料時出錯: ${e.message}")
-                        }
-                    } else {
-                        println("無法取得資料，狀態碼: ${response.code}，訊息: ${response.message}")
-                        Toast.makeText(this@PackageActivity, "第二種失敗: $responseBody", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
+    }
+    private fun jumptoActivity(targetActivity: Class<*>) {
+        val intent = Intent(this, targetActivity)
+        startActivity(intent)
     }
 }

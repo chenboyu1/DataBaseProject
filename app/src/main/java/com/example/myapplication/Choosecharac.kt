@@ -51,7 +51,7 @@ class Choosecharac : ComponentActivity() {
                     v.alpha = 1f // 松开或取消时恢复透明度
                 }
             }
-            sendSelectedButtonToServer("1")
+            sendSelectedButtonToServer(1)
             false
         }
         val buttonProduct2: Button = findViewById(R.id.character_2)
@@ -64,7 +64,7 @@ class Choosecharac : ComponentActivity() {
                     v.alpha = 1f // 松开或取消时恢复透明度
                 }
             }
-            sendSelectedButtonToServer("2")
+            sendSelectedButtonToServer(2)
             false
         }
         val buttonProduct3: Button = findViewById(R.id.character_3)
@@ -77,7 +77,7 @@ class Choosecharac : ComponentActivity() {
                     v.alpha = 1f // 松开或取消时恢复透明度
                 }
             }
-            sendSelectedButtonToServer("3")
+            sendSelectedButtonToServer(3)
             false
         }
         val buttonProduct4: Button = findViewById(R.id.character_4)
@@ -90,7 +90,7 @@ class Choosecharac : ComponentActivity() {
                     v.alpha = 1f // 松开或取消时恢复透明度
                 }
             }
-            sendSelectedButtonToServer("4")
+            sendSelectedButtonToServer(4)
             false
         }
         val buttonProduct5: Button = findViewById(R.id.character_5)
@@ -103,7 +103,7 @@ class Choosecharac : ComponentActivity() {
                     v.alpha = 1f // 松开或取消时恢复透明度
                 }
             }
-            sendSelectedButtonToServer("5")
+            sendSelectedButtonToServer(5)
             false
         }
         val buttonProduct6: Button = findViewById(R.id.character_6)
@@ -116,7 +116,7 @@ class Choosecharac : ComponentActivity() {
                     v.alpha = 1f // 松开或取消时恢复透明度
                 }
             }
-            sendSelectedButtonToServer("6")
+            sendSelectedButtonToServer(6)
             false
         }
         val buttonnext: Button = findViewById(R.id.nextstep)
@@ -157,13 +157,13 @@ class Choosecharac : ComponentActivity() {
         val intent = Intent(this, targetActivity)
         startActivity(intent)
     }
-    private fun sendSelectedButtonToServer(charac: String) {
+    private fun sendSelectedButtonToServer(charac: Int) {
         val client = OkHttpClient()
         val username = GlobalVariable.getName()
         val json = """
         {
           "username": "$username",
-          "charac": "$charac"
+          "charac": $charac
         }
         """
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
