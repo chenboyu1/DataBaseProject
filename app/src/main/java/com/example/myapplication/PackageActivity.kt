@@ -42,7 +42,6 @@ class PackageActivity : ComponentActivity() {
         R.drawable.decoration4_red_fur_hat, R.drawable.decoration5_rosette, R.drawable.decoration6_dandelion
         , R.drawable.decoration7_fire, R.drawable.decoration8_star, R.drawable.decoration9_leaves,
         R.drawable.decoration10_leaf)
-    var retbtn = findViewById<Button>(R.id.retbtn)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +51,7 @@ class PackageActivity : ComponentActivity() {
         // 获取 ScrollView 和按钮容器
         val sideboxScroll = findViewById<ScrollView>(R.id.sideboxScroll)
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
+        var retbtn = findViewById<Button>(R.id.retbtn)
 
         GlobalScope.launch(Dispatchers.Main) {
             // 等待 getcharac() 函式的返回結果
