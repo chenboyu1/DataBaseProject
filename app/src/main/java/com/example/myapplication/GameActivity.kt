@@ -10,14 +10,52 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+//新增的，連結後端等功能
+import android.content.Context
+import android.util.Log
+import android.view.Gravity
+import android.view.MotionEvent
+import android.widget.Button
+import android.widget.ScrollView
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import com.example.myapplication.GlobalVariable.Companion.decorate
+import com.example.myapplication.GlobalVariable.Companion.food //要引用
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+
 class GameActivity : AppCompatActivity() {
+    var charac = 0;
+    var currentdecorate = 0;
+    var imgId = arrayOf(
+        R.drawable.jewel02_amethyst, R.drawable.jewel05_emerald,
+        R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline, R.drawable.jewel03_aquamarine
+        , R.drawable.jewel12_tanzanite, R.drawable.jewel15_colorful);
+    var decorationId = arrayOf(
+        R.drawable.decoration1_graduation_cap, R.drawable.decoration2_hbd_hat, R.drawable.decoration3,
+        R.drawable.decoration4_red_fur_hat, R.drawable.decoration5_rosette, R.drawable.decoration6_dandelion
+        , R.drawable.decoration7_fire, R.drawable.decoration8_star, R.drawable.decoration9_leaves,
+        R.drawable.decoration10_leaf);
+    var foodId = arrayOf(
+        R.drawable.food1, R.drawable.food2_can_cola, R.drawable.food3_spaghetti,
+        R.drawable.food4_sweets_donuts_box, R.drawable.food5_sweets_purin, R.drawable.food6_macarons
+        , R.drawable.food7_fish, R.drawable.food8_sundae, R.drawable.food9_local_ice,
+        R.drawable.food10);
 
     // 定義組件
     private lateinit var heartIcon: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var levelText: TextView
     private lateinit var moneyAmount: TextView
-    private lateinit var characterName: TextView
 
     private lateinit var interactionButton: ImageButton
     private lateinit var playButton: ImageButton
@@ -33,10 +71,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var messageBox: TextView
 
     // 定義送禮選項按鈕布局及按鈕
-    private lateinit var giftOptionsLayout: LinearLayout
-    private lateinit var giftFlowerButton: ImageButton
-    private lateinit var giftChocolateButton: ImageButton
-    private lateinit var giftToyButton: ImageButton
+    private lateinit var sideboxScroll: ScrollView
 
     // 定義好感度
     private var affectionLevel = 0
@@ -45,12 +80,18 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game)  // 你的 XML 布局文件名稱
 
+        val imageView: ImageView = findViewById(R.id.myImageView)
+        val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
+
+        // 获取 ScrollView 和按钮容器，送禮選項區域
+        val sideboxScroll = findViewById<ScrollView>(R.id.sideboxScroll)
+        val sidebox = findViewById<LinearLayout>(R.id.sidebox)
+
         // 初始化組件
         heartIcon = findViewById(R.id.heart_icon)
         progressBar = findViewById(R.id.progressBar)
         levelText = findViewById(R.id.level_text)
         moneyAmount = findViewById(R.id.money_amount)
-        characterName = findViewById(R.id.character_name)
 
         interactionButton = findViewById(R.id.interaction_button)
         playButton = findViewById(R.id.play_button)
@@ -66,11 +107,27 @@ class GameActivity : AppCompatActivity() {
 
         messageBox = findViewById(R.id.message_box)
 
-        // 初始化送禮選項按鈕
-        giftOptionsLayout = findViewById(R.id.gift_options_layout)
-        giftFlowerButton = findViewById(R.id.gift_flower_button)
-        giftChocolateButton = findViewById(R.id.gift_chocolate_button)
-        giftToyButton = findViewById(R.id.gift_toy_button)
+        GlobalScope.launch(Dispatchers.Main) {
+            // 等待 getcharac() 函式的返回結果
+            GlobalVariable.setName("b")
+            charac = GlobalVariable.getCharac()
+            currentdecorate = GlobalVariable.getcurrentdecorate()
+            Log.d("currentdecorate", "$currentdecorate")
+            Log.d("charac", "$charac")
+
+
+            // 確保值已經設置好後再更新 UI
+            if (charac in imgId.indices && currentdecorate in decorationId.indices) {
+                imageView.setImageResource(imgId[charac])  // 顯示角色圖片
+                decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
+            }
+
+            for (i in 0 until 10){
+                if(food[i] > 0){
+                    createDecorativeButton(this@GameActivity, sidebox, i);
+                }
+            }
+        }
 
         // 設置按鈕點擊事件
         interactionButton.setOnClickListener {
@@ -108,21 +165,46 @@ class GameActivity : AppCompatActivity() {
             openBackpackScreen()
         }
 
-        // 設置送禮選項按鈕的點擊事件
-        giftFlowerButton.setOnClickListener {
-            selectGift("flower")
-        }
-
-        giftChocolateButton.setOnClickListener {
-            selectGift("chocolate")
-        }
-
-        giftToyButton.setOnClickListener {
-            selectGift("toy")
-        }
-
         // 顯示初始數值
         updateUI()
+    }
+
+    private fun Int.dpToPx(): Int {
+        return (this * resources.displayMetrics.density).toInt()
+    }
+    fun createDecorativeButton(context: Context, parentLayout: LinearLayout, id: Int) {
+        val button = Button(context)
+        button.id = id
+        // Set up layout parameters
+        button.layoutParams = LinearLayout.LayoutParams(
+            225.dpToPx(),  // Button width
+            223.dpToPx()   // Button height
+        ).apply {
+            gravity = Gravity.CENTER  // Center the button within its parent
+        }
+
+        // Set button background resource
+        button.setBackgroundResource(foodId[id])
+
+        // Add the button to the parent layout
+        parentLayout.addView(button)
+
+    }
+    fun sendSelectedButtonToServer(id: Int) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+        val json = """
+        {
+          "username": "$username",
+          "decoration": $id
+        }
+        """
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
+        val request = Request.Builder()
+            .url("http://10.0.2.2:3000/decoration") // 如果使用模擬器，請使用這個地址10.0.2.2，140.136.151.129
+            .post(body)
+            .build()
     }
 
     private fun showAdditionalButtons() {
@@ -158,8 +240,8 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun showGiftOptions() {
-        // 顯示送禮選項布局
-        giftOptionsLayout.visibility = View.VISIBLE
+        /*// 顯示送禮選項布局
+        giftOptionsLayout.visibility = View.VISIBLE*/
         // 隱藏主要的互動按鈕
         hideAdditionalButtons()
         // 清空訊息框
@@ -184,7 +266,7 @@ class GameActivity : AppCompatActivity() {
         // 更新進度條
         progressBar.progress = affectionLevel
         // 隱藏送禮選項
-        giftOptionsLayout.visibility = View.GONE
+        /*giftOptionsLayout.visibility = View.GONE*/
         // 更新 UI
         updateUI()
     }
@@ -202,9 +284,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun openShopScreen() {
-        // 跳轉到商城界面
+        /*// 跳轉到商城界面
         val intent = Intent(this, ShopActivity::class.java)
-        startActivity(intent)
+        startActivity(intent)*/
     }
 
     private fun openBackpackScreen() {
@@ -218,6 +300,5 @@ class GameActivity : AppCompatActivity() {
         progressBar.progress = affectionLevel  // 使用當前好感度來更新進度條
         levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
         moneyAmount.text = getString(R.string.money_amount)  // 通過字符串資源動態顯示金錢
-        characterName.text = getString(R.string.character_name)  // 通過字符串資源動態顯示角色名稱
     }
 }
