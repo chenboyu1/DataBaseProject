@@ -109,7 +109,7 @@
             android:layout_width="400dp"
             android:layout_height="400dp"
             android:layout_marginTop="80dp"
-            android:src="@drawable/jewel10_pink_tourmaline" />
+            android:src="@drawable/jewel15_colorful" />
 
         <ImageView
             android:id="@+id/decorativeIcon"
@@ -119,7 +119,7 @@
             app:layout_constraintTop_toTopOf="@id/myImageView"
             android:layout_marginStart="110dp"
             android:layout_marginTop="-20dp"
-            android:src="@drawable/decoration1_graduation_cap" />
+            android:src="@drawable/decoration5_rosette" />
 
         <!-- 左上角的「互動」按鈕 -->
         <LinearLayout
@@ -341,7 +341,7 @@
 
         <!-- 底欄内容 -->
         <ScrollView
-            android:id="@+id/gift_options_layout"
+            android:id="@+id/sideboxScroll"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_gravity="end"
