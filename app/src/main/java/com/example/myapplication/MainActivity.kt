@@ -126,6 +126,7 @@ class MainActivity : ComponentActivity() {
                         GlobalScope.launch(Dispatchers.Main) {
                             GlobalVariable.setCharac()
                             GlobalVariable.setdecorate()
+                            GlobalVariable.setfood()
                             GlobalVariable.setcurrentdecorate()
                         }
                         jumptoActivity(GameActivity::class.java)

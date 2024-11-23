@@ -19,6 +19,7 @@ class GlobalVariable : ComponentActivity() {
         private var username: String = ""
         private var charac: Int = 0
         public var decorate: IntArray = IntArray(10)
+        public var food: IntArray = IntArray(10)
         private var currentdecorate: Int = 0
         // 修改 變數值
         fun setName(name: String) {
@@ -41,6 +42,10 @@ class GlobalVariable : ComponentActivity() {
         //底下函式透過呼叫setDecorate()來存進decorate陣列
         suspend fun setDecorate(decorateArray : IntArray) {
             this.decorate = decorateArray
+        }
+        //底下函式透過呼叫setDecorate()來存進decorate陣列
+        suspend fun setFood(foodArray : IntArray) {
+            this.food = foodArray
         }
         //回傳decorate陣列用global variable
         suspend fun setcurrentdecorate() {
@@ -104,6 +109,44 @@ class GlobalVariable : ComponentActivity() {
                         Log.d("test", "${decorateArray[0]}${decorateArray[1]}${decorateArray[2]}${decorateArray[3]}")
                         setDecorate(decorateArray)
                         return@withContext decorateArray
+                    } else {
+                        return@withContext IntArray(10)  // 若請求失敗，返回默認的 10 個 0
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    return@withContext IntArray(10)  // 若網絡錯誤，返回默認的 10 個 0
+                }
+            }
+        }
+        suspend fun setfood(): IntArray { //mainActivity呼叫這函式
+            val client = OkHttpClient()
+            val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
+
+            val request = Request.Builder()
+                .url("http://10.0.2.2:3000/food?username=$username") //要暫時從140.136.151.129改成10.0.2.2
+                .get()
+                .build()
+
+            return withContext(Dispatchers.IO) {
+                try {
+                    // 發送同步請求
+                    val response: Response = client.newCall(request).execute()
+                    if (!response.isSuccessful) {
+                        Log.e("API Error", "Response code: ${response.code}, message: ${response.message}, body: ${response.body?.string()}")
+                    }
+
+                    if (response.isSuccessful) {
+                        // 解析返回的 JSON，提取 decorate 數組
+                        val responseBody = response.body?.string()
+                        val newFood = JSONArray(responseBody)
+
+                        // 將 JSON 陣列轉換為 IntArray
+                        val foodArray = IntArray(newFood.length()) { i ->
+                            newFood.getInt(i)
+                        }
+                        Log.d("test1", "${foodArray[0]}${foodArray[1]}${foodArray[2]}${foodArray[3]}${foodArray[4]}${foodArray[5]}${foodArray[6]}${foodArray[7]}${foodArray[8]}${foodArray[9]}")
+                        setFood(foodArray)
+                        return@withContext foodArray
                     } else {
                         return@withContext IntArray(10)  // 若請求失敗，返回默認的 10 個 0
                     }
