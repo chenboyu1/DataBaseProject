@@ -32,6 +32,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import androidx.lifecycle.lifecycleScope
 
 class GameActivity : AppCompatActivity() {
     var charac = 0;
@@ -107,20 +108,35 @@ class GameActivity : AppCompatActivity() {
 
         messageBox = findViewById(R.id.message_box)
 
-        GlobalScope.launch(Dispatchers.Main) {
+        /*GlobalScope.launch(Dispatchers.Main) {
             // 等待 getcharac() 函式的返回結果
             GlobalVariable.setName("b")
             charac = GlobalVariable.getCharac()
             currentdecorate = GlobalVariable.getcurrentdecorate()
             Log.d("currentdecorate", "$currentdecorate")
             Log.d("charac", "$charac")
+            imageView.setImageResource(imgId[charac])  // 顯示角色圖片
+            decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
 
-
-            // 確保值已經設置好後再更新 UI
-            if (charac in imgId.indices && currentdecorate in decorationId.indices) {
-                imageView.setImageResource(imgId[charac])  // 顯示角色圖片
-                decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
+            for (i in 0 until 10){
+                if(food[i] > 0){
+                    createDecorativeButton(this@GameActivity, sidebox, i);
+                }
             }
+        }*/
+        // 確保資料在畫面顯示之前已經準備好
+        lifecycleScope.launch {
+            // 同步更新資料
+            GlobalVariable.setName("b")
+            GlobalVariable.setCharac()
+            charac = GlobalVariable.getCharac()
+            GlobalVariable.setcurrentdecorate()
+            currentdecorate = GlobalVariable.getcurrentdecorate()
+
+            // 使用更新後的資料來顯示UI
+            // 例如設置圖片等
+            imageView.setImageResource(imgId[charac])  // 顯示角色圖片
+            decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
 
             for (i in 0 until 10){
                 if(food[i] > 0){
@@ -166,7 +182,7 @@ class GameActivity : AppCompatActivity() {
         }
 
         // 顯示初始數值
-        updateUI()
+        //updateUI()
     }
 
     private fun Int.dpToPx(): Int {
