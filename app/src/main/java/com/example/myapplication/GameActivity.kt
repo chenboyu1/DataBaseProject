@@ -85,7 +85,7 @@ class GameActivity : AppCompatActivity() {
         val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
 
         // 获取 ScrollView 和按钮容器，送禮選項區域
-        val sideboxScroll = findViewById<ScrollView>(R.id.sideboxScroll)
+        sideboxScroll = findViewById(R.id.sideboxScroll)
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
 
         // 初始化組件
@@ -108,42 +108,24 @@ class GameActivity : AppCompatActivity() {
 
         messageBox = findViewById(R.id.message_box)
 
-        /*GlobalScope.launch(Dispatchers.Main) {
-            // 等待 getcharac() 函式的返回結果
-            GlobalVariable.setName("b")
-            charac = GlobalVariable.getCharac()
-            currentdecorate = GlobalVariable.getcurrentdecorate()
-            Log.d("currentdecorate", "$currentdecorate")
-            Log.d("charac", "$charac")
-            imageView.setImageResource(imgId[charac])  // 顯示角色圖片
-            decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
-
-            for (i in 0 until 10){
-                if(food[i] > 0){
-                    createDecorativeButton(this@GameActivity, sidebox, i);
-                }
-            }
-        }*/
         // 確保資料在畫面顯示之前已經準備好
         lifecycleScope.launch {
             // 同步更新資料
-            GlobalVariable.setName("b")
             GlobalVariable.setCharac()
             charac = GlobalVariable.getCharac()
             GlobalVariable.setcurrentdecorate()
             currentdecorate = GlobalVariable.getcurrentdecorate()
 
             // 使用更新後的資料來顯示UI
-            // 例如設置圖片等
             imageView.setImageResource(imgId[charac])  // 顯示角色圖片
             decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
 
-            for (i in 0 until 10){
-                if(food[i] > 0){
-                    createDecorativeButton(this@GameActivity, sidebox, i);
-                }
+            val buttonsToCreate = (0 until 10).filter { food[it] > 0 }
+            buttonsToCreate.forEach { i ->
+                createDecorativeButton(this@GameActivity, sidebox, i)
             }
         }
+
 
         // 設置按鈕點擊事件
         interactionButton.setOnClickListener {
@@ -182,46 +164,64 @@ class GameActivity : AppCompatActivity() {
         }
 
         // 顯示初始數值
-        //updateUI()
+        updateUI()
     }
 
     private fun Int.dpToPx(): Int {
         return (this * resources.displayMetrics.density).toInt()
     }
+
     fun createDecorativeButton(context: Context, parentLayout: LinearLayout, id: Int) {
         val button = Button(context)
         button.id = id
-        // Set up layout parameters
-        button.layoutParams = LinearLayout.LayoutParams(
-            225.dpToPx(),  // Button width
-            223.dpToPx()   // Button height
-        ).apply {
-            gravity = Gravity.CENTER  // Center the button within its parent
-        }
 
-        // Set button background resource
+        // 設置按鈕大小和外觀
+        button.layoutParams = LinearLayout.LayoutParams(
+            225.dpToPx(), // Button width
+            223.dpToPx()  // Button height
+        ).apply {
+            gravity = Gravity.CENTER
+        }
         button.setBackgroundResource(foodId[id])
 
-        // Add the button to the parent layout
-        parentLayout.addView(button)
+        // 設置按鈕點擊事件
+        button.setOnClickListener {
+            // 顯示執行中的狀態
+            button.text = "送出中..."  // 按鈕文字變為 "送出中"
+            button.isEnabled = false  // 禁用按鈕，避免重複點擊
+        }
 
+        // 加入到佈局中
+        parentLayout.addView(button)
     }
-    fun sendSelectedButtonToServer(id: Int) {
-        val client = OkHttpClient()
-        val username = GlobalVariable.getName()
-        val json = """
+
+
+    /*suspend fun sendSelectedButtonToServer(id: Int): Boolean {
+        return try {
+            val client = OkHttpClient()
+            val username = GlobalVariable.getName()
+            val json = """
         {
           "username": "$username",
           "decoration": $id
         }
         """
-        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+            val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
 
-        val request = Request.Builder()
-            .url("http://10.0.2.2:3000/decoration") // 如果使用模擬器，請使用這個地址10.0.2.2，140.136.151.129
-            .post(body)
-            .build()
-    }
+            val request = Request.Builder()
+                .url("http://140.136.151.129/food")
+                .post(body)
+                .build()
+
+            // 發送請求
+            val response = client.newCall(request).execute()
+            response.isSuccessful // 如果回應成功返回 true，否則返回 false
+        } catch (e: Exception) {
+            Log.e("sendButtonToServer", "Error: ${e.message}")
+            false
+        }
+    }*/
+
 
     private fun showAdditionalButtons() {
         playButton.visibility = View.VISIBLE
@@ -255,37 +255,63 @@ class GameActivity : AppCompatActivity() {
         updateUI()
     }
 
-    private fun showGiftOptions() {
-        /*// 顯示送禮選項布局
-        giftOptionsLayout.visibility = View.VISIBLE*/
-        // 隱藏主要的互動按鈕
+    /*private fun showGiftOptions() {
+        // 隱藏底下文字框
+        messageBox.visibility = View.GONE
+        // 顯示送禮選項區域（即側邊欄）
+        sideboxScroll.visibility = View.VISIBLE
+        // 隱藏互動按鈕
         hideAdditionalButtons()
-        // 清空訊息框
-        messageBox.text = ""
-    }
 
-    private fun selectGift(giftType: String) {
-        when (giftType) {
-            "flower" -> {
-                affectionLevel += 10
-                messageBox.text = getString(R.string.gift_option_flower)
+        // 獲取送禮按鈕的父布局
+        val sidebox = findViewById<LinearLayout>(R.id.sidebox)
+        sidebox.removeAllViews() // 清空舊的按鈕（避免重複生成）
+
+        // **立即生成按鈕**
+        for (i in 0 until foodId.size) {
+            createDecorativeButton(this, sidebox, i)
+        }
+
+        // **非同步更新按鈕狀態**
+        lifecycleScope.launch {
+            val validButtons = withContext(Dispatchers.IO) {
+                // 模擬後端數據處理，僅返回可用按鈕索引
+                (0 until foodId.size).filter { food[it] > 0 }
             }
-            "chocolate" -> {
-                affectionLevel += 10
-                messageBox.text = getString(R.string.gift_option_chocolate)
-            }
-            "toy" -> {
-                affectionLevel += 10
-                messageBox.text = getString(R.string.gift_option_toy)
+
+            // 更新 UI 上的按鈕（設置不可用的按鈕）
+            withContext(Dispatchers.Main) {
+                for (i in 0 until foodId.size) {
+                    val button = sidebox.findViewById<Button>(i)
+                    if (!validButtons.contains(i)) {
+                        button.isEnabled = false // 不可用
+                        button.alpha = 0.5f // 半透明
+                    }
+                }
             }
         }
-        // 更新進度條
-        progressBar.progress = affectionLevel
-        // 隱藏送禮選項
-        /*giftOptionsLayout.visibility = View.GONE*/
-        // 更新 UI
-        updateUI()
+    }*/
+    private fun showGiftOptions() {
+        // 隱藏底下文字框
+        messageBox.visibility = View.GONE
+        // 顯示送禮選項區域（即側邊欄）
+        sideboxScroll.visibility = View.VISIBLE
+        // 隱藏互動按鈕
+        hideAdditionalButtons()
+
+        // 獲取送禮按鈕的父布局
+        val sidebox = findViewById<LinearLayout>(R.id.sidebox)
+        sidebox.removeAllViews() // 清空舊的按鈕（避免重複生成）
+
+        // **僅生成數量大於 0 的按鈕**
+        (0 until foodId.size).forEach { i ->
+            if (food[i] > 0) { // 檢查該禮物的數量是否大於 0
+                createDecorativeButton(this, sidebox, i)
+            }
+        }
     }
+
+
 
     private fun openChatScreen() {
         // 跳轉到聊天界面

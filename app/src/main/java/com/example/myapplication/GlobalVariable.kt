@@ -24,6 +24,7 @@ class GlobalVariable : ComponentActivity() {
         // 修改 變數值
         fun setName(name: String) {
             this.username = "b" //name
+            // username = name // 直接設置username
         }
         // 取得 變數值
         fun getName(): String {
