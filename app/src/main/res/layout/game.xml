@@ -1,9 +1,13 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background6"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp" >
+
 
     <!-- 頂部的進度條和心形圖示 -->
     <LinearLayout
@@ -92,18 +96,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 角色名稱欄位 -->
-    <TextView
-        android:id="@+id/character_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="俗頭"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:textColor="#333333"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
-
     <!-- 中間的遊戲角色和四個按鈕 -->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -113,10 +105,21 @@
 
         <!-- 中間的遊戲角色，增大角色 -->
         <ImageView
-            android:id="@+id/game_character"
-            android:layout_width="350dp"
+            android:id="@+id/myImageView"
+            android:layout_width="400dp"
             android:layout_height="400dp"
-            android:src="@drawable/jewel15_colorful" />
+            android:layout_marginTop="80dp"
+            android:src="@drawable/jewel10_pink_tourmaline" />
+
+        <ImageView
+            android:id="@+id/decorativeIcon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toEndOf="@id/myImageView"
+            app:layout_constraintTop_toTopOf="@id/myImageView"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="-20dp"
+            android:src="@drawable/decoration1_graduation_cap" />
 
         <!-- 左上角的「互動」按鈕 -->
         <LinearLayout
@@ -124,8 +127,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_alignStart="@id/game_character"
-            android:layout_alignTop="@id/game_character"
+            android:layout_alignStart="@id/myImageView"
+            android:layout_alignTop="@id/myImageView"
             android:layout_marginStart="-300dp"
             android:layout_marginTop="20dp">
 
@@ -158,6 +161,7 @@
             android:src="@drawable/ic_play"
             android:background="@drawable/circle_button_background3"
             android:contentDescription="玩耍按鈕"
+            android:layout_marginTop="60dp"
             android:layout_marginStart="-180dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
         <TextView
@@ -169,7 +173,7 @@
             android:textSize="24sp"
             android:gravity="center"
             android:textStyle="bold"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="73dp"
             android:layout_marginStart="-110dp"
             android:visibility="gone" />
         <!-- 送禮按鈕 -->
@@ -181,7 +185,7 @@
             android:background="@drawable/circle_button_background3"
             android:contentDescription="送禮按鈕"
             android:layout_marginStart="-150dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="120dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
         <TextView
             android:id="@+id/gift_text"
@@ -192,7 +196,7 @@
             android:textSize="24sp"
             android:gravity="center"
             android:textStyle="bold"
-            android:layout_marginTop="73dp"
+            android:layout_marginTop="133dp"
             android:layout_marginStart="-80dp"
             android:visibility="gone"/>
         <!-- 聊天按鈕 -->
@@ -204,7 +208,7 @@
             android:background="@drawable/circle_button_background3"
             android:contentDescription="聊天按鈕"
             android:layout_marginStart="-180dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="180dp"
             android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
         <TextView
             android:id="@+id/chat_text"
@@ -215,7 +219,7 @@
             android:textSize="24sp"
             android:gravity="center"
             android:textStyle="bold"
-            android:layout_marginTop="133dp"
+            android:layout_marginTop="193dp"
             android:layout_marginStart="-110dp"
             android:visibility="gone" />
 
@@ -225,8 +229,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_alignStart="@id/game_character"
-            android:layout_alignBottom="@id/game_character"
+            android:layout_alignStart="@id/myImageView"
+            android:layout_alignBottom="@id/myImageView"
             android:layout_marginStart="-300dp"
             android:layout_marginBottom="20dp">
 
@@ -257,8 +261,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_alignTop="@id/game_character"
-            android:layout_alignEnd="@id/game_character"
+            android:layout_alignTop="@id/myImageView"
+            android:layout_alignEnd="@id/myImageView"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="-300dp">
 
@@ -289,8 +293,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_alignEnd="@id/game_character"
-            android:layout_alignBottom="@id/game_character"
+            android:layout_alignEnd="@id/myImageView"
+            android:layout_alignBottom="@id/myImageView"
             android:layout_marginEnd="-300dp"
             android:layout_marginBottom="20dp">
 
@@ -354,7 +358,6 @@
                     android:layout_height="300dp"
                     android:layout_gravity="center"
                     android:background="@drawable/jewel02_amethyst"
-                    android:text=" "
                     android:visibility="gone"/>
             </LinearLayout>
         </ScrollView>
