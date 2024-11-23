@@ -123,7 +123,7 @@ class GlobalVariable : ComponentActivity() {
             val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
 
             val request = Request.Builder()
-                .url("http://10.0.2.2:3000/food?username=$username") //要暫時從140.136.151.129改成10.0.2.2
+                .url("http://140.136.151.129:3000/food?username=$username") //要暫時從140.136.151.129改成10.0.2.2
                 .get()
                 .build()
 
