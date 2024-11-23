@@ -15,7 +15,8 @@ class ShopBuy {
             productName: String,
             productDescription: String,
             productImageRes: Int,
-            productPrice: Int // 新增金額參數
+            productPrice: Int, // 新增金額參數
+            onBuyClicked: (Boolean) -> Unit // 回調函數，用來通知按鈕是否被點擊
         ) {
             val builder = AlertDialog.Builder(context)
             val inflater = LayoutInflater.from(context)
@@ -36,9 +37,11 @@ class ShopBuy {
             val dialog = builder.create()
 
             dialogLayout.findViewById<Button>(R.id.button_buy).setOnClickListener {
+                onBuyClicked(true)
                 dialog.dismiss()
             }
             dialogLayout.findViewById<Button>(R.id.button_cancel).setOnClickListener {
+                onBuyClicked(false)
                 dialog.dismiss()
             }
 
