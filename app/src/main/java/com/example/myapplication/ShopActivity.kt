@@ -2,11 +2,16 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import com.example.myapplication.GlobalVariable.Companion.decorate
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 
 class ShopActivity : ComponentActivity() {
 
@@ -44,7 +49,7 @@ class ShopActivity : ComponentActivity() {
                     "畢業帽", // 商品名稱
                     "這是一頂畢業帽，非常適合拍照留念！", // 商品描述
                     R.drawable.decoration1_graduation_cap,
-                    100// 商品圖片
+                    100
                 )
             }else if(decorate[0] == 0) {
                 ShopBuy.showProductDialog(
@@ -52,12 +57,13 @@ class ShopActivity : ComponentActivity() {
                     "畢業帽", // 商品名稱
                     "這是一頂畢業帽，非常適合拍照留念！", // 商品描述
                     R.drawable.decoration1_graduation_cap,
-                    100,// 商品圖片
+                    100,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                         // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[0] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -74,7 +80,7 @@ class ShopActivity : ComponentActivity() {
                     "生日帽", // 商品名稱
                     "戴上這頂生日帽，讓石頭瞬間變成焦點，保證比生日蛋糕還吸引眼球！", // 商品描述
                     R.drawable.decoration2_hbd_hat,
-                    100// 商品圖片
+                    100
                 )
             }else if(decorate[1] == 0) {
                 ShopBuy.showProductDialog(
@@ -82,12 +88,13 @@ class ShopActivity : ComponentActivity() {
                     "生日帽", // 商品名稱
                     "戴上這頂生日帽，讓石頭瞬間變成焦點，保證比生日蛋糕還吸引眼球！", // 商品描述
                     R.drawable.decoration2_hbd_hat,
-                    100,// 商品圖片
+                    100,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[1] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -104,7 +111,7 @@ class ShopActivity : ComponentActivity() {
                     "貝雷帽", // 商品名稱
                     "戴上這頂貝雷帽，石頭就能瞬間變身藝術家，誰說只有畫家才需要靈感？", // 商品描述
                     R.drawable.decoration3 ,
-                    100// 商品圖片
+                    100
                 )
             }else if(decorate[2] == 0) {
                 ShopBuy.showProductDialog(
@@ -112,12 +119,13 @@ class ShopActivity : ComponentActivity() {
                     "貝雷帽", // 商品名稱
                     "戴上這頂貝雷帽，石頭就能瞬間變身藝術家，誰說只有畫家才需要靈感？", // 商品描述
                     R.drawable.decoration3 ,
-                    100,// 商品圖片
+                    100,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[2] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -134,7 +142,7 @@ class ShopActivity : ComponentActivity() {
                     "紅毛帽", // 商品名稱
                     "戴上這頂紅毛帽，讓石頭不僅保暖，還能讓大家誤以為是冬季限定的超級英雄！", // 商品描述
                     R.drawable.decoration4_red_fur_hat,
-                    100// 商品圖片
+                    100
                 )
             }else if(decorate[3] == 0) {
                 ShopBuy.showProductDialog(
@@ -142,12 +150,13 @@ class ShopActivity : ComponentActivity() {
                     "紅毛帽", // 商品名稱
                     "戴上這頂紅毛帽，讓石頭不僅保暖，還能讓大家誤以為是冬季限定的超級英雄！", // 商品描述
                     R.drawable.decoration4_red_fur_hat,
-                    100,// 商品圖片
+                    100,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[3] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -164,7 +173,7 @@ class ShopActivity : ComponentActivity() {
                     "蝴蝶結", // 商品名稱
                     "戴上這個蝴蝶結，讓石頭看起來甜美可愛。", // 商品描述
                     R.drawable.decoration5_rosette,
-                    100// 商品圖片
+                    100
                 )
             }else if(decorate[4] == 0) {
                 ShopBuy.showProductDialog(
@@ -172,12 +181,13 @@ class ShopActivity : ComponentActivity() {
                     "蝴蝶結", // 商品名稱
                     "戴上這個蝴蝶結，讓石頭看起來甜美可愛。", // 商品描述
                     R.drawable.decoration5_rosette,
-                    100,// 商品圖片
+                    100,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[4] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -194,7 +204,7 @@ class ShopActivity : ComponentActivity() {
                     "蒲公英", // 商品名稱
                     "戴上這顆蒲公英，隨時對石頭許個願——希望風能把你的煩惱吹走！", // 商品描述
                     R.drawable.decoration6_dandelion,
-                    100// 商品圖片
+                    100
                 )
             }else if(decorate[5] == 0) {
                 ShopBuy.showProductDialog(
@@ -202,12 +212,13 @@ class ShopActivity : ComponentActivity() {
                     "蒲公英", // 商品名稱
                     "戴上這顆蒲公英，隨時對石頭許個願——希望風能把你的煩惱吹走！", // 商品描述
                     R.drawable.decoration6_dandelion,
-                    100,// 商品圖片
+                    100,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[5] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -238,6 +249,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[6] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -268,6 +280,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[7] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -298,6 +311,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[8] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -328,6 +342,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[9] = 1
+                            sendChangToServer(decorate)
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -337,4 +352,55 @@ class ShopActivity : ComponentActivity() {
             }
         }
     }
+
+    private fun sendChangToServer(decorations: IntArray) {
+        // 驗證裝飾品陣列長度
+        if (decorations.size != 10) {
+            Log.e("ValidationError", "The decorations array must have exactly 10 elements.")
+            return
+        }
+
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 構建 JSON 資料
+        val json = """
+    {
+      "username": "$username",
+      "decorations": ${decorations.joinToString(prefix = "[", postfix = "]")}
+    }
+    """.trimIndent()
+
+        // 構建 Request Body
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
+        // 構建 HTTP POST 請求
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/shop_dec") // 模擬器測試請改用 http://10.0.2.2:3000/shop_dec
+            .post(body)
+            .build()
+    }
+
+    /*private fun sendChangToServer(id: IntArray) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 將 IntArray 轉換為 JSON 格式
+        val idJson = id.joinToString(prefix = "[", postfix = "]")
+
+        // 構建 JSON 請求資料
+        val json = """
+    {
+      "username": "$username",
+      "decoration": $idJson
+    }
+    """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/shop_dec") // 如果使用模擬器，請使用正確的地址
+            .post(body)
+            .build()
+    }*/
 }
