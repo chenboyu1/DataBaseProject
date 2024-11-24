@@ -326,9 +326,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun openShopScreen() {
-        /*// 跳轉到商城界面
+        // 跳轉到商城界面
         val intent = Intent(this, ShopActivity::class.java)
-        startActivity(intent)*/
+        startActivity(intent)
     }
 
     private fun openBackpackScreen() {
