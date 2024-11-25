@@ -186,7 +186,7 @@ class GlobalVariable : ComponentActivity() {
             }
         }
 
-        suspend fun setmission(): Any {
+        suspend fun setmission() {
             val client = OkHttpClient()
             val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
 

@@ -109,7 +109,7 @@ class mission : AppCompatActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
 
         val request = Request.Builder()
-            .url("http://140.136.151.129:3000/charac") // 如果使用模擬器，請使用這個地址
+            .url("http://140.136.151.129:3000/dailymission") // 如果使用模擬器，請使用這個地址
             .post(body)
             .build()
         client.newCall(request).enqueue(object : Callback {
