@@ -128,6 +128,7 @@ class MainActivity : ComponentActivity() {
                             GlobalVariable.setdecorate()
                             GlobalVariable.setfood()
                             GlobalVariable.setcurrentdecorate()
+                            GlobalVariable.setmission()
                         }
                         jumptoActivity(GameActivity::class.java)
 

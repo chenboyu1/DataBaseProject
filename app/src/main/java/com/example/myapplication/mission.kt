@@ -5,9 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
+import com.example.myapplication.GlobalVariable.Companion
+import com.example.myapplication.GlobalVariable.Companion.missionbutton
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.Response
+import java.io.IOException
+
 class mission : AppCompatActivity() {
 
     var money = 0
@@ -44,26 +55,80 @@ class mission : AppCompatActivity() {
 
         btnMission1.setOnClickListener {
             // 按下確認按鈕後的操作
-            money += 25 // 增加25點
+            if(missionbutton[0] == 0) {
+                money += 25 // 增加25點
+                missionbutton[0] = 1
+                sendSelectedButtonToServer(missionbutton)
+            }
 
         }
         btnMission2.setOnClickListener {
             // 按下確認按鈕後的操作
-            money += 25 // 增加25點
+            if(missionbutton[1] == 0) {
+                money += 25 // 增加25點
+                missionbutton[1] = 1
+                sendSelectedButtonToServer(missionbutton)
+            }
 
         }
         btnMission3.setOnClickListener {
             // 按下確認按鈕後的操作
-            money += 25 // 增加25點
+            if(missionbutton[2] == 0) {
+                money += 25 // 增加25點
+                missionbutton[2] = 1
+                sendSelectedButtonToServer(missionbutton)
+            }
 
         }
         btnMission4.setOnClickListener {
             // 按下確認按鈕後的操作
-            money += 25 // 增加25點
+            if(missionbutton[3] == 0) {
+                money += 25 // 增加25點
+                missionbutton[3] = 1
+                sendSelectedButtonToServer(missionbutton)
+            }
 
         }
         btnCancel.setOnClickListener {
             dialog.dismiss() // 關閉彈跳視窗
         }
+
+    }
+    private fun sendSelectedButtonToServer(missionbutton: IntArray) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+        val json = """
+        {
+          "username": "$username",
+          "timer" : "${GlobalVariable.missionbutton[0]}",
+          "timer2" : "${GlobalVariable.missionbutton[1]}",
+          "timer3" : "${GlobalVariable.missionbutton[2]}",
+          "timer4" : "${GlobalVariable.missionbutton[3]}"
+        }
+        """
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/charac") // 如果使用模擬器，請使用這個地址
+            .post(body)
+            .build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@mission, "失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@mission, "成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@mission, "失敗: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
     }
 }
