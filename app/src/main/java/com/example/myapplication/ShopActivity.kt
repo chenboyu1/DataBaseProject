@@ -63,7 +63,7 @@ class ShopActivity : ComponentActivity() {
                         // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[0] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[0])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -94,13 +94,14 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[1] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[1])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
                         }
                     }
                 )
+                Log.d("test3", "${decorate[1]}")
             }
         }//記得回傳資料
         val buttonProduct3: Button = findViewById(R.id.button_product_3)
@@ -125,7 +126,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[2] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[2])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -156,7 +157,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[3] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[3])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -187,7 +188,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[4] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[4])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -218,7 +219,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[5] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[5])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -249,7 +250,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[6] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[6])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -280,7 +281,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[7] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[7])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -311,7 +312,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[8] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[8])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -342,7 +343,7 @@ class ShopActivity : ComponentActivity() {
                             // 處理按下購買按鈕的邏輯
                             println("購買成功!")
                             decorate[9] = 1
-                            sendChangToServer(decorate)
+                            sendChangToServer(decorate[9])
                         } else {
                             // 處理按下取消按鈕的邏輯
                             println("取消購買")
@@ -353,13 +354,7 @@ class ShopActivity : ComponentActivity() {
         }
     }
 
-    private fun sendChangToServer(decorations: IntArray) {
-        // 驗證裝飾品陣列長度
-        if (decorations.size != 10) {
-            Log.e("ValidationError", "The decorations array must have exactly 10 elements.")
-            return
-        }
-
+    private fun sendChangToServer(decorations: Int) {
         val client = OkHttpClient()
         val username = GlobalVariable.getName()
 
@@ -367,7 +362,7 @@ class ShopActivity : ComponentActivity() {
         val json = """
     {
       "username": "$username",
-      "decorations": ${decorations.joinToString(prefix = "[", postfix = "]")}
+      "decoration": $decorations
     }
     """.trimIndent()
 
