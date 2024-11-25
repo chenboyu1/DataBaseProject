@@ -2,12 +2,16 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
@@ -62,7 +66,7 @@ class MainActivity : ComponentActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
 
         val request = Request.Builder()
-            .url("http://10.0.2.2:3000/register") // 如果使用模擬器，請使用這個地址
+            .url("http://140.136.151.129:3000/register") // 如果使用模擬器，請使用這個地址10.0.2.2
             .post(body)
             .build()
 
@@ -102,7 +106,7 @@ class MainActivity : ComponentActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
 
         val request = Request.Builder()
-            .url("http://10.0.2.2:3000/login") // 如果使用模擬器，請使用這個地址
+            .url("http://140.136.151.129:3000/login") // 如果使用模擬器，請使用這個地址
             .post(body)
             .build()
 
@@ -119,7 +123,13 @@ class MainActivity : ComponentActivity() {
                     if (response.isSuccessful) {
                         Toast.makeText(this@MainActivity, "登入成功: $responseBody", Toast.LENGTH_SHORT).show()
                         GlobalVariable.setName(username) //設置全域變數username
-                        jumptoActivity(Choosecharac::class.java)
+                        GlobalScope.launch(Dispatchers.Main) {
+                            GlobalVariable.setCharac()
+                            GlobalVariable.setdecorate()
+                            GlobalVariable.setfood()
+                            GlobalVariable.setcurrentdecorate()
+                        }
+                        jumptoActivity(GameActivity::class.java)
 
                     } else {
                         Toast.makeText(this@MainActivity, "登入失敗: $responseBody", Toast.LENGTH_SHORT).show()

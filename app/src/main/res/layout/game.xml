@@ -1,110 +1,363 @@
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background6"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp" >
+
 
     <!-- 頂部的進度條和心形圖示 -->
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        >
+
+        <!-- 心形圖示、進度調、等級顯示 -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@drawable/oval_background"
+            android:padding="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <!-- 心形圖示 -->
+            <ImageView
+                android:id="@+id/heart_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/heart2"
+                android:layout_gravity="center" />
+
+            <!-- 好感度進度條 -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="50" />
+
+            <!-- 顯示等級 -->
+            <TextView
+                android:id="@+id/level_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lv. 100"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+        <!-- 顯示金錢數字和圖標 -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@drawable/oval_background"
+            android:padding="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+        <!-- 金錢圖示 -->
+        <ImageView
+            android:id="@+id/money_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/money"
+            android:layout_marginEnd="8dp"
+            android:layout_gravity="center_vertical" />
+
+        <!-- 顯示金錢數量 -->
+        <TextView
+            android:id="@+id/money_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="100000"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:layout_gravity="center_vertical" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 中間的遊戲角色和四個按鈕 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal">
+
+        <!-- 中間的遊戲角色，增大角色 -->
+        <ImageView
+            android:id="@+id/myImageView"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="80dp"
+            android:src="@drawable/jewel15_colorful" />
 
         <ImageView
-            android:id="@+id/heart_icon"
-            android:layout_width="24dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/heart" />
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="0dp"
+            android:id="@+id/decorativeIcon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toEndOf="@id/myImageView"
+            app:layout_constraintTop_toTopOf="@id/myImageView"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="-20dp"
+            android:src="@drawable/decoration5_rosette" />
+
+        <!-- 左上角的「互動」按鈕 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:progress="50"
-            android:indeterminate="false"
-            android:progressDrawable="@drawable/progress_bar" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignStart="@id/myImageView"
+            android:layout_alignTop="@id/myImageView"
+            android:layout_marginStart="-300dp"
+            android:layout_marginTop="20dp">
 
-    <!-- 中間的遊戲角色 -->
+            <!-- 圖片按鈕 -->
+            <ImageButton
+                android:id="@+id/interaction_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_interaction"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="互動按鈕" />
 
-    <!-- 左邊的「互動」和「任務」按鈕 -->
+            <!-- 顯示文字 "互動" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="互動"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp" /> <!-- 文字距離圖片按鈕 8dp -->
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/game_character"
+        <!-- 玩耍按鈕 -->
+        <ImageButton
+            android:id="@+id/play_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_play"
+            android:background="@drawable/circle_button_background3"
+            android:contentDescription="玩耍按鈕"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="-180dp"
+            android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/play_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="玩耍"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="73dp"
+            android:layout_marginStart="-110dp"
+            android:visibility="gone" />
+        <!-- 送禮按鈕 -->
+        <ImageButton
+            android:id="@+id/gift_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_gift"
+            android:background="@drawable/circle_button_background3"
+            android:contentDescription="送禮按鈕"
+            android:layout_marginStart="-150dp"
+            android:layout_marginTop="120dp"
+            android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/gift_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="送禮"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="133dp"
+            android:layout_marginStart="-80dp"
+            android:visibility="gone"/>
+        <!-- 聊天按鈕 -->
+        <ImageButton
+            android:id="@+id/chat_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_chat"
+            android:background="@drawable/circle_button_background3"
+            android:contentDescription="聊天按鈕"
+            android:layout_marginStart="-180dp"
+            android:layout_marginTop="180dp"
+            android:visibility="gone" />  <!-- 初始隱藏按鈕 -->
+        <TextView
+            android:id="@+id/chat_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="聊天"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="193dp"
+            android:layout_marginStart="-110dp"
+            android:visibility="gone" />
+
+        <!-- 左下角的「任務」按鈕 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignStart="@id/myImageView"
+            android:layout_alignBottom="@id/myImageView"
+            android:layout_marginStart="-300dp"
+            android:layout_marginBottom="20dp">
+
+            <!-- 圖片按鈕 -->
+            <ImageButton
+                android:id="@+id/task_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_task"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="任務按鈕" />
+
+            <!-- 顯示文字 "任務" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="任務"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp" /> <!-- 文字距離圖片按鈕 8dp -->
+        </LinearLayout>
+
+        <!-- 右上角的「商城」按鈕 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignTop="@id/myImageView"
+            android:layout_alignEnd="@id/myImageView"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="-300dp">
+
+            <!-- 圖片按鈕 -->
+            <ImageButton
+                android:id="@+id/shop_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_shop"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="商城按鈕" />
+
+            <!-- 顯示文字 "商城" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商城"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp" /> <!-- 文字距離圖片按鈕 8dp -->
+        </LinearLayout>
+
+        <!-- 右下角的「背包」按鈕 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_alignEnd="@id/myImageView"
+            android:layout_alignBottom="@id/myImageView"
+            android:layout_marginEnd="-300dp"
+            android:layout_marginBottom="20dp">
+
+            <!-- 圖片按鈕 -->
+            <ImageButton
+                android:id="@+id/backpack_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_backpack"
+                android:background="@drawable/circle_button_background3"
+                android:contentDescription="背包按鈕" />
+
+            <!-- 顯示文字 "背包" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="背包"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp" /> <!-- 文字距離圖片按鈕 8dp -->
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- 禮物選擇欄位 -->
+    <ScrollView
+        android:id="@+id/sideboxScroll"
         android:layout_width="match_parent"
-        android:layout_height="184dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal|end"
-        android:src="@drawable/food1" />
+        android:layout_height="180dp"
+        android:layout_gravity="end"
+        android:background="#EDCDCE"
+        android:visibility="gone">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start">
-
-        <Button
-            android:id="@+id/interaction_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="互動" />
-
-        <Button
-            android:id="@+id/task_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="任務"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
-
-    <!-- 右邊的「商城」和「背包」按鈕 -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="end">
-        <Button
-            android:id="@+id/shop_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="商城" />
-        <Button
-            android:id="@+id/backpack_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:text="背包"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/sidebox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/character_1"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="@drawable/jewel02_amethyst"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </ScrollView>
 
     <!-- 下方的文字框 -->
     <TextView
         android:id="@+id/message_box"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#EEEEEE"
+        android:layout_height="180dp"
+        android:background="@drawable/message_box_background"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:padding="20dp"
         android:text="這裡顯示訊息"
         android:textColor="#333333"
-        android:gravity="center"
-        android:layout_marginTop="16dp" />
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:visibility="visible" /> <!--暫時看不見，要先測試送禮區域 -->
 
-    <!-- 底部的個人按鈕 -->
-    <ImageView
-        android:id="@+id/profile_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/food1"
-        android:layout_marginTop="16dp"
-        android:gravity="start" />
-
-    <!-- 底部右下角的設定按鈕 -->
-    <ImageView
-        android:id="@+id/settings_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:gravity="end"
-        android:src="@drawable/food1" />
 </LinearLayout>

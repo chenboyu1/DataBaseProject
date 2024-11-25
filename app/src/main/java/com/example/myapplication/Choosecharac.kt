@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MotionEvent
@@ -40,8 +41,90 @@ class Choosecharac : ComponentActivity() {
         ).apply {
             gravity = Gravity.CENTER // 將按鈕置中
         }
+        val buttonProduct1: Button = findViewById(R.id.character_1)
+        buttonProduct1.setOnTouchListener{v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f // 按下时按钮变得透明
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f // 松开或取消时恢复透明度
+                }
+            }
+            sendSelectedButtonToServer(1)
+            false
+        }
+        val buttonProduct2: Button = findViewById(R.id.character_2)
+        buttonProduct2.setOnTouchListener{v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f // 按下时按钮变得透明
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f // 松开或取消时恢复透明度
+                }
+            }
+            sendSelectedButtonToServer(2)
+            false
+        }
+        val buttonProduct3: Button = findViewById(R.id.character_3)
+        buttonProduct3.setOnTouchListener{v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f // 按下时按钮变得透明
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f // 松开或取消时恢复透明度
+                }
+            }
+            sendSelectedButtonToServer(3)
+            false
+        }
+        val buttonProduct4: Button = findViewById(R.id.character_4)
+        buttonProduct4.setOnTouchListener{v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f // 按下时按钮变得透明
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f // 松开或取消时恢复透明度
+                }
+            }
+            sendSelectedButtonToServer(4)
+            false
+        }
+        val buttonProduct5: Button = findViewById(R.id.character_5)
+        buttonProduct5.setOnTouchListener{v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f // 按下时按钮变得透明
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f // 松开或取消时恢复透明度
+                }
+            }
+            sendSelectedButtonToServer(5)
+            false
+        }
+        val buttonProduct6: Button = findViewById(R.id.character_6)
+        buttonProduct6.setOnTouchListener{v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f // 按下时按钮变得透明
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f // 松开或取消时恢复透明度
+                }
+            }
+            sendSelectedButtonToServer(6)
+            false
+        }
+        val buttonnext: Button = findViewById(R.id.nextstep)
+        buttonnext.setOnClickListener{
+            jumptoActivity(InitialActivity::class.java)
+        }
         // 假設這是你希望生成的按鈕數量
-        val buttonCount = 7 // 可以根據需要修改這個數值
+        /*val buttonCount = 7 // 可以根據需要修改這個數值
 
         // 使用迴圈根據數量生成按鈕
         for (i in 0 until buttonCount) {
@@ -63,27 +146,30 @@ class Choosecharac : ComponentActivity() {
             }
             // 將按鈕添加到容器中
             buttonContainer.addView(button)
-        }
+        }*/
     }
 
     // 擴展函數將 dp 轉換為 px
-    private fun Int.dpToPx(): Int {
+    /*private fun Int.dpToPx(): Int {
         return (this * resources.displayMetrics.density).toInt()
+    }*/
+    private fun jumptoActivity(targetActivity: Class<*>) {
+        val intent = Intent(this, targetActivity)
+        startActivity(intent)
     }
-
-    private fun sendSelectedButtonToServer(charac: String) {
+    private fun sendSelectedButtonToServer(charac: Int) {
         val client = OkHttpClient()
         val username = GlobalVariable.getName()
         val json = """
         {
           "username": "$username",
-          "charac": "$charac"
+          "charac": $charac
         }
         """
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
 
         val request = Request.Builder()
-            .url("http://10.0.2.2:3000/charac") // 如果使用模擬器，請使用這個地址
+            .url("http://140.136.151.129:3000/charac") // 如果使用模擬器，請使用這個地址
             .post(body)
             .build()
         client.newCall(request).enqueue(object : Callback {

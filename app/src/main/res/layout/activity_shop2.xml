@@ -15,14 +15,61 @@
         android:orientation="vertical"
         ><!--按鈕的-->
 
+        <!-- 圓形返回按鈕 -->
+        <ImageButton
+            android:id="@+id/buttonBack_shop2"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/circle_button_background_shop2"
+            android:src="@drawable/ic_back"
+            android:contentDescription="@string/back_button_description"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"/>
+
+        <!-- 顯示金錢數字和圖標 -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:background="@drawable/oval_background"
+            android:padding="8dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="1000dp"
+            android:layout_marginEnd="20dp">
+
+            <!-- 金錢圖示 -->
+            <ImageView
+                android:id="@+id/money_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/money"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="center_vertical" />
+
+            <!-- 顯示金錢數量 -->
+            <TextView
+                android:id="@+id/money_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="100000"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+
+        <!-- 跳转按钮 -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:orientation="horizontal"
-            android:paddingStart="60dp">
+            android:paddingStart="100dp">
 
             <!-- 第一个跳转按钮 -->
             <Button
@@ -86,6 +133,15 @@
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />  <!-- 文本居中 -->
                     <!-- 文字水平居中 -->
+                    <TextView
+                        android:id="@+id/price2_product_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
                 <!-- 第1個 -->
@@ -115,6 +171,17 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat"/>
+
+                    <TextView
+                        android:id="@+id/price2_product_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
+
                 </LinearLayout>
                 <!-- 第2個 -->
 
@@ -143,6 +210,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第3個 -->
 
@@ -171,6 +248,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第4個 -->
 
@@ -199,6 +286,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第5個 -->
             </LinearLayout>
@@ -234,6 +331,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第6個 -->
 
@@ -262,6 +369,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat"/>
+
+                    <TextView
+                        android:id="@+id/price2_product_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第7個 -->
 
@@ -290,6 +407,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第8個 -->
 
@@ -318,6 +445,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第9個 -->
 
@@ -346,6 +483,16 @@
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/price2_product_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="NT$ 100"
+                        android:textColor="#FF6347"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <!-- 第10個 -->
             </LinearLayout>

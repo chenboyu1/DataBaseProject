@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/gift"
+        android:title="送禮"/>
+    <item
+        android:id="@+id/play"
+        android:title="玩耍"/>
+    <item
+        android:id="@+id/chat"
+        android:title="聊天"/>
+</menu>

@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -73,6 +74,14 @@ class InitialActivity : ComponentActivity() {
                 // 沒有選擇的情況
             }
         }
+        val buttonnext: Button = findViewById(R.id.nextstep)
+        buttonnext.setOnClickListener{
+            jumptoActivity(GameActivity::class.java)
+        }
+    }
+    private fun jumptoActivity(targetActivity: Class<*>) {
+        val intent = Intent(this, targetActivity)
+        startActivity(intent)
     }
     private fun saveRegion(region: String) {
         val client = OkHttpClient()
