@@ -362,7 +362,7 @@ class ShopActivity : ComponentActivity() {
         val json = """
     {
       "username": "$username",
-      "decoration": $decorations
+      "decorations": $decorations
     }
     """.trimIndent()
 
