@@ -21,6 +21,7 @@ class GlobalVariable : ComponentActivity() {
         public var decorate: IntArray = IntArray(10)
         public var food: IntArray = IntArray(10)
         private var currentdecorate: Int = 0
+        public var missionbutton: IntArray = IntArray(4)
         // 修改 變數值
         fun setName(name: String) {
             this.username = "b" //name
@@ -174,6 +175,40 @@ class GlobalVariable : ComponentActivity() {
                     if (response.isSuccessful) {
                         val responseBody = response.body?.string()
                         responseBody?.toInt() ?: 0 // 將回應的字串轉為整數，若無返回則為 0
+                    } else {
+                        // 若請求不成功，返回預設值 0
+                        0
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    0 // 若網絡請求出錯，返回 0
+                }
+            }
+        }
+
+        suspend fun setmission(): Any {
+            val client = OkHttpClient()
+            val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
+
+            val request = Request.Builder()
+                .url("http://140.136.151.129:3000/dailymission?username=$username")
+                .get()
+                .build()
+
+            return withContext(Dispatchers.IO) {
+                try {
+                    // 使用 execute() 同步請求
+                    val response: Response = client.newCall(request).execute()
+
+                    if (response.isSuccessful) {
+                        val Body = response.body?.string()
+                        val timer = JSONArray(Body)
+
+                        // 將 JSON 陣列轉換為 IntArray
+                        missionbutton = IntArray(timer.length()) { i ->
+                            timer.getInt(i)
+                        }
+                        Log.d("missionbutton", "${missionbutton[0]}${missionbutton[1]}${missionbutton[2]}${missionbutton[3]}")
                     } else {
                         // 若請求不成功，返回預設值 0
                         0
