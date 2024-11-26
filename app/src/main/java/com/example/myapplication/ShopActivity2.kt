@@ -7,7 +7,11 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import com.example.myapplication.GlobalVariable.Companion.decorate
+import com.example.myapplication.GlobalVariable.Companion.food
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 
 class ShopActivity2 : ComponentActivity() {
 
@@ -49,6 +53,9 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[0]++
+                        sendChangToServer2(food[0])
+
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -68,6 +75,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[1]++
+                        sendChangToServer2(food[1])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -87,6 +96,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[2]++
+                        sendChangToServer2(food[2])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -106,6 +117,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[3]++
+                        sendChangToServer2(food[3])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -125,6 +138,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[4]++
+                        sendChangToServer2(food[4])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -144,6 +159,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[5]++
+                        sendChangToServer2(food[5])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -163,6 +180,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[6]++
+                        sendChangToServer2(food[6])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -182,6 +201,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[7]++
+                        sendChangToServer2(food[7])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -201,6 +222,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[8]++
+                        sendChangToServer2(food[8])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -220,6 +243,8 @@ class ShopActivity2 : ComponentActivity() {
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
                         println("購買成功!")
+                        food[9]++
+                        sendChangToServer2(food[9])
                     } else {
                         // 處理按下取消按鈕的邏輯
                         println("取消購買")
@@ -227,5 +252,27 @@ class ShopActivity2 : ComponentActivity() {
                 }
             )
         }
+
+    }
+    private fun sendChangToServer2(food: Int) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 構建 JSON 資料
+        val json = """
+    {
+      "username": "$username",
+      "food": $food
+    }
+    """.trimIndent()
+
+        // 構建 Request Body
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
+        // 構建 HTTP POST 請求
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/shop_dec") // 模擬器測試請改用 http://10.0.2.2:3000/shop_dec
+            .post(body)
+            .build()
     }
 }
