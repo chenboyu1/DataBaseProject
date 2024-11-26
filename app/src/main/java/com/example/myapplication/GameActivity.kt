@@ -182,45 +182,25 @@ class GameActivity : AppCompatActivity() {
         ).apply {
             gravity = Gravity.CENTER
         }
-        button.setBackgroundResource(foodId[id])
+        button.setBackgroundResource(foodId[id]) // 設置背景圖片
+
+        // 取得食物數量並設置按鈕的文字
+        val foodQuantity = food[id] ?: 0 // 如果數量不存在則顯示 0
+        button.text = "食物 $id：$foodQuantity" // 按鈕文字格式化
 
         // 設置按鈕點擊事件
         button.setOnClickListener {
-            // 顯示執行中的狀態
-            button.text = "送出中..."  // 按鈕文字變為 "送出中"
-            button.isEnabled = false  // 禁用按鈕，避免重複點擊
+            val currentQuantity = food[id] ?: 0
+            if (currentQuantity > 0) {
+                food[id] = currentQuantity - 1 // 減少食物數量
+                button.text = "食物 $id：${food[id]}" // 更新按鈕文字
+                button.isEnabled = currentQuantity > 1 // 如果數量為 0，禁用按鈕
+            }
         }
 
         // 加入到佈局中
         parentLayout.addView(button)
     }
-
-
-    /*suspend fun sendSelectedButtonToServer(id: Int): Boolean {
-        return try {
-            val client = OkHttpClient()
-            val username = GlobalVariable.getName()
-            val json = """
-        {
-          "username": "$username",
-          "decoration": $id
-        }
-        """
-            val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
-
-            val request = Request.Builder()
-                .url("http://140.136.151.129/food")
-                .post(body)
-                .build()
-
-            // 發送請求
-            val response = client.newCall(request).execute()
-            response.isSuccessful // 如果回應成功返回 true，否則返回 false
-        } catch (e: Exception) {
-            Log.e("sendButtonToServer", "Error: ${e.message}")
-            false
-        }
-    }*/
 
 
     private fun showAdditionalButtons() {
@@ -255,42 +235,6 @@ class GameActivity : AppCompatActivity() {
         updateUI()
     }
 
-    /*private fun showGiftOptions() {
-        // 隱藏底下文字框
-        messageBox.visibility = View.GONE
-        // 顯示送禮選項區域（即側邊欄）
-        sideboxScroll.visibility = View.VISIBLE
-        // 隱藏互動按鈕
-        hideAdditionalButtons()
-
-        // 獲取送禮按鈕的父布局
-        val sidebox = findViewById<LinearLayout>(R.id.sidebox)
-        sidebox.removeAllViews() // 清空舊的按鈕（避免重複生成）
-
-        // **立即生成按鈕**
-        for (i in 0 until foodId.size) {
-            createDecorativeButton(this, sidebox, i)
-        }
-
-        // **非同步更新按鈕狀態**
-        lifecycleScope.launch {
-            val validButtons = withContext(Dispatchers.IO) {
-                // 模擬後端數據處理，僅返回可用按鈕索引
-                (0 until foodId.size).filter { food[it] > 0 }
-            }
-
-            // 更新 UI 上的按鈕（設置不可用的按鈕）
-            withContext(Dispatchers.Main) {
-                for (i in 0 until foodId.size) {
-                    val button = sidebox.findViewById<Button>(i)
-                    if (!validButtons.contains(i)) {
-                        button.isEnabled = false // 不可用
-                        button.alpha = 0.5f // 半透明
-                    }
-                }
-            }
-        }
-    }*/
     private fun showGiftOptions() {
         // 隱藏底下文字框
         messageBox.visibility = View.GONE
@@ -310,8 +254,6 @@ class GameActivity : AppCompatActivity() {
             }
         }
     }
-
-
 
     private fun openChatScreen() {
         // 跳轉到聊天界面
