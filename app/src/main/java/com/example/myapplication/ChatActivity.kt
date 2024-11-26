@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
@@ -54,7 +55,8 @@ class ChatActivity : AppCompatActivity() {
 
         // 設置返回按鈕點擊事件
         buttonBack.setOnClickListener {
-            finish()  // 結束當前活動並返回到前一個活動（GameActivity）
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
         }
     }
 

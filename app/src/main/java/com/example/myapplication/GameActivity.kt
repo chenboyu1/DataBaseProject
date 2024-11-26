@@ -17,6 +17,7 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.ScrollView
+import android.widget.HorizontalScrollView
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
@@ -51,6 +52,8 @@ class GameActivity : AppCompatActivity() {
         R.drawable.food4_sweets_donuts_box, R.drawable.food5_sweets_purin, R.drawable.food6_macarons
         , R.drawable.food7_fish, R.drawable.food8_sundae, R.drawable.food9_local_ice,
         R.drawable.food10);
+    var foodName = arrayOf(
+        "刈包", "肥宅快樂水", "義大利麵", "甜甜圈", "布丁", "馬卡龍", "鯛魚燒冰淇淋", "聖代", "在地冰淇淋", "豪華餐車");
 
     // 定義組件
     private lateinit var heartIcon: ImageView
@@ -72,7 +75,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var messageBox: TextView
 
     // 定義送禮選項按鈕布局及按鈕
-    private lateinit var sideboxScroll: ScrollView
+    private lateinit var sideboxScroll: HorizontalScrollView
 
     // 定義好感度
     private var affectionLevel = 0
@@ -85,7 +88,7 @@ class GameActivity : AppCompatActivity() {
         val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
 
         // 获取 ScrollView 和按钮容器，送禮選項區域
-        sideboxScroll = findViewById(R.id.sideboxScroll)
+        sideboxScroll = findViewById<HorizontalScrollView>(R.id.sideboxScroll)
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
 
         // 初始化組件
@@ -181,39 +184,62 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun createDecorativeButton(context: Context, parentLayout: LinearLayout, id: Int) {
-        val button = Button(context)
-        button.id = id
-
-        // 設置按鈕大小和外觀
-        button.layoutParams = LinearLayout.LayoutParams(
-            225.dpToPx(), // Button width
-            223.dpToPx()  // Button height
-        ).apply {
-            gravity = Gravity.CENTER
+        // 外層 LinearLayout 用來排列按鈕和數量文字
+        val buttonContainer = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL // 垂直排列
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
         }
-        button.setBackgroundResource(foodId[id]) // 設置背景圖片
 
-        // 取得食物數量並設置按鈕的文字
-        val foodQuantity = food[id] ?: 0 // 如果數量不存在則顯示 0
-        button.text = "食物 $id：$foodQuantity" // 按鈕文字格式化
+        // 設置按鈕
+        val button = Button(context).apply {
+            this.id = id
 
-        button.setOnClickListener {
-            val currentQuantity = food[id] ?: 0
-            if (currentQuantity > 0) {
-                food[id] = currentQuantity - 1
-                if (food[id] == 0) {
-                    // 數量為 0，移除按鈕
-                    parentLayout.removeView(button)
-                } else {
-                    button.text = "食物 $id：${food[id]}"
+            // 設置按鈕大小為正方形
+            layoutParams = LinearLayout.LayoutParams(
+                150.dpToPx(),  // 按鈕寬度
+                150.dpToPx()   // 按鈕高度與寬度相同，保持正方形
+            ).apply {
+                marginEnd = 8.dpToPx() // 設置按鈕之間的間距
+                marginStart = 8.dpToPx()
+            }
+
+            // 設置背景圖片
+            setBackgroundResource(foodId[id])
+
+            // 設置按鈕的文字為食物數量
+            text = ""
+
+            // 設置按鈕點擊事件
+            setOnClickListener {
+                val currentQuantity = food[id] ?: 0
+                if (currentQuantity > 0) {
+                    food[id] = currentQuantity - 1
+                    text = "剩餘數量：${food[id]}"
+                    if (food[id] == 0) {
+                        parentLayout.removeView(buttonContainer) // 移除數量為 0 的按鈕
+                    }
                 }
             }
         }
 
+        // 顯示食物名稱的 TextView
+        val quantityText = TextView(context).apply {
+            text = "${foodName[id]}"  // 顯示食物數量
+            gravity = Gravity.CENTER // 文字居中
+        }
 
-        // 加入到佈局中
-        parentLayout.addView(button)
+        // 把按鈕和數量顯示放進一個垂直排列的 LinearLayout 中
+        buttonContainer.addView(button)
+        buttonContainer.addView(quantityText)
+
+        // 最後將整個按鈕容器加入父布局
+        parentLayout.addView(buttonContainer)
     }
+
+
 
 
     private fun showAdditionalButtons() {
@@ -248,12 +274,18 @@ class GameActivity : AppCompatActivity() {
         updateUI()
     }
 
+
+
     private fun showGiftOptions() {
+        // 隱藏其他 UI，顯示送禮選項
         messageBox.visibility = View.GONE
         sideboxScroll.visibility = View.VISIBLE
         hideAdditionalButtons()
-        updateGiftButtons() // 更新按鈕
+
+        // 更新禮物選項
+        updateGiftButtons()
     }
+
 
     private fun updateGiftButtons() {
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)

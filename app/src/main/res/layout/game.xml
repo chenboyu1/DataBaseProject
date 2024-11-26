@@ -322,28 +322,20 @@
     </RelativeLayout>
 
     <!-- 禮物選擇欄位 -->
-    <ScrollView
+    <HorizontalScrollView
         android:id="@+id/sideboxScroll"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_gravity="end"
-        android:background="#EDCDCE"
+        android:background="@drawable/message_box_background"
         android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/sidebox"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/character_1"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center"
-                android:background="@drawable/jewel02_amethyst"
-                android:visibility="gone"/>
-        </LinearLayout>
-    </ScrollView>
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+
 
     <!-- 下方的文字框 -->
     <TextView
