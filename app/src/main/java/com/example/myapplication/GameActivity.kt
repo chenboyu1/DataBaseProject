@@ -127,10 +127,13 @@ class GameActivity : AppCompatActivity() {
         }
 
 
+        var open = 1;
         // 設置按鈕點擊事件
         interactionButton.setOnClickListener {
             // 顯示額外的按鈕
-            showAdditionalButtons()
+            open *= -1
+            if(open == -1)showAdditionalButtons()
+            else hideAdditionalButtons()
         }
 
         playButton.setOnClickListener {
@@ -145,26 +148,32 @@ class GameActivity : AppCompatActivity() {
 
         chatButton.setOnClickListener {
             // 跳轉到聊天界面
-            openChatScreen()
+            jumptoActivity(ChatActivity::class.java)
         }
 
         taskButton.setOnClickListener {
             // 跳轉到任務界面
-            openTaskScreen()
+            jumptoActivity(mission::class.java)
         }
 
         shopButton.setOnClickListener {
             // 跳轉到商城界面
-            openShopScreen()
+            jumptoActivity(ShopActivity::class.java)
         }
 
         backpackButton.setOnClickListener {
             // 跳轉到背包界面
-            openBackpackScreen()
+            jumptoActivity(PackageActivity::class.java)
         }
 
         // 顯示初始數值
         updateUI()
+    }
+
+    // 跳轉到界面
+    private fun jumptoActivity(targetActivity: Class<*>) {
+        val intent = Intent(this, targetActivity)
+        startActivity(intent)
     }
 
     private fun Int.dpToPx(): Int {
@@ -188,15 +197,19 @@ class GameActivity : AppCompatActivity() {
         val foodQuantity = food[id] ?: 0 // 如果數量不存在則顯示 0
         button.text = "食物 $id：$foodQuantity" // 按鈕文字格式化
 
-        // 設置按鈕點擊事件
         button.setOnClickListener {
             val currentQuantity = food[id] ?: 0
             if (currentQuantity > 0) {
-                food[id] = currentQuantity - 1 // 減少食物數量
-                button.text = "食物 $id：${food[id]}" // 更新按鈕文字
-                button.isEnabled = currentQuantity > 1 // 如果數量為 0，禁用按鈕
+                food[id] = currentQuantity - 1
+                if (food[id] == 0) {
+                    // 數量為 0，移除按鈕
+                    parentLayout.removeView(button)
+                } else {
+                    button.text = "食物 $id：${food[id]}"
+                }
             }
         }
+
 
         // 加入到佈局中
         parentLayout.addView(button)
@@ -236,48 +249,35 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun showGiftOptions() {
-        // 隱藏底下文字框
         messageBox.visibility = View.GONE
-        // 顯示送禮選項區域（即側邊欄）
         sideboxScroll.visibility = View.VISIBLE
-        // 隱藏互動按鈕
         hideAdditionalButtons()
+        updateGiftButtons() // 更新按鈕
+    }
 
-        // 獲取送禮按鈕的父布局
+    private fun updateGiftButtons() {
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
-        sidebox.removeAllViews() // 清空舊的按鈕（避免重複生成）
 
-        // **僅生成數量大於 0 的按鈕**
-        (0 until foodId.size).forEach { i ->
-            if (food[i] > 0) { // 檢查該禮物的數量是否大於 0
-                createDecorativeButton(this, sidebox, i)
+        // 確保只移除數量為 0 的按鈕，並更新其他按鈕的數量
+        for (i in 0 until foodId.size) {
+            val button = sidebox.findViewById<Button>(i) // 根據 ID 尋找現有按鈕
+            val foodQuantity = food[i] ?: 0
+
+            if (foodQuantity > 0) {
+                if (button == null) {
+                    // 如果按鈕不存在但數量 > 0，新增按鈕
+                    createDecorativeButton(this, sidebox, i)
+                } else {
+                    // 更新按鈕文字
+                    button.text = "食物 $i：$foodQuantity"
+                }
+            } else {
+                // 如果數量為 0，移除按鈕
+                button?.let { sidebox.removeView(it) }
             }
         }
     }
 
-    private fun openChatScreen() {
-        // 跳轉到聊天界面
-        val intent = Intent(this, ChatActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openTaskScreen() {
-        // 跳轉到任務界面
-        val intent = Intent(this, mission::class.java) // 假設任務活動名為 MissionActivity
-        startActivity(intent)
-    }
-
-    private fun openShopScreen() {
-        // 跳轉到商城界面
-        val intent = Intent(this, ShopActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openBackpackScreen() {
-        // 跳轉到背包界面
-        val intent = Intent(this, PackageActivity::class.java) // 假設背包活動名為 PackageActivity
-        startActivity(intent)
-    }
 
     private fun updateUI() {
         // 更新心形進度條、等級、金錢等顯示
