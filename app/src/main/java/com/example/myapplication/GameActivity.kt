@@ -52,6 +52,8 @@ class GameActivity : AppCompatActivity() {
         R.drawable.food4_sweets_donuts_box, R.drawable.food5_sweets_purin, R.drawable.food6_macarons
         , R.drawable.food7_fish, R.drawable.food8_sundae, R.drawable.food9_local_ice,
         R.drawable.food10);
+    var foodName = arrayOf(
+        "刈包", "肥宅快樂水", "義大利麵", "甜甜圈", "布丁", "馬卡龍", "鯛魚燒冰淇淋", "聖代", "在地冰淇淋", "豪華餐車");
 
     // 定義組件
     private lateinit var heartIcon: ImageView
@@ -201,20 +203,21 @@ class GameActivity : AppCompatActivity() {
                 150.dpToPx()   // 按鈕高度與寬度相同，保持正方形
             ).apply {
                 marginEnd = 8.dpToPx() // 設置按鈕之間的間距
+                marginStart = 8.dpToPx()
             }
 
             // 設置背景圖片
             setBackgroundResource(foodId[id])
 
             // 設置按鈕的文字為食物數量
-            text = "食物 $id：${food[id] ?: 0}"
+            text = ""
 
             // 設置按鈕點擊事件
             setOnClickListener {
                 val currentQuantity = food[id] ?: 0
                 if (currentQuantity > 0) {
                     food[id] = currentQuantity - 1
-                    text = "食物 $id：${food[id]}"
+                    text = "剩餘數量：${food[id]}"
                     if (food[id] == 0) {
                         parentLayout.removeView(buttonContainer) // 移除數量為 0 的按鈕
                     }
@@ -222,9 +225,9 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-        // 顯示數量的 TextView
+        // 顯示食物名稱的 TextView
         val quantityText = TextView(context).apply {
-            text = "食物 $id：${food[id] ?: 0}"  // 顯示食物數量
+            text = "${foodName[id]}"  // 顯示食物數量
             gravity = Gravity.CENTER // 文字居中
         }
 
