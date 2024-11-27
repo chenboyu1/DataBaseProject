@@ -27,7 +27,7 @@ class GlobalVariable : ComponentActivity() {
         private var region: String = ""
         // 修改 變數值
         fun setName(name: String) {
-            this.username = "b" //name
+            this.username = name //name
             // username = name // 直接設置username
         }
         // 取得 變數值
@@ -35,6 +35,9 @@ class GlobalVariable : ComponentActivity() {
             return username
         }
 
+        fun setCharac(charac : Int){
+            this.charac = charac
+        }
         // 取得 charac 值
         fun getCharac(): Int {
             Log.d("getcharac", "$charac")

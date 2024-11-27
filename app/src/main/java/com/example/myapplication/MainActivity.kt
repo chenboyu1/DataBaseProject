@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 registerUser(username, password)
+                GlobalVariable.setName(username)
             } else {
                 Toast.makeText(this, "請輸入帳號和密碼", Toast.LENGTH_SHORT).show()
             }
@@ -130,8 +131,6 @@ class MainActivity : ComponentActivity() {
                             GlobalVariable.setfood()
                             GlobalVariable.setmission()
                         }
-                        Toast.makeText(this@MainActivity, "地區: ${GlobalVariable.getcountry()}, ${GlobalVariable.getregion()}", Toast.LENGTH_SHORT).show()
-
                         jumptoActivity(GameActivity::class.java)
 
                     } else {

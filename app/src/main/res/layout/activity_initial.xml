@@ -33,14 +33,25 @@
         android:background="@drawable/choosecha_title"/>
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinner_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="選擇縣市"
+        android:textAppearance="@style/regiontext"
         app:layout_constraintTop_toTopOf="@id/regiontext"
         app:layout_constraintBottom_toBottomOf="@id/regiontext"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <Spinner
+        android:id="@+id/spinner_region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/regiontext"
+        app:layout_constraintTop_toTopOf="@id/regiontext"
+        app:layout_constraintBottom_toBottomOf="@id/regiontext"
+        app:layout_constraintStart_toEndOf="@id/spinner_country"
         android:layout_marginTop="16dp" />
     <Button
         android:id="@+id/nextstep"

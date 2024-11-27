@@ -175,7 +175,7 @@ class Choosecharac : ComponentActivity() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
                 runOnUiThread {
-                    Toast.makeText(this@Choosecharac, "註冊失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Choosecharac, "選擇角色失敗: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -183,9 +183,9 @@ class Choosecharac : ComponentActivity() {
                 val responseBody = response.body?.string()
                 runOnUiThread {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@Choosecharac, "註冊成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Choosecharac, "選擇角色成功: $responseBody", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@Choosecharac, "註冊失敗: $responseBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Choosecharac, "選擇角色失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
