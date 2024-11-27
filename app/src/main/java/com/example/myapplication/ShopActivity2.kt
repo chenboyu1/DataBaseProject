@@ -2,19 +2,24 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.myapplication.GlobalVariable.Companion.food
+import com.example.myapplication.GlobalVariable.Companion.getName
+import okhttp3.Call
+import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.Response
+import java.io.IOException
 
 class ShopActivity2 : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop2)
@@ -28,6 +33,7 @@ class ShopActivity2 : ComponentActivity() {
         }
 
         val moneyAmount = findViewById<TextView>(R.id.money_amount)
+        val moneynumber = GlobalVariable.getName()
         fun updateUI() {
             // 更新心形进度条、等级、金钱等显示
             moneyAmount.text = "100000"  // 假设金钱为100000
@@ -52,13 +58,10 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[0]++
-                        sendChangToServer2(food[0])
+                        sendChangToServer2(food)
 
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
                     }
                 }
             )
@@ -74,12 +77,9 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[1]++
-                        sendChangToServer2(food[1])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
@@ -95,12 +95,9 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[2]++
-                        sendChangToServer2(food[2])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
@@ -116,12 +113,9 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[3]++
-                        sendChangToServer2(food[3])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
@@ -137,12 +131,9 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[4]++
-                        sendChangToServer2(food[4])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
@@ -158,12 +149,9 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[5]++
-                        sendChangToServer2(food[5])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
@@ -179,12 +167,9 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[6]++
-                        sendChangToServer2(food[6])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
@@ -200,12 +185,9 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[7]++
-                        sendChangToServer2(food[7])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
@@ -221,12 +203,9 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[8]++
-                        sendChangToServer2(food[8])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
@@ -242,37 +221,75 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                     if (isBought) {
                         // 處理按下購買按鈕的邏輯
-                        println("購買成功!")
+                        Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                         food[9]++
-                        sendChangToServer2(food[9])
-                    } else {
-                        // 處理按下取消按鈕的邏輯
-                        println("取消購買")
+                        sendChangToServer2(food)
                     }
                 }
             )
         }
 
     }
-    private fun sendChangToServer2(food: Int) {
+
+    private fun sendChangToServer2(id: IntArray) {
         val client = OkHttpClient()
         val username = GlobalVariable.getName()
 
-        // 構建 JSON 資料
+        // 將 IntArray 轉換為 JSON 格式
+        val idJson = id.joinToString(prefix = "[", postfix = "]")
+
+        // 構建 JSON 請求資料
         val json = """
-    {
-      "username": "$username",
-      "food": $food
-    }
-    """.trimIndent()
+        {
+          "username": "$username",
+          "foods": $idJson
+        }
+        """
 
-        // 構建 Request Body
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
-
-        // 構建 HTTP POST 請求
         val request = Request.Builder()
-            .url("http://140.136.151.129:3000/shop_dec") // 模擬器測試請改用 http://10.0.2.2:3000/shop_dec
+            .url("http://10.0.2.2:3000/shop_food") // 如果使用模擬器，請使用正確的地址
             .post(body)
             .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@ShopActivity2, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    /*if (response.isSuccessful) {
+                        Toast.makeText(this@ShopActivity2, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@ShopActivity2, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                    }*/
+                    when (response.code) {
+                        in 200..299 -> {
+                            Toast.makeText(this@ShopActivity2, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        }
+                        400 -> {
+                            Toast.makeText(this@ShopActivity2, "錯誤: 請求格式不正確 ($responseBody)", Toast.LENGTH_SHORT).show()
+                        }
+                        401 -> {
+                            Toast.makeText(this@ShopActivity2, "錯誤: 未授權存取", Toast.LENGTH_SHORT).show()
+                        }
+                        404 -> {
+                            Toast.makeText(this@ShopActivity2, "錯誤: 資源不存在", Toast.LENGTH_SHORT).show()
+                        }
+                        500 -> {
+                            Toast.makeText(this@ShopActivity2, "錯誤: 伺服器內部錯誤", Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            Toast.makeText(this@ShopActivity2, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        })
     }
+
 }
