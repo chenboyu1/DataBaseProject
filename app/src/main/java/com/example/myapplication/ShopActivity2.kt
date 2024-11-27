@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.myapplication.GlobalVariable.Companion.food
-import com.example.myapplication.GlobalVariable.Companion.getName
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -249,7 +248,7 @@ class ShopActivity2 : ComponentActivity() {
 
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
         val request = Request.Builder()
-            .url("http://10.0.2.2:3000/shop_food") // 如果使用模擬器，請使用正確的地址
+            .url("http://140.136.151.129:3000/shop_food") // 如果使用模擬器，請使用正確的地址 or 10.0.2.2
             .post(body)
             .build()
 

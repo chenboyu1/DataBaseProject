@@ -56,7 +56,7 @@ class ShopActivity : ComponentActivity() {
                     "畢業帽", // 商品名稱
                     "這是一頂畢業帽，非常適合拍照留念！", // 商品描述
                     R.drawable.decoration1_graduation_cap,
-                    100
+                    50
                 )
             }else if(decorate[0] == 0) {
                 ShopBuy.showProductDialog(
@@ -64,7 +64,7 @@ class ShopActivity : ComponentActivity() {
                     "畢業帽", // 商品名稱
                     "這是一頂畢業帽，非常適合拍照留念！", // 商品描述
                     R.drawable.decoration1_graduation_cap,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                         // 處理按下購買按鈕的邏輯
@@ -84,7 +84,7 @@ class ShopActivity : ComponentActivity() {
                     "生日帽", // 商品名稱
                     "戴上這頂生日帽，讓石頭瞬間變成焦點，保證比生日蛋糕還吸引眼球！", // 商品描述
                     R.drawable.decoration2_hbd_hat,
-                    100
+                    50
                 )
             }else if(decorate[1] == 0) {
                 ShopBuy.showProductDialog(
@@ -92,7 +92,7 @@ class ShopActivity : ComponentActivity() {
                     "生日帽", // 商品名稱
                     "戴上這頂生日帽，讓石頭瞬間變成焦點，保證比生日蛋糕還吸引眼球！", // 商品描述
                     R.drawable.decoration2_hbd_hat,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
@@ -113,7 +113,7 @@ class ShopActivity : ComponentActivity() {
                     "貝雷帽", // 商品名稱
                     "戴上這頂貝雷帽，石頭就能瞬間變身藝術家，誰說只有畫家才需要靈感？", // 商品描述
                     R.drawable.decoration3 ,
-                    100
+                    50
                 )
             }else if(decorate[2] == 0) {
                 ShopBuy.showProductDialog(
@@ -121,7 +121,7 @@ class ShopActivity : ComponentActivity() {
                     "貝雷帽", // 商品名稱
                     "戴上這頂貝雷帽，石頭就能瞬間變身藝術家，誰說只有畫家才需要靈感？", // 商品描述
                     R.drawable.decoration3 ,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
@@ -141,7 +141,7 @@ class ShopActivity : ComponentActivity() {
                     "紅毛帽", // 商品名稱
                     "戴上這頂紅毛帽，讓石頭不僅保暖，還能讓大家誤以為是冬季限定的超級英雄！", // 商品描述
                     R.drawable.decoration4_red_fur_hat,
-                    100
+                    50
                 )
             }else if(decorate[3] == 0) {
                 ShopBuy.showProductDialog(
@@ -149,7 +149,7 @@ class ShopActivity : ComponentActivity() {
                     "紅毛帽", // 商品名稱
                     "戴上這頂紅毛帽，讓石頭不僅保暖，還能讓大家誤以為是冬季限定的超級英雄！", // 商品描述
                     R.drawable.decoration4_red_fur_hat,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
@@ -169,7 +169,7 @@ class ShopActivity : ComponentActivity() {
                     "蝴蝶結", // 商品名稱
                     "戴上這個蝴蝶結，讓石頭看起來甜美可愛。", // 商品描述
                     R.drawable.decoration5_rosette,
-                    100
+                    50
                 )
             }else if(decorate[4] == 0) {
                 ShopBuy.showProductDialog(
@@ -177,7 +177,7 @@ class ShopActivity : ComponentActivity() {
                     "蝴蝶結", // 商品名稱
                     "戴上這個蝴蝶結，讓石頭看起來甜美可愛。", // 商品描述
                     R.drawable.decoration5_rosette,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
