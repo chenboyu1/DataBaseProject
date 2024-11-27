@@ -33,10 +33,12 @@ class ShopActivity : ComponentActivity() {
         }
 
         val moneyAmount = findViewById<TextView>(R.id.money_amount)
+        val moneynumber = GlobalVariable.getmoney()
         fun updateUI() {
-            // 更新心形进度条、等级、金钱等显示
-            moneyAmount.text = "100000"  // 假设金钱为100000
+            //金錢顯示
+            moneyAmount.text = moneynumber.toString()
         }
+        updateUI() //金錢更新
 
         val page2Button = findViewById<Button>(R.id.button_page_2)
         page2Button.setOnClickListener {
