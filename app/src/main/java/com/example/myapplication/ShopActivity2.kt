@@ -262,11 +262,6 @@ class ShopActivity2 : ComponentActivity() {
             override fun onResponse(call: Call, response: Response) {
                 val responseBody = response.body?.string()
                 runOnUiThread {
-                    /*if (response.isSuccessful) {
-                        Toast.makeText(this@ShopActivity2, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this@ShopActivity2, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
-                    }*/
                     when (response.code) {
                         in 200..299 -> {
                             Toast.makeText(this@ShopActivity2, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()

@@ -19,7 +19,7 @@ import okhttp3.Response
 import java.io.IOException
 
 class ShopActivity : ComponentActivity() {
-
+    var moneynumber = GlobalVariable.getmoney()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop)
@@ -33,7 +33,6 @@ class ShopActivity : ComponentActivity() {
         }
 
         val moneyAmount = findViewById<TextView>(R.id.money_amount)
-        val moneynumber = GlobalVariable.getmoney()
         fun updateUI() {
             //金錢顯示
             moneyAmount.text = moneynumber.toString()
@@ -71,6 +70,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[0] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -99,6 +101,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[1] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -128,6 +133,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[2] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -156,6 +164,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[3] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -184,6 +195,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[4] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -212,6 +226,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[5] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -240,6 +257,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[6] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -268,6 +288,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[7] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -296,6 +319,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[8] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -324,6 +350,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[9] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -349,7 +378,46 @@ class ShopActivity : ComponentActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
         Log.d("shop", "shop")
         val request = Request.Builder()
-            .url("http://140.136.151.129:3000/shop_dec") // 如果使用模擬器，請使用正確的地址
+            .url("http://140.136.151.129:3000/shop_dec") // 如果使用模擬器，請使用正確的地址140.136.151.129 or 10.0.2.2
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@ShopActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@ShopActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@ShopActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun sendMoneyToServer(id: Int) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 構建 JSON 請求資料
+        val json = """
+    {
+      "username": "$username",
+      "money": $id
+    }
+    """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+        Log.d("shop", "shop")
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/money") // 如果使用模擬器，請使用正確的地址140.136.151.129 or 10.0.2.2
             .post(body)
             .build()
 
