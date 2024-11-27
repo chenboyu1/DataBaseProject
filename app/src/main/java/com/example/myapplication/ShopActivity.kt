@@ -353,17 +353,19 @@ class ShopActivity : ComponentActivity() {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                // 處理請求失敗
-                e.printStackTrace()
-                Log.e("sendChangToServer", "請求失敗: ${e.message}")
+                runOnUiThread {
+                    Toast.makeText(this@ShopActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
             }
 
             override fun onResponse(call: Call, response: Response) {
-                // 處理伺服器回應
-                if (response.isSuccessful) {
-                    Log.d("sendChangToServer", "請求成功: ${response.body?.string()}")
-                } else {
-                    Log.e("sendChangToServer", "伺服器錯誤: ${response.code}")
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@ShopActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@ShopActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         })
