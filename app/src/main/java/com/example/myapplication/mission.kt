@@ -1,4 +1,5 @@
 package com.example.myapplication
+import android.content.Intent
 import android.widget.ImageButton
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -91,6 +92,11 @@ class mission : AppCompatActivity() {
         }
         btnCancel.setOnClickListener {
             dialog.dismiss() // 關閉彈跳視窗
+
+            // 切換到遊戲畫面
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
+            finish() // 可選，防止返回到此活動
         }
 
     }
