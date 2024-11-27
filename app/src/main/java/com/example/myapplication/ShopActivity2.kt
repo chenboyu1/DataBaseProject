@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.myapplication.GlobalVariable.Companion.food
-import com.example.myapplication.GlobalVariable.Companion.getName
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -33,11 +32,12 @@ class ShopActivity2 : ComponentActivity() {
         }
 
         val moneyAmount = findViewById<TextView>(R.id.money_amount)
-        val moneynumber = GlobalVariable.getName()
+        val moneynumber = GlobalVariable.getmoney()
         fun updateUI() {
-            // 更新心形进度条、等级、金钱等显示
-            moneyAmount.text = "100000"  // 假设金钱为100000
+            //金錢顯示
+            moneyAmount.text = moneynumber.toString()
         }
+        updateUI() //金錢更新
 
         val page1Button = findViewById<Button>(R.id.button_page_1)
         page1Button.setOnClickListener {
@@ -248,7 +248,7 @@ class ShopActivity2 : ComponentActivity() {
 
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
         val request = Request.Builder()
-            .url("http://10.0.2.2:3000/shop_food") // 如果使用模擬器，請使用正確的地址
+            .url("http://140.136.151.129:3000/shop_food") // 如果使用模擬器，請使用正確的地址 or 10.0.2.2
             .post(body)
             .build()
 
@@ -262,11 +262,6 @@ class ShopActivity2 : ComponentActivity() {
             override fun onResponse(call: Call, response: Response) {
                 val responseBody = response.body?.string()
                 runOnUiThread {
-                    /*if (response.isSuccessful) {
-                        Toast.makeText(this@ShopActivity2, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this@ShopActivity2, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
-                    }*/
                     when (response.code) {
                         in 200..299 -> {
                             Toast.makeText(this@ShopActivity2, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()

@@ -19,7 +19,7 @@ import okhttp3.Response
 import java.io.IOException
 
 class ShopActivity : ComponentActivity() {
-
+    var moneynumber = GlobalVariable.getmoney()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop)
@@ -34,9 +34,10 @@ class ShopActivity : ComponentActivity() {
 
         val moneyAmount = findViewById<TextView>(R.id.money_amount)
         fun updateUI() {
-            // 更新心形进度条、等级、金钱等显示
-            moneyAmount.text = "100000"  // 假设金钱为100000
+            //金錢顯示
+            moneyAmount.text = moneynumber.toString()
         }
+        updateUI() //金錢更新
 
         val page2Button = findViewById<Button>(R.id.button_page_2)
         page2Button.setOnClickListener {
@@ -54,7 +55,7 @@ class ShopActivity : ComponentActivity() {
                     "畢業帽", // 商品名稱
                     "這是一頂畢業帽，非常適合拍照留念！", // 商品描述
                     R.drawable.decoration1_graduation_cap,
-                    100
+                    50
                 )
             }else if(decorate[0] == 0) {
                 ShopBuy.showProductDialog(
@@ -62,13 +63,16 @@ class ShopActivity : ComponentActivity() {
                     "畢業帽", // 商品名稱
                     "這是一頂畢業帽，非常適合拍照留念！", // 商品描述
                     R.drawable.decoration1_graduation_cap,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                         // 處理按下購買按鈕的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[0] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -82,7 +86,7 @@ class ShopActivity : ComponentActivity() {
                     "生日帽", // 商品名稱
                     "戴上這頂生日帽，讓石頭瞬間變成焦點，保證比生日蛋糕還吸引眼球！", // 商品描述
                     R.drawable.decoration2_hbd_hat,
-                    100
+                    50
                 )
             }else if(decorate[1] == 0) {
                 ShopBuy.showProductDialog(
@@ -90,13 +94,16 @@ class ShopActivity : ComponentActivity() {
                     "生日帽", // 商品名稱
                     "戴上這頂生日帽，讓石頭瞬間變成焦點，保證比生日蛋糕還吸引眼球！", // 商品描述
                     R.drawable.decoration2_hbd_hat,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[1] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -111,7 +118,7 @@ class ShopActivity : ComponentActivity() {
                     "貝雷帽", // 商品名稱
                     "戴上這頂貝雷帽，石頭就能瞬間變身藝術家，誰說只有畫家才需要靈感？", // 商品描述
                     R.drawable.decoration3 ,
-                    100
+                    50
                 )
             }else if(decorate[2] == 0) {
                 ShopBuy.showProductDialog(
@@ -119,13 +126,16 @@ class ShopActivity : ComponentActivity() {
                     "貝雷帽", // 商品名稱
                     "戴上這頂貝雷帽，石頭就能瞬間變身藝術家，誰說只有畫家才需要靈感？", // 商品描述
                     R.drawable.decoration3 ,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[2] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -139,7 +149,7 @@ class ShopActivity : ComponentActivity() {
                     "紅毛帽", // 商品名稱
                     "戴上這頂紅毛帽，讓石頭不僅保暖，還能讓大家誤以為是冬季限定的超級英雄！", // 商品描述
                     R.drawable.decoration4_red_fur_hat,
-                    100
+                    50
                 )
             }else if(decorate[3] == 0) {
                 ShopBuy.showProductDialog(
@@ -147,13 +157,16 @@ class ShopActivity : ComponentActivity() {
                     "紅毛帽", // 商品名稱
                     "戴上這頂紅毛帽，讓石頭不僅保暖，還能讓大家誤以為是冬季限定的超級英雄！", // 商品描述
                     R.drawable.decoration4_red_fur_hat,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[3] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -167,7 +180,7 @@ class ShopActivity : ComponentActivity() {
                     "蝴蝶結", // 商品名稱
                     "戴上這個蝴蝶結，讓石頭看起來甜美可愛。", // 商品描述
                     R.drawable.decoration5_rosette,
-                    100
+                    50
                 )
             }else if(decorate[4] == 0) {
                 ShopBuy.showProductDialog(
@@ -175,13 +188,16 @@ class ShopActivity : ComponentActivity() {
                     "蝴蝶結", // 商品名稱
                     "戴上這個蝴蝶結，讓石頭看起來甜美可愛。", // 商品描述
                     R.drawable.decoration5_rosette,
-                    100,
+                    50,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
                             // 處理按下購買按鈕的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[4] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 50
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -210,6 +226,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[5] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -238,6 +257,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[6] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -266,6 +288,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[7] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -294,6 +319,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[8] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -322,6 +350,9 @@ class ShopActivity : ComponentActivity() {
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                             decorate[9] = 1
                             sendChangToServer(decorate)
+                            moneynumber -= 100
+                            sendMoneyToServer(moneynumber)
+                            updateUI()
                         }
                     }
                 )
@@ -347,7 +378,46 @@ class ShopActivity : ComponentActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
         Log.d("shop", "shop")
         val request = Request.Builder()
-            .url("http://140.136.151.129:3000/shop_dec") // 如果使用模擬器，請使用正確的地址
+            .url("http://140.136.151.129:3000/shop_dec") // 如果使用模擬器，請使用正確的地址140.136.151.129 or 10.0.2.2
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@ShopActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@ShopActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@ShopActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun sendMoneyToServer(id: Int) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 構建 JSON 請求資料
+        val json = """
+    {
+      "username": "$username",
+      "money": $id
+    }
+    """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+        Log.d("shop", "shop")
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/money") // 如果使用模擬器，請使用正確的地址140.136.151.129 or 10.0.2.2
             .post(body)
             .build()
 
