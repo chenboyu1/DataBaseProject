@@ -86,6 +86,8 @@ class GameActivity : AppCompatActivity() {
 
         val imageView: ImageView = findViewById(R.id.myImageView)
         val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
+        val country = GlobalVariable.getcountry()
+        val region = GlobalVariable.getregion()
 
         // 获取 ScrollView 和按钮容器，送禮選項區域
         sideboxScroll = findViewById<HorizontalScrollView>(R.id.sideboxScroll)
@@ -114,9 +116,7 @@ class GameActivity : AppCompatActivity() {
         // 確保資料在畫面顯示之前已經準備好
         lifecycleScope.launch {
             // 同步更新資料
-            GlobalVariable.setCharac()
             charac = GlobalVariable.getCharac()
-            GlobalVariable.setcurrentdecorate()
             currentdecorate = GlobalVariable.getcurrentdecorate()
 
             // 使用更新後的資料來顯示UI

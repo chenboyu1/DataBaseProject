@@ -19,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
@@ -103,6 +104,7 @@ class PackageActivity : ComponentActivity() {
                 }
             }
             sendSelectedButtonToServer(id)
+            GlobalVariable.setcurrentdecorate(id)
             val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
             // Set the decoration icon image
             decorativeIcon.setImageResource(decorationId[button.id])
@@ -126,6 +128,24 @@ class PackageActivity : ComponentActivity() {
             .url("http://140.136.151.129:3000/decoration") // 如果使用模擬器，請使用這個地址
             .post(body)
             .build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@PackageActivity, "註冊失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@PackageActivity, "更新成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@PackageActivity, "註冊失敗: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
     }
     private fun jumptoActivity(targetActivity: Class<*>) {
         val intent = Intent(this, targetActivity)

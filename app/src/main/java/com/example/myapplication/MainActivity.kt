@@ -124,12 +124,14 @@ class MainActivity : ComponentActivity() {
                         Toast.makeText(this@MainActivity, "登入成功: $responseBody", Toast.LENGTH_SHORT).show()
                         GlobalVariable.setName(username) //設置全域變數username
                         GlobalScope.launch(Dispatchers.Main) {
-                            GlobalVariable.setCharac()
+                            GlobalVariable.setbasicData()
+                            GlobalVariable.setregion()
                             GlobalVariable.setdecorate()
                             GlobalVariable.setfood()
-                            GlobalVariable.setcurrentdecorate()
                             GlobalVariable.setmission()
                         }
+                        Toast.makeText(this@MainActivity, "地區: ${GlobalVariable.getcountry()}, ${GlobalVariable.getregion()}", Toast.LENGTH_SHORT).show()
+
                         jumptoActivity(GameActivity::class.java)
 
                     } else {

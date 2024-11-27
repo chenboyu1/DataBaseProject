@@ -22,6 +22,9 @@ class GlobalVariable : ComponentActivity() {
         public var food: IntArray = IntArray(10)
         private var currentdecorate: Int = 0
         public var missionbutton: IntArray = IntArray(4)
+        private var money: Int = 0
+        private var country: String = ""
+        private var region: String = ""
         // 修改 變數值
         fun setName(name: String) {
             this.username = "b" //name
@@ -32,10 +35,6 @@ class GlobalVariable : ComponentActivity() {
             return username
         }
 
-        // 修改 charac 值，使用協程來調用 suspend 函式
-        suspend fun setCharac() {
-            this.charac = setcharac()
-        }
         // 取得 charac 值
         fun getCharac(): Int {
             Log.d("getcharac", "$charac")
@@ -49,21 +48,37 @@ class GlobalVariable : ComponentActivity() {
         suspend fun setFood(foodArray : IntArray) {
             this.food = foodArray
         }
-        //回傳decorate陣列用global variable
-        suspend fun setcurrentdecorate() {
-            this.currentdecorate = setcurrentDecorate()
+
+        fun setcurrentdecorate(decorate : Int) {
+            this.currentdecorate = decorate
         }
         fun getcurrentdecorate(): Int {
             return currentdecorate
         }
 
+        fun setmoney(money : Int){
+            this.money = money
+        }
+
+        fun getmoney(): Int{
+            return money
+        }
+
+        fun getcountry(): String{
+            return country
+        }
+
+        fun getregion(): String{
+            return region
+        }
+
         // 改為 suspend 函式，並在協程中調用
-        suspend fun setcharac(): Int {
+        suspend fun setbasicData(){
             val client = OkHttpClient()
             val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
 
             val request = Request.Builder()
-                .url("http://140.136.151.129:3000/charac?username=$username")
+                .url("http://140.136.151.129:3000/basicData?username=$username")
                 .get()
                 .build()
 
@@ -74,7 +89,16 @@ class GlobalVariable : ComponentActivity() {
 
                     if (response.isSuccessful) {
                         val responseBody = response.body?.string()
-                        responseBody?.toInt() ?: 0 // 將回應的字串轉為整數，若無返回則為 0
+                        val data = JSONArray(responseBody)
+
+                        // 將 JSON 陣列轉換為 IntArray
+                        val dataArray = IntArray(data.length()) { i ->
+                            data.getInt(i)
+                        }
+                        Log.d("data", "${dataArray[0]}${dataArray[1]}${dataArray[2]}")
+                        charac = dataArray[0]
+                        currentdecorate = dataArray[1]
+                        money = dataArray[2]
                     } else {
                         // 若請求不成功，返回預設值 0
                         0
@@ -85,6 +109,39 @@ class GlobalVariable : ComponentActivity() {
                 }
             }
         }
+        suspend fun setregion(){
+            val client = OkHttpClient()
+            val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
+
+            val request = Request.Builder()
+                .url("http://140.136.151.129:3000/region?username=$username")
+                .get()
+                .build()
+
+            return withContext(Dispatchers.IO) {
+                try {
+                    // 使用 execute() 同步請求
+                    val response: Response = client.newCall(request).execute()
+
+                    if (response.isSuccessful) {
+                        val responseBody = response.body?.string()
+                        Log.d("region", "$responseBody")
+                        val data = JSONArray(responseBody)
+                        Log.d("region", "$data")
+                        country = data.getString(0)
+                        region = data.getString(1)
+                        //Log.d("region", "$country, $region")
+                    } else {
+                        // 若請求不成功，返回預設值 0
+                        0
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    0 // 若網絡請求出錯，返回 0
+                }
+            }
+        }
+
         suspend fun setdecorate(): IntArray { //mainActivity呼叫這函式
             val client = OkHttpClient()
             val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
@@ -155,33 +212,6 @@ class GlobalVariable : ComponentActivity() {
                 } catch (e: IOException) {
                     e.printStackTrace()
                     return@withContext IntArray(10)  // 若網絡錯誤，返回默認的 10 個 0
-                }
-            }
-        }
-        suspend fun setcurrentDecorate(): Int {
-            val client = OkHttpClient()
-            val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
-
-            val request = Request.Builder()
-                .url("http://140.136.151.129:3000/charac?username=$username")
-                .get()
-                .build()
-
-            return withContext(Dispatchers.IO) {
-                try {
-                    // 使用 execute() 同步請求
-                    val response: Response = client.newCall(request).execute()
-
-                    if (response.isSuccessful) {
-                        val responseBody = response.body?.string()
-                        responseBody?.toInt() ?: 0 // 將回應的字串轉為整數，若無返回則為 0
-                    } else {
-                        // 若請求不成功，返回預設值 0
-                        0
-                    }
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    0 // 若網絡請求出錯，返回 0
                 }
             }
         }
