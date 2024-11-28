@@ -80,7 +80,7 @@ class GameActivity : AppCompatActivity() {
     // 定義好感度
     private var affectionLevel = 0
     //獲取資料庫金錢
-    var moneynumber = GlobalVariable.getmoney()
+    private var moneynumber = GlobalVariable.getmoney()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
