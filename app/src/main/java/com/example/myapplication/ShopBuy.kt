@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageView
@@ -73,6 +74,17 @@ class ShopBuy {
             priceView.text = "NT$ ${productPrice}"
 
             val dialog = builder.create()
+
+            dialog.show()
+        }
+        fun showErrorDialog(context: Context) {
+            val dialog = Dialog(context)
+            dialog.setContentView(R.layout.activity_shop_buy_error)
+
+            val btnOk = dialog.findViewById<Button>(R.id.btnOk)
+            btnOk.setOnClickListener {
+                dialog.dismiss() // 關閉視窗
+            }
 
             dialog.show()
         }
