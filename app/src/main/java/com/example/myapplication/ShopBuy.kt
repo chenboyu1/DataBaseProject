@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.content.Context
+import android.widget.EditText
+import android.widget.Toast
 
 class ShopBuy {
     companion object {
@@ -76,7 +78,7 @@ class ShopBuy {
             val dialog = builder.create()
 
             dialog.show()
-        }
+        } // 以購買後的頁面函式
 
         fun showErrorDialog(context: Context) {
             val dialog = Dialog(context)
@@ -89,5 +91,50 @@ class ShopBuy {
 
             dialog.show()
         }//當餘額不足所出現的訊息
+
+        fun showProduct2Dialog(
+            context: Context,
+            productName: String,
+            productDescription: String,
+            productImageRes: Int,
+            productPrice: Int,
+            onBuyClicked: (isBought: Boolean, quantity: Int) -> Unit
+        ) {
+            val dialog = Dialog(context)
+            dialog.setContentView(R.layout.activity_shop_details_food)
+
+            val productNameView = dialog.findViewById<TextView>(R.id.product_name)
+            val productDescriptionView = dialog.findViewById<TextView>(R.id.product_description)
+            val productImageView = dialog.findViewById<ImageView>(R.id.product_image)
+            val productPriceView = dialog.findViewById<TextView>(R.id.product_price)
+            val purchaseAmount = dialog.findViewById<EditText>(R.id.etPurchaseAmount)
+            val buyButton = dialog.findViewById<Button>(R.id.button_buy)
+            val cancelButton = dialog.findViewById<Button>(R.id.button_cancel)
+
+            // 設置商品信息
+            productNameView.text = productName
+            productDescriptionView.text = productDescription
+            productImageView.setImageResource(productImageRes)
+            productPriceView.text = "NT$ $productPrice"
+
+            // 確認購買按鈕
+            buyButton.setOnClickListener {
+                val quantity = purchaseAmount.text.toString().toIntOrNull() ?: 0
+                if (quantity > 0) {
+                    onBuyClicked(true, quantity) // 傳遞購買數量
+                    dialog.dismiss()
+                } else {
+                    Toast.makeText(context, "請輸入有效的購買數量！", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            // 取消按鈕
+            cancelButton.setOnClickListener {
+                onBuyClicked(false, 0)
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        } // 增加可以決定購買數量的韓式
     }
 }
