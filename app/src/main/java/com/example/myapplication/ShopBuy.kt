@@ -77,6 +77,7 @@ class ShopBuy {
 
             dialog.show()
         }
+
         fun showErrorDialog(context: Context) {
             val dialog = Dialog(context)
             dialog.setContentView(R.layout.activity_shop_buy_error)
@@ -87,6 +88,6 @@ class ShopBuy {
             }
 
             dialog.show()
-        }
+        }//當餘額不足所出現的訊息
     }
 }
