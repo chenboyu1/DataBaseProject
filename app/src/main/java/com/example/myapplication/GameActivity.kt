@@ -79,6 +79,8 @@ class GameActivity : AppCompatActivity() {
 
     // 定義好感度
     private var affectionLevel = 0
+    //獲取資料庫金錢
+    var moneynumber = GlobalVariable.getmoney()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,7 +99,8 @@ class GameActivity : AppCompatActivity() {
         heartIcon = findViewById(R.id.heart_icon)
         progressBar = findViewById(R.id.progressBar)
         levelText = findViewById(R.id.level_text)
-        moneyAmount = findViewById(R.id.money_amount)
+        //moneyAmount = findViewById(R.id.money_amount)
+        moneyAmount = findViewById<TextView>(R.id.money_amount)
 
         interactionButton = findViewById(R.id.interaction_button)
         playButton = findViewById(R.id.play_button)
@@ -316,6 +319,6 @@ class GameActivity : AppCompatActivity() {
         // 更新心形進度條、等級、金錢等顯示
         progressBar.progress = affectionLevel  // 使用當前好感度來更新進度條
         levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
-        moneyAmount.text = getString(R.string.money_amount)  // 通過字符串資源動態顯示金錢
+        moneyAmount.text = moneynumber.toString()  // 通過字符串資源動態顯示金錢
     }
 }
