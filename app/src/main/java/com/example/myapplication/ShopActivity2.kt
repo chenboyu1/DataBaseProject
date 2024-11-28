@@ -102,7 +102,7 @@ class ShopActivity2 : ComponentActivity() {
                 }
             )
         }
-        val button2Product3: Button = findViewById(R.id.button2_product_5)
+        val button2Product3: Button = findViewById(R.id.button2_product_3)
         var price3 = 30
         button2Product3.setOnClickListener {
             ShopBuy.showProduct2Dialog(
@@ -157,7 +157,7 @@ class ShopActivity2 : ComponentActivity() {
             )
         }
 
-        val button2Product5: Button = findViewById(R.id.button2_product_3)
+        val button2Product5: Button = findViewById(R.id.button2_product_5)
         var price5 = 50
         button2Product5.setOnClickListener {
             ShopBuy.showProduct2Dialog(

@@ -100,8 +100,11 @@ class ShopBuy {
             productPrice: Int,
             onBuyClicked: (isBought: Boolean, quantity: Int) -> Unit
         ) {
-            val dialog = Dialog(context)
-            dialog.setContentView(R.layout.activity_shop_details_food)
+            val builder = AlertDialog.Builder(context)
+            val inflater = LayoutInflater.from(context)
+            val dialog = inflater.inflate(R.layout.activity_shop_details_food, null)
+
+            builder.setView(dialog)
 
             val productNameView = dialog.findViewById<TextView>(R.id.product_name)
             val productDescriptionView = dialog.findViewById<TextView>(R.id.product_description)
@@ -117,12 +120,14 @@ class ShopBuy {
             productImageView.setImageResource(productImageRes)
             productPriceView.text = "NT$ $productPrice"
 
+            val dialogLayout = builder.create()
+
             // 確認購買按鈕
             buyButton.setOnClickListener {
                 val quantity = purchaseAmount.text.toString().toIntOrNull() ?: 0
                 if (quantity > 0) {
                     onBuyClicked(true, quantity) // 傳遞購買數量
-                    dialog.dismiss()
+                    dialogLayout.dismiss()
                 } else {
                     Toast.makeText(context, "請輸入有效的購買數量！", Toast.LENGTH_SHORT).show()
                 }
@@ -131,10 +136,9 @@ class ShopBuy {
             // 取消按鈕
             cancelButton.setOnClickListener {
                 onBuyClicked(false, 0)
-                dialog.dismiss()
+                dialogLayout.dismiss()
             }
-
-            dialog.show()
-        } // 增加可以決定購買數量的韓式
+            dialogLayout.show()
+        } // 增加可以決定購買數量的函式
     }
 }
