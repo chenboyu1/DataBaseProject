@@ -177,6 +177,16 @@ class GameActivity : AppCompatActivity() {
         updateUI()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        // 在返回主畫面時更新數據
+        lifecycleScope.launch {
+            GlobalVariable.setbasicData()  // 更新角色、裝飾和金錢數據
+            updateUI()      // 更新畫面上的數據顯示
+        }
+    }
+
     // 跳轉到界面
     private fun jumptoActivity(targetActivity: Class<*>) {
         val intent = Intent(this, targetActivity)
