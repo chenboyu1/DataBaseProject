@@ -75,7 +75,12 @@ class GlobalVariable : ComponentActivity() {
             return region
         }
 
-        // 改為 suspend 函式，並在協程中調用
+        fun setRegion(country:String, region:String){
+            this.country = country
+            this.region = region
+        }
+
+        // 設定角色、裝飾、金錢
         suspend fun setbasicData(){
             val client = OkHttpClient()
             val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()

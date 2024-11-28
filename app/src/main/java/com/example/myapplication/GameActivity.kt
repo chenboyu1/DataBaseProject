@@ -39,8 +39,8 @@ class GameActivity : AppCompatActivity() {
     var charac = 0;
     var currentdecorate = 0;
     var imgId = arrayOf(
-        R.drawable.jewel02_amethyst, R.drawable.jewel05_emerald,
-        R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline, R.drawable.jewel03_aquamarine
+        R.drawable.jewel02_amethyst, R.drawable.jewel03_aquamarine, R.drawable.jewel05_emerald,
+        R.drawable.jewel06_moonstone, R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline
         , R.drawable.jewel12_tanzanite, R.drawable.jewel15_colorful);
     var decorationId = arrayOf(
         R.drawable.decoration1_graduation_cap, R.drawable.decoration2_hbd_hat, R.drawable.decoration3,
@@ -121,7 +121,8 @@ class GameActivity : AppCompatActivity() {
 
             // 使用更新後的資料來顯示UI
             imageView.setImageResource(imgId[charac])  // 顯示角色圖片
-            decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
+            if(currentdecorate == 99) decorativeIcon.visibility = View.GONE
+            else decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
 
             val buttonsToCreate = (0 until 10).filter { food[it] > 0 }
             buttonsToCreate.forEach { i ->

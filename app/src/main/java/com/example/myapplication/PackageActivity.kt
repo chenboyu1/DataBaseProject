@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -35,8 +37,8 @@ class PackageActivity : ComponentActivity() {
     var charac = 0;
     var currentdecorate = 0;
     var imgId = arrayOf(
-        R.drawable.jewel02_amethyst, R.drawable.jewel05_emerald,
-        R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline, R.drawable.jewel03_aquamarine
+        R.drawable.jewel02_amethyst, R.drawable.jewel03_aquamarine, R.drawable.jewel05_emerald,
+        R.drawable.jewel06_moonstone, R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline
         , R.drawable.jewel12_tanzanite, R.drawable.jewel15_colorful);
     var decorationId = arrayOf(
         R.drawable.decoration1_graduation_cap, R.drawable.decoration2_hbd_hat, R.drawable.decoration3,
@@ -52,7 +54,7 @@ class PackageActivity : ComponentActivity() {
         // 获取 ScrollView 和按钮容器
         val sideboxScroll = findViewById<ScrollView>(R.id.sideboxScroll)
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
-        var retbtn = findViewById<Button>(R.id.retbtn)
+        val retbtn = findViewById<ImageButton>(R.id.retbtn)
 
         GlobalScope.launch(Dispatchers.Main) {
             // 等待 getcharac() 函式的返回結果
@@ -62,7 +64,8 @@ class PackageActivity : ComponentActivity() {
             Log.d("currentdecorate", "$currentdecorate")
             Log.d("charac", "$charac")
             imageView.setImageResource(imgId[charac])
-            decorativeIcon.setImageResource(decorationId[currentdecorate])
+            if(currentdecorate == 99) decorativeIcon.visibility = View.GONE
+            else decorativeIcon.setImageResource(decorationId[currentdecorate])
         }
         for (i in 0 until 10){
             if(decorate[i] == 1){
@@ -106,6 +109,7 @@ class PackageActivity : ComponentActivity() {
             sendSelectedButtonToServer(id)
             GlobalVariable.setcurrentdecorate(id)
             val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
+            decorativeIcon.visibility = View.VISIBLE
             // Set the decoration icon image
             decorativeIcon.setImageResource(decorationId[button.id])
             button.text = "已選擇"

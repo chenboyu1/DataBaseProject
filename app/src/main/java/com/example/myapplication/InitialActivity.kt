@@ -99,6 +99,7 @@ class InitialActivity : ComponentActivity() {
         val username = GlobalVariable.getName();
         val country = spinnerCountry.selectedItem.toString()
         val region = spinnerRegion.selectedItem.toString()
+        GlobalVariable.setRegion(country, region)
         val json = """
         {
           "username": "$username",
