@@ -48,6 +48,7 @@ class ShopActivity : ComponentActivity() {
 
         // 獲取每個商品按鈕
         val buttonProduct1: Button = findViewById(R.id.button_product_1)
+        val price1 = 50
         buttonProduct1.setOnClickListener {
             if(decorate[0] == 1){
                 ShopBuy.showProductEnd(
@@ -55,7 +56,7 @@ class ShopActivity : ComponentActivity() {
                     "畢業帽", // 商品名稱
                     "這是一頂畢業帽，非常適合拍照留念！", // 商品描述
                     R.drawable.decoration1_graduation_cap,
-                    50
+                    price1
                 )
             }else if(decorate[0] == 0) {
                 ShopBuy.showProductDialog(
@@ -63,22 +64,27 @@ class ShopActivity : ComponentActivity() {
                     "畢業帽", // 商品名稱
                     "這是一頂畢業帽，非常適合拍照留念！", // 商品描述
                     R.drawable.decoration1_graduation_cap,
-                    50,
-                    onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
+                    price1,
+                    onBuyClicked = {isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                        // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[0] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 50
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price1 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[0] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price1
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
             }
         }
         val buttonProduct2: Button = findViewById(R.id.button_product_2)
+        val price2 = 50
         buttonProduct2.setOnClickListener {
             if(decorate[1] == 1){
                 ShopBuy.showProductEnd(
@@ -86,7 +92,7 @@ class ShopActivity : ComponentActivity() {
                     "生日帽", // 商品名稱
                     "戴上這頂生日帽，讓石頭瞬間變成焦點，保證比生日蛋糕還吸引眼球！", // 商品描述
                     R.drawable.decoration2_hbd_hat,
-                    50
+                    price2
                 )
             }else if(decorate[1] == 0) {
                 ShopBuy.showProductDialog(
@@ -94,16 +100,20 @@ class ShopActivity : ComponentActivity() {
                     "生日帽", // 商品名稱
                     "戴上這頂生日帽，讓石頭瞬間變成焦點，保證比生日蛋糕還吸引眼球！", // 商品描述
                     R.drawable.decoration2_hbd_hat,
-                    50,
+                    price2,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[1] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 50
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price2 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[1] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price2
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
@@ -111,6 +121,7 @@ class ShopActivity : ComponentActivity() {
             }
         }//記得回傳資料
         val buttonProduct3: Button = findViewById(R.id.button_product_3)
+        val price3 = 50
         buttonProduct3.setOnClickListener {
             if(decorate[2] == 1){
                 ShopBuy.showProductEnd(
@@ -118,7 +129,7 @@ class ShopActivity : ComponentActivity() {
                     "貝雷帽", // 商品名稱
                     "戴上這頂貝雷帽，石頭就能瞬間變身藝術家，誰說只有畫家才需要靈感？", // 商品描述
                     R.drawable.decoration3 ,
-                    50
+                    price3
                 )
             }else if(decorate[2] == 0) {
                 ShopBuy.showProductDialog(
@@ -126,22 +137,27 @@ class ShopActivity : ComponentActivity() {
                     "貝雷帽", // 商品名稱
                     "戴上這頂貝雷帽，石頭就能瞬間變身藝術家，誰說只有畫家才需要靈感？", // 商品描述
                     R.drawable.decoration3 ,
-                    50,
+                    price3,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[2] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 50
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price3 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[2] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price3
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
             }
         }
         val buttonProduct4: Button = findViewById(R.id.button_product_4)
+        val price4 = 50
         buttonProduct4.setOnClickListener {
             if(decorate[3] == 1){
                 ShopBuy.showProductEnd(
@@ -149,7 +165,7 @@ class ShopActivity : ComponentActivity() {
                     "紅毛帽", // 商品名稱
                     "戴上這頂紅毛帽，讓石頭不僅保暖，還能讓大家誤以為是冬季限定的超級英雄！", // 商品描述
                     R.drawable.decoration4_red_fur_hat,
-                    50
+                    price4
                 )
             }else if(decorate[3] == 0) {
                 ShopBuy.showProductDialog(
@@ -157,22 +173,27 @@ class ShopActivity : ComponentActivity() {
                     "紅毛帽", // 商品名稱
                     "戴上這頂紅毛帽，讓石頭不僅保暖，還能讓大家誤以為是冬季限定的超級英雄！", // 商品描述
                     R.drawable.decoration4_red_fur_hat,
-                    50,
+                    price4,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[3] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 50
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price4 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[3] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price4
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
             }
         }
         val buttonProduct5: Button = findViewById(R.id.button_product_5)
+        val price5 = 50
         buttonProduct5.setOnClickListener {
             if(decorate[4] == 1){
                 ShopBuy.showProductEnd(
@@ -180,7 +201,7 @@ class ShopActivity : ComponentActivity() {
                     "蝴蝶結", // 商品名稱
                     "戴上這個蝴蝶結，讓石頭看起來甜美可愛。", // 商品描述
                     R.drawable.decoration5_rosette,
-                    50
+                    price5
                 )
             }else if(decorate[4] == 0) {
                 ShopBuy.showProductDialog(
@@ -188,22 +209,27 @@ class ShopActivity : ComponentActivity() {
                     "蝴蝶結", // 商品名稱
                     "戴上這個蝴蝶結，讓石頭看起來甜美可愛。", // 商品描述
                     R.drawable.decoration5_rosette,
-                    50,
+                    price5,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[4] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 50
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price5 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[4] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price5
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
             }
         }
         val buttonProduct6: Button = findViewById(R.id.button_product_6)
+        val price6 = 100
         buttonProduct6.setOnClickListener {
             if(decorate[5] == 1){
                 ShopBuy.showProductEnd(
@@ -211,7 +237,7 @@ class ShopActivity : ComponentActivity() {
                     "蒲公英", // 商品名稱
                     "戴上這顆蒲公英，隨時對石頭許個願——希望風能把你的煩惱吹走！", // 商品描述
                     R.drawable.decoration6_dandelion,
-                    100
+                    price6
                 )
             }else if(decorate[5] == 0) {
                 ShopBuy.showProductDialog(
@@ -219,22 +245,27 @@ class ShopActivity : ComponentActivity() {
                     "蒲公英", // 商品名稱
                     "戴上這顆蒲公英，隨時對石頭許個願——希望風能把你的煩惱吹走！", // 商品描述
                     R.drawable.decoration6_dandelion,
-                    100,
+                    price6,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[5] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 100
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price6 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[5] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price6
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
             }
         }
         val buttonProduct7: Button = findViewById(R.id.button_product_7)
+        val price7 = 100
         buttonProduct7.setOnClickListener {
             if(decorate[6] == 1){
                 ShopBuy.showProductEnd(
@@ -242,7 +273,7 @@ class ShopActivity : ComponentActivity() {
                     "火焰", // 商品名稱
                     "讓這團火焰點燃你對石頭的熱情", // 商品描述
                     R.drawable.decoration7_fire,
-                    100
+                    price7
                 )
             }else if(decorate[6] == 0) {
                 ShopBuy.showProductDialog(
@@ -250,22 +281,27 @@ class ShopActivity : ComponentActivity() {
                     "火焰", // 商品名稱
                     "讓這團火焰點燃你對石頭的熱情", // 商品描述
                     R.drawable.decoration7_fire,
-                    100,
+                    price7,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[6] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 100
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price7 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[6] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price7
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
             }
         }
         val buttonProduct8: Button = findViewById(R.id.button_product_8)
+        val price8 = 100
         buttonProduct8.setOnClickListener {
             if(decorate[7] == 1){
                 ShopBuy.showProductEnd(
@@ -273,7 +309,7 @@ class ShopActivity : ComponentActivity() {
                     "星光閃閃", // 商品名稱
                     "這款星光閃閃，讓石頭成為夜晚最亮的星!", // 商品描述
                     R.drawable.decoration8_star,
-                    100
+                    price8
                 )
             }else if(decorate[7] == 0) {
                 ShopBuy.showProductDialog(
@@ -281,22 +317,27 @@ class ShopActivity : ComponentActivity() {
                     "星光閃閃", // 商品名稱
                     "這款星光閃閃，讓石頭成為夜晚最亮的星!", // 商品描述
                     R.drawable.decoration8_star,
-                    100,
+                    price8,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[7] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 100
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price8 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[7] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price8
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
             }
         }
         val buttonProduct9: Button = findViewById(R.id.button_product_9)
+        val price9 = 100
         buttonProduct9.setOnClickListener {
             if(decorate[8] == 1){
                 ShopBuy.showProductEnd(
@@ -304,7 +345,7 @@ class ShopActivity : ComponentActivity() {
                     "銀杏葉", // 商品名稱
                     "這片銀杏葉，不僅是大自然的藝術品，還能讓石頭擁有'秋天專屬'的時尚感，走在路上像是走進電影鏡頭！", // 商品描述
                     R.drawable.decoration9_leaves,
-                    100
+                    price9
                 )
             }else if(decorate[8] == 0) {
                 ShopBuy.showProductDialog(
@@ -312,22 +353,27 @@ class ShopActivity : ComponentActivity() {
                     "銀杏葉", // 商品名稱
                     "這片銀杏葉，不僅是大自然的藝術品，還能讓石頭擁有'秋天專屬'的時尚感，走在路上像是走進電影鏡頭！", // 商品描述
                     R.drawable.decoration9_leaves,
-                    100,
+                    price9,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[8] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 100
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price9 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[8] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price9
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
             }
         }
         val buttonProduct10: Button = findViewById(R.id.button_product_10)
+        val price10 = 100
         buttonProduct10.setOnClickListener {
             if(decorate[9] == 1){
                 ShopBuy.showProductEnd(
@@ -335,7 +381,7 @@ class ShopActivity : ComponentActivity() {
                     "嫩葉", // 商品名稱
                     "這片嫩葉像是大自然的愛心信，能讓石頭感覺到春天的氣息。", // 商品描述
                     R.drawable.decoration10_leaf,
-                    100
+                    price10
                 )
             }else if(decorate[9] == 0) {
                 ShopBuy.showProductDialog(
@@ -343,16 +389,20 @@ class ShopActivity : ComponentActivity() {
                     "嫩葉", // 商品名稱
                     "這片嫩葉像是大自然的愛心信，能讓石頭感覺到春天的氣息。", // 商品描述
                     R.drawable.decoration10_leaf,
-                    100,
+                    price10,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            // 處理按下購買按鈕的邏輯
-                            Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            decorate[9] = 1
-                            sendChangToServer(decorate)
-                            moneynumber -= 100
-                            sendMoneyToServer(moneynumber)
-                            updateUI()
+                            if(price10 > moneynumber){
+                                ShopBuy.showErrorDialog(this)
+                            }else{
+                                // 處理按下購買按鈕的邏輯
+                                Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
+                                decorate[9] = 1
+                                sendChangToServer(decorate)
+                                moneynumber -= price10
+                                sendMoneyToServer(moneynumber)
+                                updateUI()
+                            }
                         }
                     }
                 )
