@@ -230,7 +230,7 @@ class GameActivity : AppCompatActivity() {
             // 設置背景圖片
             setBackgroundResource(foodId[id])
             // 設置按鈕的文字為食物數量
-            text = ""
+            text = "剩餘數量：${food[id]}"
             // 設置按鈕點擊事件
             setOnClickListener {
                 val currentQuantity = food[id] ?: 0
@@ -241,13 +241,33 @@ class GameActivity : AppCompatActivity() {
                     if (food[id] == 0) {
                         parentLayout.removeView(buttonContainer) // 移除數量為 0 的按鈕
                     }
+                    affectionLevel += 10
+                    sendAffection2ToServer(affectionLevel)
+                    hideGiftOptions()
+                    // 選擇禮物的回饋訊息
+                    val giftMessage = when(foodName[id]) {
+                        "刈包" -> getString(R.string.feedback_guibao)
+                        "肥宅快樂水" -> getString(R.string.feedback_soda)
+                        "義大利麵" -> getString(R.string.feedback_pasta)
+                        "甜甜圈" -> getString(R.string.feedback_donut)
+                        "布丁" -> getString(R.string.feedback_pudding)
+                        "馬卡龍" -> getString(R.string.feedback_macaron)
+                        "鯛魚燒冰淇淋" -> getString(R.string.feedback_taiyaki)
+                        "聖代" -> getString(R.string.feedback_sundae)
+                        "在地冰淇淋" -> getString(R.string.feedback_local_ice_cream)
+                        "豪華餐車" -> getString(R.string.feedback_luxury_food_truck)
+                        else -> getString(R.string.feedback_default)
+                    }
+                    // 更新訊息框顯示回饋訊息
+                    messageBox.text = giftMessage
+                    updateUI()
                 }
             }
         }
 
         // 顯示食物名稱的 TextView
         val quantityText = TextView(context).apply {
-            text = "${foodName[id]}"  // 顯示食物數量
+            text = "${foodName[id]}"  // 顯示食物名字
             gravity = Gravity.CENTER // 文字居中
         }
         // 把按鈕和數量顯示放進一個垂直排列的 LinearLayout 中
@@ -281,27 +301,36 @@ class GameActivity : AppCompatActivity() {
         sendAffection2ToServer(affectionLevel)
         // 更新進度條和訊息框
         progressBar.progress = affectionLevel
-        messageBox.text = getString(R.string.play_interaction_message, affectionLevel)
-
+        // 根據好感度顯示不同的回饋訊息
+        // 根據好感度顯示不同的回饋訊息
+        val feedbackMessage = when {
+            (affectionLevel % 100) < 30 -> getString(R.string.feedback_low)
+            (affectionLevel % 100) in 30..70 -> getString(R.string.feedback_medium)
+            (affectionLevel % 100) > 70 -> getString(R.string.feedback_high)
+            else -> getString(R.string.feedback_default)
+        }
+        messageBox.text = feedbackMessage
         // 隱藏互動按鈕
         hideAdditionalButtons()
-
         // 更新 UI
         updateUI()
     }
-
-
 
     private fun showGiftOptions() {
         // 隱藏其他 UI，顯示送禮選項
         messageBox.visibility = View.GONE
         sideboxScroll.visibility = View.VISIBLE
         hideAdditionalButtons()
-
         // 更新禮物選項
         updateGiftButtons()
     }
 
+    private fun hideGiftOptions() {
+        // 隱藏其他 UI，顯示送禮選項
+        messageBox.visibility = View.VISIBLE
+        sideboxScroll.visibility = View.GONE
+        hideAdditionalButtons()
+    }
 
     private fun updateGiftButtons() {
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
@@ -317,7 +346,7 @@ class GameActivity : AppCompatActivity() {
                     createDecorativeButton(this, sidebox, i)
                 } else {
                     // 更新按鈕文字
-                    button.text = "食物 $i：$foodQuantity"
+                    button.text = "剩餘數量：$foodQuantity"
                 }
             } else {
                 // 如果數量為 0，移除按鈕
