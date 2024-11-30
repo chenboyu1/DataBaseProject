@@ -78,7 +78,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var sideboxScroll: HorizontalScrollView
 
     // 定義好感度
-    private var affectionLevel = 0
+    private var affectionLevel = GlobalVariable.getAffection()
     //獲取資料庫金錢
     private var moneynumber = GlobalVariable.getmoney()
 
@@ -132,7 +132,6 @@ class GameActivity : AppCompatActivity() {
                 createDecorativeButton(this@GameActivity, sidebox, i)
             }
         }
-
 
         var open = 1;
         // 設置按鈕點擊事件

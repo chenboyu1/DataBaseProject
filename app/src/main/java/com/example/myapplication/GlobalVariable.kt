@@ -18,6 +18,7 @@ class GlobalVariable : ComponentActivity() {
     companion object {
         private var username: String = ""
         private var charac: Int = 0
+        private var affection: Int = 0
         public var decorate: IntArray = IntArray(10)
         public var food: IntArray = IntArray(10)
         private var currentdecorate: Int = 0
@@ -38,10 +39,15 @@ class GlobalVariable : ComponentActivity() {
         fun setCharac(charac : Int){
             this.charac = charac
         }
+
         // 取得 charac 值
         fun getCharac(): Int {
             Log.d("getcharac", "$charac")
             return charac
+        }
+        fun getAffection(): Int {
+            Log.d("getaffection", "$affection")
+            return affection
         }
         //底下函式透過呼叫setDecorate()來存進decorate陣列
         suspend fun setDecorate(decorateArray : IntArray) {
@@ -107,6 +113,7 @@ class GlobalVariable : ComponentActivity() {
                         charac = dataArray[0]
                         currentdecorate = dataArray[1]
                         money = dataArray[2]
+                        affection = dataArray[3]
                     } else {
                         // 若請求不成功，返回預設值 0
                         0
