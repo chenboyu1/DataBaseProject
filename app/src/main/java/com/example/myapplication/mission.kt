@@ -31,7 +31,7 @@ class mission : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(R.layout.daily_mission)
         // 呼叫方法來顯示彈跳視窗
         showAlertDialog()
     }
@@ -59,11 +59,8 @@ class mission : AppCompatActivity() {
         }
 
         Manager.onMoneyChanged = { updatedMoney ->
-            updateUI(updatedMoney)
+            SendMoneyToServer(money)
         }
-
-        // 初始化 UI
-        updateUI(Manager.money)
 
         // 設定按鈕的動作
         val btnMission1: Button = dialogView.findViewById(R.id.btn_mission_1)
@@ -80,17 +77,17 @@ class mission : AppCompatActivity() {
                 SendMoneyToServer(money)
 
                 // 禁用按鈕並更改外觀
-                btnMission1.isEnabled = false
+                //btnMission1.isEnabled = false
                 btnMission1.setBackgroundColor(ContextCompat.getColor(this, R.color.gray)) // 灰色背景
                 btnMission1.setTextColor(ContextCompat.getColor(this, R.color.light_gray)) // 文字變淺
                 if (missionbutton[0] == 0) {
                     // 恢復按鈕樣式
-                    btnMission1.isEnabled = true
+                    //btnMission1.isEnabled = true
                     btnMission1.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
                     btnMission1.setTextColor(ContextCompat.getColor(this, R.color.black))
                 } else {
                     // 禁用按鈕樣式
-                    btnMission1.isEnabled = false
+                    //btnMission1.isEnabled = false
                     btnMission1.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                     btnMission1.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
                 }
@@ -104,17 +101,17 @@ class mission : AppCompatActivity() {
                 sendSelectedButtonToServer(missionbutton)
                 SendMoneyToServer(money)
 
-                btnMission2.isEnabled = false
+                //btnMission2.isEnabled = false
                 btnMission2.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                 btnMission2.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
                 if (missionbutton[1] == 0) {
                     // 恢復按鈕樣式
-                    btnMission2.isEnabled = true
+                    //btnMission2.isEnabled = true
                     btnMission2.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
                     btnMission2.setTextColor(ContextCompat.getColor(this, R.color.black))
                 } else {
                     // 禁用按鈕樣式
-                    btnMission2.isEnabled = false
+                    //btnMission2.isEnabled = false
                     btnMission2.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                     btnMission2.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
                 }
@@ -128,17 +125,17 @@ class mission : AppCompatActivity() {
                 sendSelectedButtonToServer(missionbutton)
                 SendMoneyToServer(money)
 
-                btnMission3.isEnabled = false
+                //btnMission3.isEnabled = false
                 btnMission3.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                 btnMission3.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
                 if (missionbutton[2] == 0) {
                     // 恢復按鈕樣式
-                    btnMission3.isEnabled = true
+                    //btnMission3.isEnabled = true
                     btnMission3.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
                     btnMission3.setTextColor(ContextCompat.getColor(this, R.color.black))
                 } else {
                     // 禁用按鈕樣式
-                    btnMission3.isEnabled = false
+                    //btnMission3.isEnabled = false
                     btnMission3.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                     btnMission3.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
                 }
@@ -152,17 +149,17 @@ class mission : AppCompatActivity() {
                 sendSelectedButtonToServer(missionbutton)
                 SendMoneyToServer(money)
 
-                btnMission4.isEnabled = false
+                //btnMission4.isEnabled = false
                 btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                 btnMission4.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
                 if (missionbutton[3] == 0) {
                     // 恢復按鈕樣式
-                    btnMission4.isEnabled = true
+                    //btnMission4.isEnabled = true
                     btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
                     btnMission4.setTextColor(ContextCompat.getColor(this, R.color.black))
                 } else {
                     // 禁用按鈕樣式
-                    btnMission4.isEnabled = false
+
                     btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                     btnMission4.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
                 }
