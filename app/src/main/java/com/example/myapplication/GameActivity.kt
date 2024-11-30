@@ -228,6 +228,7 @@ class GameActivity : AppCompatActivity() {
             // 設置按鈕的文字為食物數量
             text = ""
 
+
             // 設置按鈕點擊事件
             setOnClickListener {
                 val currentQuantity = food[id] ?: 0
