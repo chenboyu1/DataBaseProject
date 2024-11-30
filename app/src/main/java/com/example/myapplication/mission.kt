@@ -31,7 +31,7 @@ class mission : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.game)
+        //setContentView(R.layout.)
 
         // 呼叫方法來顯示彈跳視窗
         showAlertDialog()
