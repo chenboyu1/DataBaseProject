@@ -178,7 +178,19 @@ class mission : AppCompatActivity() {
             }
         })
     }
-
+    private fun updateButtonState(button: Button, index: Int) {
+        if (missionbutton[index] == 0) {
+            // 恢復按鈕樣式
+            button.isEnabled = true
+            button.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+            button.setTextColor(ContextCompat.getColor(this, R.color.black))
+        } else {
+            // 禁用按鈕樣式
+            button.isEnabled = false
+            button.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+            button.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+        }
+    }
     private fun SendMoneyToServer(id: Int) {
         val client = OkHttpClient()
         val username = GlobalVariable.getName()
