@@ -41,26 +41,18 @@
     <string name="backpack_interaction_message">開啟背包</string>
     <string name="task_interaction_message">開啟任務</string>
     <string name="shop_interaction_message">開啟商城</string>
-    <string name="gift_option_flower">感謝你送的鮮花！</string>
-    <string name="gift_option_chocolate">感謝你送的巧克力！</string>
-    <string name="gift_option_toy">感謝你送的玩具！</string>
 
-    <string name="play_interaction_message_low">好感度較低：目前為 %1$d</string>
-    <string name="play_interaction_message_medium">好感度中等：目前為 %1$d</string>
-    <string name="play_interaction_message_high">好感度很高：目前為 %1$d</string>
-    <string name="play_interaction_message_default">好感度為 %1$d</string>
-
-    <string name="feedback_low">謝謝！雖然還有點冷，但我們可以變得更好！</string>
-    <string name="feedback_medium">謝謝！現在差不多可以拿去當好朋友了！</string>
-    <string name="feedback_high">謝謝！你這樣表現，可以開始考慮給你送個禮物了！</string>
+    <string name="feedback_low">謝謝！雖然還有點不熟，但我們可以變得更好！</string>
+    <string name="feedback_medium">謝謝！現在差不多可以當好朋友了！</string>
+    <string name="feedback_high">謝謝！你這樣表現，我都要愛上你了！</string>
     <string name="feedback_default">謝謝！我們繼續加油吧，別忘了給我準備零食！</string>
 
     <!-- 根據不同食物的回饋 -->
     <string name="feedback_guibao">哇，刈包！你知道我最喜歡這個，真是太有眼光了！</string>
     <string name="feedback_soda">肥宅快樂水！這是我的心頭好！你真是了解我啊！</string>
-    <string name="feedback_pasta">義大利麵！這可是大廚的最佳選擇，謝謝你的好意！</string>
-    <string name="feedback_donut">甜甜圈！這是甜蜜的誘惑，謝謝你讓我更甜蜜！</string>
     <string name="feedback_pudding">布丁！這是我的最愛，真是太有品味了！</string>
+    <string name="feedback_donut">甜甜圈！這是甜蜜的誘惑，謝謝你讓我更甜蜜！</string>
+    <string name="feedback_pasta">義大利麵！這可是大廚的最佳選擇，謝謝你的好意！</string>
     <string name="feedback_macaron">馬卡龍！這不僅好吃，還很有藝術感，謝謝你！</string>
     <string name="feedback_taiyaki">鯛魚燒冰淇淋！這是我夢寐以求的組合，太幸福了！</string>
     <string name="feedback_sundae">聖代！這不只是一個甜點，這是一份愛心，謝謝你！</string>
