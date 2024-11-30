@@ -34,6 +34,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import androidx.lifecycle.lifecycleScope
+import okhttp3.Call
+import okhttp3.Response
+import java.io.IOException
 
 class GameActivity : AppCompatActivity() {
     var charac = 0;
@@ -230,6 +233,7 @@ class GameActivity : AppCompatActivity() {
                 val currentQuantity = food[id] ?: 0
                 if (currentQuantity > 0) {
                     food[id] = currentQuantity - 1
+                    sendChangToServer2(food)
                     text = "剩餘數量：${food[id]}"
                     if (food[id] == 0) {
                         parentLayout.removeView(buttonContainer) // 移除數量為 0 的按鈕
@@ -329,5 +333,61 @@ class GameActivity : AppCompatActivity() {
         progressBar.progress = affectionLevel  // 使用當前好感度來更新進度條
         levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
         moneyAmount.text = moneynumber.toString()  // 通過字符串資源動態顯示金錢
+    }
+
+    private fun sendChangToServer2(id: IntArray) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 將 IntArray 轉換為 JSON 格式
+        val idJson = id.joinToString(prefix = "[", postfix = "]")
+
+        // 構建 JSON 請求資料
+        val json = """
+        {
+          "username": "$username",
+          "foods": $idJson
+        }
+        """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/shop_food") // 如果使用模擬器，請使用正確的地址 or 10.0.2.2
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@GameActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    when (response.code) {
+                        in 200..299 -> {
+                            Toast.makeText(this@GameActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        }
+                        400 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 請求格式不正確 ($responseBody)", Toast.LENGTH_SHORT).show()
+                        }
+                        401 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 未授權存取", Toast.LENGTH_SHORT).show()
+                        }
+                        404 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 資源不存在", Toast.LENGTH_SHORT).show()
+                        }
+                        500 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 伺服器內部錯誤", Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            Toast.makeText(this@GameActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        })
     }
 }
