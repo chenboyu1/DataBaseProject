@@ -21,6 +21,7 @@ import okhttp3.Response
 import java.io.IOException
 import Manager
 import android.util.Log
+import android.widget.TextView
 import okhttp3.Call
 
 class mission : AppCompatActivity() {
@@ -30,7 +31,7 @@ class mission : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       //setContentView(R.layout.GameActivity)
+        setContentView(R.layout.game)
 
         // 呼叫方法來顯示彈跳視窗
         showAlertDialog()
@@ -50,6 +51,20 @@ class mission : AppCompatActivity() {
 
         // 調整對話框大小
         dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        val moneyAmount = findViewById<TextView>(R.id.money_amount)
+
+        fun updateUI(money: Int) {
+            //金錢顯示
+            moneyAmount.text = money.toString()
+        }
+
+        Manager.onMoneyChanged = { updatedMoney ->
+            updateUI(updatedMoney)
+        }
+
+        // 初始化 UI
+        updateUI(Manager.money)
 
         // 設定按鈕的動作
         val btnMission1: Button = dialogView.findViewById(R.id.btn_mission_1)
