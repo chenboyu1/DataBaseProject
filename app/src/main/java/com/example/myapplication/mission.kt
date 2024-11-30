@@ -20,10 +20,13 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import java.io.IOException
+import Manager
+import android.util.Log
+import okhttp3.Call
 
 class mission : AppCompatActivity() {
 
-    var money = 0
+    var money = Manager.money
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +64,7 @@ class mission : AppCompatActivity() {
                 money += 25 // 增加25點
                 missionbutton[0] = 1
                 sendSelectedButtonToServer(missionbutton)
+                SendMoneyToServer(money)
 
                 // 禁用按鈕並更改外觀
                 btnMission1.isEnabled = false
@@ -74,6 +78,7 @@ class mission : AppCompatActivity() {
                 money += 25
                 missionbutton[1] = 1
                 sendSelectedButtonToServer(missionbutton)
+                SendMoneyToServer(money)
 
                 btnMission2.isEnabled = false
                 btnMission2.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
@@ -89,6 +94,7 @@ class mission : AppCompatActivity() {
                 money += 25 // 增加25點
                 missionbutton[2] = 1
                 sendSelectedButtonToServer(missionbutton)
+                SendMoneyToServer(money)
 
                 btnMission3.isEnabled = false
                 btnMission3.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
@@ -102,6 +108,7 @@ class mission : AppCompatActivity() {
                 money += 25 // 增加25點
                 missionbutton[3] = 1
                 sendSelectedButtonToServer(missionbutton)
+                SendMoneyToServer(money)
 
                 btnMission4.isEnabled = false
                 btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
@@ -151,6 +158,45 @@ class mission : AppCompatActivity() {
                         Toast.makeText(this@mission, "成功: $responseBody", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this@mission, "失敗: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun SendMoneyToServer(id: Int) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 構建 JSON 請求資料
+        val json = """
+        {
+          "username": "$username",
+          "money": $id
+        }
+        """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+        Log.d("shop", "shop")
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/money") // 如果使用模擬器，請使用正確的地址140.136.151.129 or 10.0.2.2
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@mission, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@mission, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@mission, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
