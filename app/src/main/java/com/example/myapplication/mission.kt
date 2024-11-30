@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
-import com.example.myapplication.GlobalVariable.Companion
 import com.example.myapplication.GlobalVariable.Companion.missionbutton
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -31,19 +30,19 @@ class mission : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       setContentView(R.layout.activity_main)
+       //setContentView(R.layout.GameActivity)
 
         // 呼叫方法來顯示彈跳視窗
         showAlertDialog()
     }
 
     private fun showAlertDialog() {
-        // 使用 LayoutInflater 來載入自訂佈局
+        // 使用 LayoutInflater 載入自訂佈局
         val inflater: LayoutInflater = layoutInflater
         val dialogView: View = inflater.inflate(R.layout.daily_mission, null)
 
-        // 建立 AlertDialog
-        val builder = AlertDialog.Builder(this)
+        // 建立 AlertDialog 並套用透明樣式
+        val builder = AlertDialog.Builder(this, R.style.TransparentDialog)
             .setView(dialogView)
 
         val dialog: AlertDialog = builder.create()
@@ -114,6 +113,7 @@ class mission : AppCompatActivity() {
                 btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                 btnMission4.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
             }
+
 
         }
         btnCancel.setOnClickListener {
