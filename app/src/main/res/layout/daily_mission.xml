@@ -79,7 +79,8 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/black"
-                    android:text="+25" />
+                    android:text="+25"/>
+
             </LinearLayout>
 
             <!-- 任務2 -->
@@ -104,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/black"
-                    android:text="+25" />
+                    android:text="+25"/>
             </LinearLayout>
 
             <!-- 任務3 -->
@@ -129,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/black"
-                    android:text="+25" />
+                    android:text="+25"/>
             </LinearLayout>
 
             <!-- 任務4 -->
@@ -154,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/black"
-                    android:text="+25" />
+                    android:text="+25"/>
             </LinearLayout>
 
 
