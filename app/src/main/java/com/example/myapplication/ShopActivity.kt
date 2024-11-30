@@ -17,9 +17,9 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import java.io.IOException
+import MoneyManager
 
 class ShopActivity : ComponentActivity() {
-    var moneynumber = GlobalVariable.getmoney()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop)
@@ -33,11 +33,16 @@ class ShopActivity : ComponentActivity() {
         }
 
         val moneyAmount = findViewById<TextView>(R.id.money_amount)
-        fun updateUI() {
+        fun updateUI(money: Int) {
             //金錢顯示
-            moneyAmount.text = moneynumber.toString()
+            moneyAmount.text = money.toString()
         }
-        updateUI() //金錢更新
+
+        MoneyManager.onMoneyChanged = { updatedMoney ->
+            updateUI(updatedMoney)
+        }
+
+        updateUI(MoneyManager.money)
 
         val page2Button = findViewById<Button>(R.id.button_page_2)
         page2Button.setOnClickListener {
@@ -67,16 +72,15 @@ class ShopActivity : ComponentActivity() {
                     price1,
                     onBuyClicked = {isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price1 > moneynumber){
+                            if(price1 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[0] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price1
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price1
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -103,16 +107,15 @@ class ShopActivity : ComponentActivity() {
                     price2,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price2 > moneynumber){
+                            if(price2 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[1] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price2
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price2
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -140,16 +143,15 @@ class ShopActivity : ComponentActivity() {
                     price3,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price3 > moneynumber){
+                            if(price3 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[2] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price3
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price3
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -176,16 +178,15 @@ class ShopActivity : ComponentActivity() {
                     price4,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price4 > moneynumber){
+                            if(price4 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[3] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price4
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price4
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -212,16 +213,15 @@ class ShopActivity : ComponentActivity() {
                     price5,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price5 > moneynumber){
+                            if(price5 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[4] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price5
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price5
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -248,16 +248,15 @@ class ShopActivity : ComponentActivity() {
                     price6,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price6 > moneynumber){
+                            if(price6 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[5] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price6
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price6
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -284,16 +283,15 @@ class ShopActivity : ComponentActivity() {
                     price7,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price7 > moneynumber){
+                            if(price7 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[6] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price7
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price7
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -320,16 +318,15 @@ class ShopActivity : ComponentActivity() {
                     price8,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price8 > moneynumber){
+                            if(price8 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[7] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price8
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price8
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -356,16 +353,15 @@ class ShopActivity : ComponentActivity() {
                     price9,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price9 > moneynumber){
+                            if(price9 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[8] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price9
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price9
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }
@@ -392,16 +388,15 @@ class ShopActivity : ComponentActivity() {
                     price10,
                     onBuyClicked = { isBought ->  // 當 button_buy 被按下時觸發的回調
                         if (isBought) {
-                            if(price10 > moneynumber){
+                            if(price10 > MoneyManager.money){
                                 ShopBuy.showErrorDialog(this)
                             }else{
                                 // 處理按下購買按鈕的邏輯
                                 Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
                                 decorate[9] = 1
                                 sendChangToServer(decorate)
-                                moneynumber -= price10
-                                sendMoneyToServer(moneynumber)
-                                updateUI()
+                                MoneyManager.money -= price10
+                                sendMoneyToServer(MoneyManager.money)
                             }
                         }
                     }

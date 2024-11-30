@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import MoneyManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +9,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import com.example.myapplication.GlobalVariable.Companion.decorate
 import com.example.myapplication.GlobalVariable.Companion.food
 import okhttp3.Call
 import okhttp3.Callback
@@ -33,12 +33,19 @@ class ShopActivity2 : ComponentActivity() {
         }
 
         val moneyAmount = findViewById<TextView>(R.id.money_amount)
-        var moneynumber = GlobalVariable.getmoney()
-        fun updateUI() {
+
+        fun updateUI(money: Int) {
             //金錢顯示
-            moneyAmount.text = moneynumber.toString()
+            moneyAmount.text = money.toString()
         }
-        updateUI() //金錢更新
+
+        // 設定金錢變化監聽
+        MoneyManager.onMoneyChanged = { updatedMoney ->
+            updateUI(updatedMoney)
+        }
+
+        // 初始化 UI
+        updateUI(MoneyManager.money)
 
         val page1Button = findViewById<Button>(R.id.button_page_1)
         page1Button.setOnClickListener {
@@ -60,16 +67,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price1 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[0] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -87,16 +93,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price2 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[1] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -114,16 +119,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price3 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[2] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -141,16 +145,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price4 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[3] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -169,16 +172,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price5 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[4] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -196,16 +198,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price6 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[5] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -223,16 +224,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price7 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[6] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -250,16 +250,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price8 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[7] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -277,16 +276,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price9 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[8] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
@@ -304,16 +302,15 @@ class ShopActivity2 : ComponentActivity() {
                 onBuyClicked = { isBought, quantity ->  // 當按下購買按鈕後觸發的回調
                     if (isBought) {
                         val totalCost = price10 * quantity  // 計算總花費
-                        if (totalCost > moneynumber) {
+                        if (totalCost > MoneyManager.money) {
                             ShopBuy.showErrorDialog(this)// 顯示金額不足錯誤對話框
                         } else {
                             // 購買成功的邏輯
                             Toast.makeText(this, "購買成功!", Toast.LENGTH_SHORT).show()
-                            moneynumber -= totalCost// 更新金錢餘額
-                            sendMoney2ToServer(moneynumber)
+                            MoneyManager.money -= totalCost// 更新金錢餘額
+                            sendMoney2ToServer(MoneyManager.money)
                             food[9] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            updateUI()// 更新介面
                         }
                     }
                 }
