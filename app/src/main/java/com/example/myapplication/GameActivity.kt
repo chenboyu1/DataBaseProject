@@ -82,6 +82,7 @@ class GameActivity : AppCompatActivity() {
 
     // 定義好感度
     private var affectionLevel = GlobalVariable.getAffection()
+
     //獲取資料庫金錢
     private var moneynumber = GlobalVariable.getmoney()
 
@@ -102,8 +103,8 @@ class GameActivity : AppCompatActivity() {
         heartIcon = findViewById(R.id.heart_icon)
         progressBar = findViewById(R.id.progressBar)
         levelText = findViewById(R.id.level_text)
+        moneyAmount = findViewById(R.id.money_amount)
         //moneyAmount = findViewById(R.id.money_amount)
-        moneyAmount = findViewById<TextView>(R.id.money_amount)
 
         interactionButton = findViewById(R.id.interaction_button)
         playButton = findViewById(R.id.play_button)
@@ -122,6 +123,9 @@ class GameActivity : AppCompatActivity() {
         // 確保資料在畫面顯示之前已經準備好
         lifecycleScope.launch {
             // 同步更新資料
+            GlobalVariable.setbasicData()
+            affectionLevel = GlobalVariable.getAffection()
+            moneynumber = GlobalVariable.getmoney()
             charac = GlobalVariable.getCharac()
             currentdecorate = GlobalVariable.getcurrentdecorate()
 
@@ -331,8 +335,9 @@ class GameActivity : AppCompatActivity() {
 
     private fun updateUI() {
         // 更新心形進度條、等級、金錢等顯示
-        progressBar.progress = affectionLevel  // 使用當前好感度來更新進度條
-        levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
+        progressBar.progress = affectionLevel % 100  // 使用當前好感度來更新進度條
+        //levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
+        levelText.text = " Lv${affectionLevel / 100}" // 直接更新為整數結果
         moneyAmount.text = moneynumber.toString()  // 通過字符串資源動態顯示金錢
     }
 
