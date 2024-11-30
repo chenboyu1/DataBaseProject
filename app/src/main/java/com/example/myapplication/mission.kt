@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import com.example.myapplication.GlobalVariable.Companion
 import com.example.myapplication.GlobalVariable.Companion.missionbutton
 import okhttp3.Callback
@@ -26,7 +27,8 @@ class mission : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+       // setContentView(R.layout.activity_main)
 
         // 呼叫方法來顯示彈跳視窗
         showAlertDialog()
@@ -55,29 +57,42 @@ class mission : AppCompatActivity() {
         val btnCancel: ImageButton = dialogView.findViewById(R.id.btn_exit)
 
         btnMission1.setOnClickListener {
-            // 按下確認按鈕後的操作
-            if(missionbutton[0] == 0) {
+            if (missionbutton[0] == 0) {
                 money += 25 // 增加25點
                 missionbutton[0] = 1
                 sendSelectedButtonToServer(missionbutton)
-            }
 
+                // 禁用按鈕並更改外觀
+                btnMission1.isEnabled = false
+                btnMission1.setBackgroundColor(ContextCompat.getColor(this, R.color.gray)) // 灰色背景
+                btnMission1.setTextColor(ContextCompat.getColor(this, R.color.light_gray)) // 文字變淺
+            }
         }
+
         btnMission2.setOnClickListener {
-            // 按下確認按鈕後的操作
-            if(missionbutton[1] == 0) {
-                money += 25 // 增加25點
+            if (missionbutton[1] == 0) {
+                money += 25
                 missionbutton[1] = 1
                 sendSelectedButtonToServer(missionbutton)
-            }
 
+                btnMission2.isEnabled = false
+                btnMission2.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+                btnMission2.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+            }
         }
+
+
+
         btnMission3.setOnClickListener {
             // 按下確認按鈕後的操作
             if(missionbutton[2] == 0) {
                 money += 25 // 增加25點
                 missionbutton[2] = 1
                 sendSelectedButtonToServer(missionbutton)
+
+                btnMission3.isEnabled = false
+                btnMission3.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+                btnMission3.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
             }
 
         }
@@ -87,6 +102,10 @@ class mission : AppCompatActivity() {
                 money += 25 // 增加25點
                 missionbutton[3] = 1
                 sendSelectedButtonToServer(missionbutton)
+
+                btnMission4.isEnabled = false
+                btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+                btnMission4.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
             }
 
         }
