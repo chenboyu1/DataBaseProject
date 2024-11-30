@@ -81,7 +81,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price1
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI(MoneyManager.money)
                             }
                         }
                     }
@@ -117,7 +116,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price2
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }
@@ -154,7 +152,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price3
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }
@@ -190,7 +187,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price4
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }
@@ -226,7 +222,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price5
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }
@@ -262,7 +257,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price6
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }
@@ -298,7 +292,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price7
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }
@@ -334,7 +327,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price8
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }
@@ -370,7 +362,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price9
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }
@@ -406,7 +397,6 @@ class ShopActivity : ComponentActivity() {
                                 sendChangToServer(decorate)
                                 MoneyManager.money -= price10
                                 sendMoneyToServer(MoneyManager.money)
-                                //updateUI()
                             }
                         }
                     }

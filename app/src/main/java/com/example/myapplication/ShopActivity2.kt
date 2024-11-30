@@ -9,7 +9,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import com.example.myapplication.GlobalVariable.Companion.decorate
 import com.example.myapplication.GlobalVariable.Companion.food
 import okhttp3.Call
 import okhttp3.Callback
@@ -77,7 +76,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[0] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -104,7 +102,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[1] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -131,7 +128,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[2] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -158,7 +154,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[3] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -186,7 +181,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[4] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -213,7 +207,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[5] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -240,7 +233,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[6] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -267,7 +259,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[7] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -294,7 +285,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[8] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
@@ -321,7 +311,6 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(MoneyManager.money)
                             food[9] += quantity// 更新商品數量
                             sendChangToServer2(food)
-                            //updateUI()// 更新介面
                         }
                     }
                 }
