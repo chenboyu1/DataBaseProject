@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 //新增的，連結後端等功能
 import android.content.Context
+import android.media.Image
 import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
@@ -34,6 +35,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 
 class GameActivity : AppCompatActivity() {
     var charac = 0;
@@ -86,8 +88,57 @@ class GameActivity : AppCompatActivity() {
 
         val imageView: ImageView = findViewById(R.id.myImageView)
         val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
-        val country = GlobalVariable.getcountry()
-        val region = GlobalVariable.getregion()
+        GlobalScope.launch(Dispatchers.Main) {
+            // 假設 GlobalVariable.setregion() 是一個掛起函式
+            GlobalVariable.setregion()
+
+            // 等待 setregion 完成後再取得數據
+            val country = GlobalVariable.getcountry()
+            val region = GlobalVariable.getregion()
+            val weather = GlobalVariable.getweather()
+            val gifView: ImageView = findViewById(R.id.gifView)
+
+            Log.d("weather", "Country: $country, Region: $region, Weather: $weather")
+
+            when (weather) {
+                "weather1" -> {
+                    Glide.with(this@GameActivity)
+                        .asGif()
+                        .load(R.raw.stylish)
+                        .into(gifView)
+                }
+                "weather2" -> {
+                    Glide.with(this@GameActivity)
+                        .asGif()
+                        .load(R.raw.fog)
+                        .into(gifView)
+                }
+                "weather3" -> {
+                    gifView.alpha = 1.0F
+                    Glide.with(this@GameActivity)
+                        .asGif()
+                        .load(R.raw.rainy)
+                        .into(gifView)
+                }
+                "weather4" -> {
+                    gifView.alpha = 1.0F
+                    Glide.with(this@GameActivity)
+                        .asGif()
+                        .load(R.raw.fog)
+                        .into(gifView)
+                }
+                "weather5" -> {
+                    gifView.alpha = 1.0F
+                    Glide.with(this@GameActivity)
+                        .asGif()
+                        .load(R.raw.fog)
+                        .into(gifView)
+                }
+                else -> {
+                    Log.d("weather", "No matching weather condition")
+                }
+            }
+        }
 
         // 获取 ScrollView 和按钮容器，送禮選項區域
         sideboxScroll = findViewById<HorizontalScrollView>(R.id.sideboxScroll)

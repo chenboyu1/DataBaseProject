@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -12,12 +13,18 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
+import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -35,9 +42,9 @@ class InitialActivity : ComponentActivity() {
         spinnerCountry = findViewById(R.id.spinner_country)
         spinnerRegion = findViewById(R.id.spinner_region)
         // 定義下拉選項
-        val countries = listOf("請選擇","台北市", "新北市", "基隆市", "桃園市", "新竹市", "新竹縣", "苗栗縣", "台中市", "彰化縣", "南投縣", "雲林縣", "嘉義市", "嘉義縣", "台南市", "高雄市", "屏東縣", "台東縣", "花蓮縣", "宜蘭縣", "澎湖縣", "金門縣", "連江縣")
+        val countries = listOf("請選擇","臺北市", "新北市", "基隆市", "桃園市", "新竹市", "新竹縣", "苗栗縣", "台中市", "彰化縣", "南投縣", "雲林縣", "嘉義市", "嘉義縣", "台南市", "高雄市", "屏東縣", "台東縣", "花蓮縣", "宜蘭縣", "澎湖縣", "金門縣", "連江縣")
         val citiesByCountry = mapOf(
-            "台北市" to listOf("中正區", "大同區", "中山區", "松山區", "大安區", "萬華區", "信義區", "壽山區", "文山區", "北投區", "內湖區", "南港區", "觀光區"),
+            "臺北市" to listOf("中正區", "大同區", "中山區", "松山區", "大安區", "萬華區", "信義區", "壽山區", "文山區", "北投區", "內湖區", "南港區", "觀光區"),
             "新北市" to listOf("板橋區", "三重區", "中和區", "永和區", "土城區", "樹林區", "鶯歌區", "三峽區", "新莊區", "泰山區", "林口區", "蘆洲區", "五股區", "八里區", "逢甲區", "金山區", "深坑區", "石碇區", "雙和區"),
             "桃園市" to listOf("桃園區", "中壢區", "平鎮區", "龍潭區", "內壢區", "外埔區", "橋頭區", "興化區"),
             "台中市" to listOf("中區", "東區", "南區", "西區", "北區", "西屯區", "南屯區", "北屯區", "大里區", "太平區", "大雅區", "東勢區", "石岡區", "新社區", "南區"),
@@ -78,10 +85,45 @@ class InitialActivity : ComponentActivity() {
         }
         val buttonnext: Button = findViewById(R.id.nextstep)
         buttonnext.setOnClickListener{
-            saveRegion()
-            jumptoActivity(GameActivity::class.java)
+            lifecycleScope.launch(Dispatchers.Main) { // 使用 lifecycleScope 代替 GlobalScope
+                saveRegion() // 保存地區
+                getWeather() // 獲取天氣
+                jumptoActivity(GameActivity::class.java) // 跳轉
+            }
         }
     }
+
+    private suspend fun getWeather() {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()  // 這裡可以根據需要修改為 GlobalVariable.getName()
+        val country = spinnerCountry.selectedItem.toString()
+        val region = spinnerRegion.selectedItem.toString()
+        val request = Request.Builder()
+            .url("http://140.136.151.129/weather?country=$country&region=$region")
+            .get()
+            .build()
+
+        return withContext(Dispatchers.IO) {
+            try {
+                // 使用 execute() 同步請求
+                val response: Response = client.newCall(request).execute()
+
+                if (response.isSuccessful) {
+                    val responseBody = response.body?.string()
+                    val weather = responseBody.toString()
+                    GlobalVariable.setweather(weather)
+                    Log.d("weather", "Weather: $weather")
+                } else {
+                    // 若請求不成功，返回預設值 0
+                    0
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+                0 // 若網絡請求出錯，返回 0
+            }
+        }
+    }
+
     private fun updateCitySpinner(cities: List<String>) {
         // Create a new adapter for the city spinner
         val cityAdapter = ArrayAdapter(this, R.layout.spinner_item, cities)
@@ -90,7 +132,7 @@ class InitialActivity : ComponentActivity() {
         spinnerRegion.performClick()
     }
 
-    private fun jumptoActivity(targetActivity: Class<*>) {
+    private suspend fun jumptoActivity(targetActivity: Class<*>) {
         val intent = Intent(this, targetActivity)
         startActivity(intent)
     }

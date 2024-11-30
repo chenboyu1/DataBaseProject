@@ -25,6 +25,7 @@ class GlobalVariable : ComponentActivity() {
         private var money: Int = 0
         private var country: String = ""
         private var region: String = ""
+        private var weather: String = ""
         // 修改 變數值
         fun setName(name: String) {
             this.username = name //name
@@ -73,6 +74,14 @@ class GlobalVariable : ComponentActivity() {
 
         fun getregion(): String{
             return region
+        }
+
+        fun getweather(): String{
+            return weather
+        }
+
+        suspend fun setweather(weather : String){
+            this.weather = weather
         }
 
         fun setRegion(country:String, region:String){
@@ -133,12 +142,11 @@ class GlobalVariable : ComponentActivity() {
 
                     if (response.isSuccessful) {
                         val responseBody = response.body?.string()
-                        Log.d("region", "$responseBody")
                         val data = JSONArray(responseBody)
-                        Log.d("region", "$data")
                         country = data.getString(0)
                         region = data.getString(1)
-                        //Log.d("region", "$country, $region")
+                        weather = data.getString(2)
+                        Log.d("weather", "Country: $country, Region: $region, Weather: $weather")
                     } else {
                         // 若請求不成功，返回預設值 0
                         0
@@ -257,5 +265,7 @@ class GlobalVariable : ComponentActivity() {
                 }
             }
         }
+
+
     }
 }
