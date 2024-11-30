@@ -34,6 +34,7 @@ class mission : AppCompatActivity() {
         setContentView(R.layout.daily_mission)
         // 呼叫方法來顯示彈跳視窗
         showAlertDialog()
+        Log.d("mmm", "${money}")
     }
 
     private fun showAlertDialog() {
@@ -230,9 +231,10 @@ class mission : AppCompatActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
         Log.d("shop", "shop")
         val request = Request.Builder()
-            .url("http://140.136.151.129:3000/dailymission") // 假設這是您的伺服器端點
+            .url("http://140.136.151.129:3000/money") // 假設這是您的伺服器端點
             .post(body)
             .build()
+            Log.d("mmm2", "${money}")
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
