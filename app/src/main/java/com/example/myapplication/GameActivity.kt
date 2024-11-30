@@ -51,12 +51,12 @@ class GameActivity : AppCompatActivity() {
         , R.drawable.decoration7_fire, R.drawable.decoration8_star, R.drawable.decoration9_leaves,
         R.drawable.decoration10_leaf);
     var foodId = arrayOf(
-        R.drawable.food1, R.drawable.food2_can_cola, R.drawable.food3_spaghetti,
-        R.drawable.food4_sweets_donuts_box, R.drawable.food5_sweets_purin, R.drawable.food6_macarons
+        R.drawable.food1, R.drawable.food2_can_cola, R.drawable.food5_sweets_purin,
+        R.drawable.food4_sweets_donuts_box, R.drawable.food3_spaghetti, R.drawable.food6_macarons
         , R.drawable.food7_fish, R.drawable.food8_sundae, R.drawable.food9_local_ice,
         R.drawable.food10);
     var foodName = arrayOf(
-        "刈包", "肥宅快樂水", "義大利麵", "甜甜圈", "布丁", "馬卡龍", "鯛魚燒冰淇淋", "聖代", "在地冰淇淋", "豪華餐車");
+        "刈包", "肥宅快樂水", "布丁", "甜甜圈", "義大利麵", "馬卡龍", "鯛魚燒冰淇淋", "聖代", "在地冰淇淋", "豪華餐車");
 
     // 定義組件
     private lateinit var heartIcon: ImageView
@@ -186,7 +186,6 @@ class GameActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         // 在返回主畫面時更新數據
         lifecycleScope.launch {
             GlobalVariable.setbasicData()  // 更新角色、裝飾和金錢數據
