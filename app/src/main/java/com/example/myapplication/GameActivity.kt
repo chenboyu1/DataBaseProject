@@ -138,6 +138,7 @@ class GameActivity : AppCompatActivity() {
             buttonsToCreate.forEach { i ->
                 createDecorativeButton(this@GameActivity, sidebox, i)
             }
+            updateUI()
         }
 
         var open = 1;
