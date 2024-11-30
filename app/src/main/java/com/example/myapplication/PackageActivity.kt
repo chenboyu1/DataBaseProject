@@ -126,6 +126,7 @@ class PackageActivity : ComponentActivity() {
           "decoration": $id
         }
         """
+        Log.d("sendtoback", json)
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
 
         val request = Request.Builder()
@@ -135,7 +136,7 @@ class PackageActivity : ComponentActivity() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread {
-                    Toast.makeText(this@PackageActivity, "註冊失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PackageActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -143,9 +144,9 @@ class PackageActivity : ComponentActivity() {
                 val responseBody = response.body?.string()
                 runOnUiThread {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@PackageActivity, "更新成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@PackageActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@PackageActivity, "註冊失敗: $responseBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@PackageActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

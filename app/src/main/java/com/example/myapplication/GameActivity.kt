@@ -35,6 +35,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import androidx.lifecycle.lifecycleScope
+import okhttp3.Call
+import okhttp3.Response
+import java.io.IOException
 import com.bumptech.glide.Glide
 
 class GameActivity : AppCompatActivity() {
@@ -50,12 +53,12 @@ class GameActivity : AppCompatActivity() {
         , R.drawable.decoration7_fire, R.drawable.decoration8_star, R.drawable.decoration9_leaves,
         R.drawable.decoration10_leaf);
     var foodId = arrayOf(
-        R.drawable.food1, R.drawable.food2_can_cola, R.drawable.food3_spaghetti,
-        R.drawable.food4_sweets_donuts_box, R.drawable.food5_sweets_purin, R.drawable.food6_macarons
+        R.drawable.food1, R.drawable.food2_can_cola, R.drawable.food5_sweets_purin,
+        R.drawable.food4_sweets_donuts_box, R.drawable.food3_spaghetti, R.drawable.food6_macarons
         , R.drawable.food7_fish, R.drawable.food8_sundae, R.drawable.food9_local_ice,
         R.drawable.food10);
     var foodName = arrayOf(
-        "刈包", "肥宅快樂水", "義大利麵", "甜甜圈", "布丁", "馬卡龍", "鯛魚燒冰淇淋", "聖代", "在地冰淇淋", "豪華餐車");
+        "刈包", "肥宅快樂水", "布丁", "甜甜圈", "義大利麵", "馬卡龍", "鯛魚燒冰淇淋", "聖代", "在地冰淇淋", "豪華餐車");
 
     // 定義組件
     private lateinit var heartIcon: ImageView
@@ -80,7 +83,10 @@ class GameActivity : AppCompatActivity() {
     private lateinit var sideboxScroll: HorizontalScrollView
 
     // 定義好感度
-    private var affectionLevel = 0
+    private var affectionLevel = GlobalVariable.getAffection()
+
+    //獲取資料庫金錢
+    private var moneynumber = GlobalVariable.getmoney()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -149,6 +155,7 @@ class GameActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         levelText = findViewById(R.id.level_text)
         moneyAmount = findViewById(R.id.money_amount)
+        //moneyAmount = findViewById(R.id.money_amount)
 
         interactionButton = findViewById(R.id.interaction_button)
         playButton = findViewById(R.id.play_button)
@@ -167,6 +174,9 @@ class GameActivity : AppCompatActivity() {
         // 確保資料在畫面顯示之前已經準備好
         lifecycleScope.launch {
             // 同步更新資料
+            GlobalVariable.setbasicData()
+            affectionLevel = GlobalVariable.getAffection()
+            moneynumber = GlobalVariable.getmoney()
             charac = GlobalVariable.getCharac()
             currentdecorate = GlobalVariable.getcurrentdecorate()
 
@@ -179,8 +189,8 @@ class GameActivity : AppCompatActivity() {
             buttonsToCreate.forEach { i ->
                 createDecorativeButton(this@GameActivity, sidebox, i)
             }
+            updateUI()
         }
-
 
         var open = 1;
         // 設置按鈕點擊事件
@@ -225,6 +235,15 @@ class GameActivity : AppCompatActivity() {
         updateUI()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // 在返回主畫面時更新數據
+        lifecycleScope.launch {
+            GlobalVariable.setbasicData()  // 更新角色、裝飾和金錢數據
+            updateUI()      // 更新畫面上的數據顯示
+        }
+    }
+
     // 跳轉到界面
     private fun jumptoActivity(targetActivity: Class<*>) {
         val intent = Intent(this, targetActivity)
@@ -262,37 +281,52 @@ class GameActivity : AppCompatActivity() {
             setBackgroundResource(foodId[id])
 
             // 設置按鈕的文字為食物數量
-            text = ""
-
+            text = "剩餘數量：${food[id]}"
             // 設置按鈕點擊事件
             setOnClickListener {
                 val currentQuantity = food[id] ?: 0
                 if (currentQuantity > 0) {
                     food[id] = currentQuantity - 1
+                    sendChangToServer2(food)
                     text = "剩餘數量：${food[id]}"
                     if (food[id] == 0) {
                         parentLayout.removeView(buttonContainer) // 移除數量為 0 的按鈕
                     }
+                    affectionLevel += 10
+                    sendAffection2ToServer(affectionLevel)
+                    hideGiftOptions()
+                    // 選擇禮物的回饋訊息
+                    val giftMessage = when(foodName[id]) {
+                        "刈包" -> getString(R.string.feedback_guibao)
+                        "肥宅快樂水" -> getString(R.string.feedback_soda)
+                        "義大利麵" -> getString(R.string.feedback_pasta)
+                        "甜甜圈" -> getString(R.string.feedback_donut)
+                        "布丁" -> getString(R.string.feedback_pudding)
+                        "馬卡龍" -> getString(R.string.feedback_macaron)
+                        "鯛魚燒冰淇淋" -> getString(R.string.feedback_taiyaki)
+                        "聖代" -> getString(R.string.feedback_sundae)
+                        "在地冰淇淋" -> getString(R.string.feedback_local_ice_cream)
+                        "豪華餐車" -> getString(R.string.feedback_luxury_food_truck)
+                        else -> getString(R.string.feedback_default)
+                    }
+                    // 更新訊息框顯示回饋訊息
+                    messageBox.text = giftMessage
+                    updateUI()
                 }
             }
         }
 
         // 顯示食物名稱的 TextView
         val quantityText = TextView(context).apply {
-            text = "${foodName[id]}"  // 顯示食物數量
+            text = "${foodName[id]}"  // 顯示食物名字
             gravity = Gravity.CENTER // 文字居中
         }
-
         // 把按鈕和數量顯示放進一個垂直排列的 LinearLayout 中
         buttonContainer.addView(button)
         buttonContainer.addView(quantityText)
-
         // 最後將整個按鈕容器加入父布局
         parentLayout.addView(buttonContainer)
     }
-
-
-
 
     private fun showAdditionalButtons() {
         playButton.visibility = View.VISIBLE
@@ -315,29 +349,39 @@ class GameActivity : AppCompatActivity() {
     private fun playInteraction() {
         // 增加好感度
         affectionLevel += 10
+        sendAffection2ToServer(affectionLevel)
         // 更新進度條和訊息框
         progressBar.progress = affectionLevel
-        messageBox.text = getString(R.string.play_interaction_message, affectionLevel)
-
+        // 根據好感度顯示不同的回饋訊息
+        // 根據好感度顯示不同的回饋訊息
+        val feedbackMessage = when {
+            (affectionLevel % 100) < 30 -> getString(R.string.feedback_low)
+            (affectionLevel % 100) in 30..70 -> getString(R.string.feedback_medium)
+            (affectionLevel % 100) > 70 -> getString(R.string.feedback_high)
+            else -> getString(R.string.feedback_default)
+        }
+        messageBox.text = feedbackMessage
         // 隱藏互動按鈕
         hideAdditionalButtons()
-
         // 更新 UI
         updateUI()
     }
-
-
 
     private fun showGiftOptions() {
         // 隱藏其他 UI，顯示送禮選項
         messageBox.visibility = View.GONE
         sideboxScroll.visibility = View.VISIBLE
         hideAdditionalButtons()
-
         // 更新禮物選項
         updateGiftButtons()
     }
 
+    private fun hideGiftOptions() {
+        // 隱藏其他 UI，顯示送禮選項
+        messageBox.visibility = View.VISIBLE
+        sideboxScroll.visibility = View.GONE
+        hideAdditionalButtons()
+    }
 
     private fun updateGiftButtons() {
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
@@ -353,7 +397,7 @@ class GameActivity : AppCompatActivity() {
                     createDecorativeButton(this, sidebox, i)
                 } else {
                     // 更新按鈕文字
-                    button.text = "食物 $i：$foodQuantity"
+                    button.text = "剩餘數量：$foodQuantity"
                 }
             } else {
                 // 如果數量為 0，移除按鈕
@@ -365,8 +409,104 @@ class GameActivity : AppCompatActivity() {
 
     private fun updateUI() {
         // 更新心形進度條、等級、金錢等顯示
-        progressBar.progress = affectionLevel  // 使用當前好感度來更新進度條
-        levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
-        moneyAmount.text = getString(R.string.money_amount)  // 通過字符串資源動態顯示金錢
+        progressBar.progress = affectionLevel % 100  // 使用當前好感度來更新進度條
+        //levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
+        levelText.text = " Lv${affectionLevel / 100}" // 直接更新為整數結果
+        moneyAmount.text = moneynumber.toString()  // 通過字符串資源動態顯示金錢
+    }
+
+    private fun sendAffection2ToServer(id: Int) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 構建 JSON 請求資料
+        val json = """
+        {
+          "username": "$username",
+          "affection": $id
+        }
+        """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+        Log.d("shop", "shop")
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/affection") // 如果使用模擬器，請使用正確的地址140.136.151.129 or 10.0.2.2
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@GameActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@GameActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@GameActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun sendChangToServer2(id: IntArray) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 將 IntArray 轉換為 JSON 格式
+        val idJson = id.joinToString(prefix = "[", postfix = "]")
+
+        // 構建 JSON 請求資料
+        val json = """
+        {
+          "username": "$username",
+          "foods": $idJson
+        }
+        """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/shop_food") // 如果使用模擬器，請使用正確的地址 or 10.0.2.2
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@GameActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    when (response.code) {
+                        in 200..299 -> {
+                            Toast.makeText(this@GameActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        }
+                        400 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 請求格式不正確 ($responseBody)", Toast.LENGTH_SHORT).show()
+                        }
+                        401 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 未授權存取", Toast.LENGTH_SHORT).show()
+                        }
+                        404 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 資源不存在", Toast.LENGTH_SHORT).show()
+                        }
+                        500 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 伺服器內部錯誤", Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            Toast.makeText(this@GameActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        })
     }
 }

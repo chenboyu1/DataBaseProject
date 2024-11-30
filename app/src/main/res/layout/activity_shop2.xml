@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 20"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
 
@@ -178,7 +178,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 30"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
 
@@ -196,7 +196,7 @@
                         android:id="@+id/button2_product_3"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="@drawable/food3_spaghetti"
+                        android:background="@drawable/food5_sweets_purin"
                         android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
@@ -206,7 +206,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="義大利麵"
+                        android:text="布丁"
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
@@ -217,7 +217,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 30"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -255,7 +255,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 40"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -272,7 +272,7 @@
                         android:id="@+id/button2_product_5"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="@drawable/food5_sweets_purin"
+                        android:background="@drawable/food3_spaghetti"
                         android:text=" " />
 
                     <!-- 描述文字放在按鈕下方 -->
@@ -282,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="布丁"
+                        android:text="義大利麵"
                         android:textColor="#000"
                         android:textSize="30sp"
                         tools:ignore="RtlCompat" />
@@ -293,7 +293,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 50"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -338,7 +338,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 60"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -376,7 +376,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 70"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -414,7 +414,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 80"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -452,7 +452,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="NT$ 100"
+                        android:text="NT$ 80"
                         android:textColor="#FF6347"
                         android:textSize="20sp" />
                 </LinearLayout>
