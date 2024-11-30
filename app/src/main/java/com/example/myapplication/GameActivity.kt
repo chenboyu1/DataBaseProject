@@ -229,11 +229,8 @@ class GameActivity : AppCompatActivity() {
 
             // 設置背景圖片
             setBackgroundResource(foodId[id])
-
             // 設置按鈕的文字為食物數量
             text = ""
-
-
             // 設置按鈕點擊事件
             setOnClickListener {
                 val currentQuantity = food[id] ?: 0
@@ -253,17 +250,12 @@ class GameActivity : AppCompatActivity() {
             text = "${foodName[id]}"  // 顯示食物數量
             gravity = Gravity.CENTER // 文字居中
         }
-
         // 把按鈕和數量顯示放進一個垂直排列的 LinearLayout 中
         buttonContainer.addView(button)
         buttonContainer.addView(quantityText)
-
         // 最後將整個按鈕容器加入父布局
         parentLayout.addView(buttonContainer)
     }
-
-
-
 
     private fun showAdditionalButtons() {
         playButton.visibility = View.VISIBLE
@@ -286,6 +278,7 @@ class GameActivity : AppCompatActivity() {
     private fun playInteraction() {
         // 增加好感度
         affectionLevel += 10
+        sendAffection2ToServer(affectionLevel)
         // 更新進度條和訊息框
         progressBar.progress = affectionLevel
         messageBox.text = getString(R.string.play_interaction_message, affectionLevel)
@@ -340,6 +333,45 @@ class GameActivity : AppCompatActivity() {
         //levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
         levelText.text = " Lv${affectionLevel / 100}" // 直接更新為整數結果
         moneyAmount.text = moneynumber.toString()  // 通過字符串資源動態顯示金錢
+    }
+
+    private fun sendAffection2ToServer(id: Int) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 構建 JSON 請求資料
+        val json = """
+        {
+          "username": "$username",
+          "affection": $id
+        }
+        """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+        Log.d("shop", "shop")
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/affection") // 如果使用模擬器，請使用正確的地址140.136.151.129 or 10.0.2.2
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@GameActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@GameActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@GameActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
     }
 
     private fun sendChangToServer2(id: IntArray) {
