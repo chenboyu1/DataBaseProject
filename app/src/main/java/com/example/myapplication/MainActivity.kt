@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 registerUser(username, password)
+                GlobalVariable.setName(username)
             } else {
                 Toast.makeText(this, "請輸入帳號和密碼", Toast.LENGTH_SHORT).show()
             }
@@ -124,10 +125,10 @@ class MainActivity : ComponentActivity() {
                         Toast.makeText(this@MainActivity, "登入成功: $responseBody", Toast.LENGTH_SHORT).show()
                         GlobalVariable.setName(username) //設置全域變數username
                         GlobalScope.launch(Dispatchers.Main) {
-                            GlobalVariable.setCharac()
+                            GlobalVariable.setbasicData()
+                            GlobalVariable.setregion()
                             GlobalVariable.setdecorate()
                             GlobalVariable.setfood()
-                            GlobalVariable.setcurrentdecorate()
                             GlobalVariable.setmission()
                         }
                         jumptoActivity(GameActivity::class.java)

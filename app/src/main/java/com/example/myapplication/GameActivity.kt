@@ -17,6 +17,7 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.ScrollView
+import android.widget.HorizontalScrollView
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
@@ -33,13 +34,16 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import androidx.lifecycle.lifecycleScope
+import okhttp3.Call
+import okhttp3.Response
+import java.io.IOException
 
 class GameActivity : AppCompatActivity() {
     var charac = 0;
     var currentdecorate = 0;
     var imgId = arrayOf(
-        R.drawable.jewel02_amethyst, R.drawable.jewel05_emerald,
-        R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline, R.drawable.jewel03_aquamarine
+        R.drawable.jewel02_amethyst, R.drawable.jewel03_aquamarine, R.drawable.jewel05_emerald,
+        R.drawable.jewel06_moonstone, R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline
         , R.drawable.jewel12_tanzanite, R.drawable.jewel15_colorful);
     var decorationId = arrayOf(
         R.drawable.decoration1_graduation_cap, R.drawable.decoration2_hbd_hat, R.drawable.decoration3,
@@ -51,6 +55,8 @@ class GameActivity : AppCompatActivity() {
         R.drawable.food4_sweets_donuts_box, R.drawable.food5_sweets_purin, R.drawable.food6_macarons
         , R.drawable.food7_fish, R.drawable.food8_sundae, R.drawable.food9_local_ice,
         R.drawable.food10);
+    var foodName = arrayOf(
+        "刈包", "肥宅快樂水", "義大利麵", "甜甜圈", "布丁", "馬卡龍", "鯛魚燒冰淇淋", "聖代", "在地冰淇淋", "豪華餐車");
 
     // 定義組件
     private lateinit var heartIcon: ImageView
@@ -72,10 +78,12 @@ class GameActivity : AppCompatActivity() {
     private lateinit var messageBox: TextView
 
     // 定義送禮選項按鈕布局及按鈕
-    private lateinit var sideboxScroll: ScrollView
+    private lateinit var sideboxScroll: HorizontalScrollView
 
     // 定義好感度
-    private var affectionLevel = 0
+    private var affectionLevel = GlobalVariable.getAffection()
+    //獲取資料庫金錢
+    private var moneynumber = GlobalVariable.getmoney()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,16 +91,19 @@ class GameActivity : AppCompatActivity() {
 
         val imageView: ImageView = findViewById(R.id.myImageView)
         val decorativeIcon: ImageView = findViewById(R.id.decorativeIcon)
+        val country = GlobalVariable.getcountry()
+        val region = GlobalVariable.getregion()
 
         // 获取 ScrollView 和按钮容器，送禮選項區域
-        sideboxScroll = findViewById(R.id.sideboxScroll)
+        sideboxScroll = findViewById<HorizontalScrollView>(R.id.sideboxScroll)
         val sidebox = findViewById<LinearLayout>(R.id.sidebox)
 
         // 初始化組件
         heartIcon = findViewById(R.id.heart_icon)
         progressBar = findViewById(R.id.progressBar)
         levelText = findViewById(R.id.level_text)
-        moneyAmount = findViewById(R.id.money_amount)
+        //moneyAmount = findViewById(R.id.money_amount)
+        moneyAmount = findViewById<TextView>(R.id.money_amount)
 
         interactionButton = findViewById(R.id.interaction_button)
         playButton = findViewById(R.id.play_button)
@@ -111,14 +122,13 @@ class GameActivity : AppCompatActivity() {
         // 確保資料在畫面顯示之前已經準備好
         lifecycleScope.launch {
             // 同步更新資料
-            GlobalVariable.setCharac()
             charac = GlobalVariable.getCharac()
-            GlobalVariable.setcurrentdecorate()
             currentdecorate = GlobalVariable.getcurrentdecorate()
 
             // 使用更新後的資料來顯示UI
             imageView.setImageResource(imgId[charac])  // 顯示角色圖片
-            decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
+            if(currentdecorate == 99) decorativeIcon.visibility = View.GONE
+            else decorativeIcon.setImageResource(decorationId[currentdecorate])  // 顯示裝飾圖片
 
             val buttonsToCreate = (0 until 10).filter { food[it] > 0 }
             buttonsToCreate.forEach { i ->
@@ -126,11 +136,13 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-
+        var open = 1;
         // 設置按鈕點擊事件
         interactionButton.setOnClickListener {
             // 顯示額外的按鈕
-            showAdditionalButtons()
+            open *= -1
+            if(open == -1)showAdditionalButtons()
+            else hideAdditionalButtons()
         }
 
         playButton.setOnClickListener {
@@ -145,26 +157,42 @@ class GameActivity : AppCompatActivity() {
 
         chatButton.setOnClickListener {
             // 跳轉到聊天界面
-            openChatScreen()
+            jumptoActivity(ChatActivity::class.java)
         }
 
         taskButton.setOnClickListener {
             // 跳轉到任務界面
-            openTaskScreen()
+            jumptoActivity(mission::class.java)
         }
 
         shopButton.setOnClickListener {
             // 跳轉到商城界面
-            openShopScreen()
+            jumptoActivity(ShopActivity::class.java)
         }
 
         backpackButton.setOnClickListener {
             // 跳轉到背包界面
-            openBackpackScreen()
+            jumptoActivity(PackageActivity::class.java)
         }
 
         // 顯示初始數值
         updateUI()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // 在返回主畫面時更新數據
+        lifecycleScope.launch {
+            GlobalVariable.setbasicData()  // 更新角色、裝飾和金錢數據
+            updateUI()      // 更新畫面上的數據顯示
+        }
+    }
+
+    // 跳轉到界面
+    private fun jumptoActivity(targetActivity: Class<*>) {
+        val intent = Intent(this, targetActivity)
+        startActivity(intent)
     }
 
     private fun Int.dpToPx(): Int {
@@ -172,55 +200,64 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun createDecorativeButton(context: Context, parentLayout: LinearLayout, id: Int) {
-        val button = Button(context)
-        button.id = id
-
-        // 設置按鈕大小和外觀
-        button.layoutParams = LinearLayout.LayoutParams(
-            225.dpToPx(), // Button width
-            223.dpToPx()  // Button height
-        ).apply {
-            gravity = Gravity.CENTER
-        }
-        button.setBackgroundResource(foodId[id])
-
-        // 設置按鈕點擊事件
-        button.setOnClickListener {
-            // 顯示執行中的狀態
-            button.text = "送出中..."  // 按鈕文字變為 "送出中"
-            button.isEnabled = false  // 禁用按鈕，避免重複點擊
+        // 外層 LinearLayout 用來排列按鈕和數量文字
+        val buttonContainer = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL // 垂直排列
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
         }
 
-        // 加入到佈局中
-        parentLayout.addView(button)
+        // 設置按鈕
+        val button = Button(context).apply {
+            this.id = id
+
+            // 設置按鈕大小為正方形
+            layoutParams = LinearLayout.LayoutParams(
+                150.dpToPx(),  // 按鈕寬度
+                150.dpToPx()   // 按鈕高度與寬度相同，保持正方形
+            ).apply {
+                marginEnd = 8.dpToPx() // 設置按鈕之間的間距
+                marginStart = 8.dpToPx()
+            }
+
+            // 設置背景圖片
+            setBackgroundResource(foodId[id])
+
+            // 設置按鈕的文字為食物數量
+            text = ""
+
+
+            // 設置按鈕點擊事件
+            setOnClickListener {
+                val currentQuantity = food[id] ?: 0
+                if (currentQuantity > 0) {
+                    food[id] = currentQuantity - 1
+                    sendChangToServer2(food)
+                    text = "剩餘數量：${food[id]}"
+                    if (food[id] == 0) {
+                        parentLayout.removeView(buttonContainer) // 移除數量為 0 的按鈕
+                    }
+                }
+            }
+        }
+
+        // 顯示食物名稱的 TextView
+        val quantityText = TextView(context).apply {
+            text = "${foodName[id]}"  // 顯示食物數量
+            gravity = Gravity.CENTER // 文字居中
+        }
+
+        // 把按鈕和數量顯示放進一個垂直排列的 LinearLayout 中
+        buttonContainer.addView(button)
+        buttonContainer.addView(quantityText)
+
+        // 最後將整個按鈕容器加入父布局
+        parentLayout.addView(buttonContainer)
     }
 
 
-    /*suspend fun sendSelectedButtonToServer(id: Int): Boolean {
-        return try {
-            val client = OkHttpClient()
-            val username = GlobalVariable.getName()
-            val json = """
-        {
-          "username": "$username",
-          "decoration": $id
-        }
-        """
-            val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
-
-            val request = Request.Builder()
-                .url("http://140.136.151.129/food")
-                .post(body)
-                .build()
-
-            // 發送請求
-            val response = client.newCall(request).execute()
-            response.isSuccessful // 如果回應成功返回 true，否則返回 false
-        } catch (e: Exception) {
-            Log.e("sendButtonToServer", "Error: ${e.message}")
-            false
-        }
-    }*/
 
 
     private fun showAdditionalButtons() {
@@ -255,92 +292,103 @@ class GameActivity : AppCompatActivity() {
         updateUI()
     }
 
-    /*private fun showGiftOptions() {
-        // 隱藏底下文字框
-        messageBox.visibility = View.GONE
-        // 顯示送禮選項區域（即側邊欄）
-        sideboxScroll.visibility = View.VISIBLE
-        // 隱藏互動按鈕
-        hideAdditionalButtons()
 
-        // 獲取送禮按鈕的父布局
-        val sidebox = findViewById<LinearLayout>(R.id.sidebox)
-        sidebox.removeAllViews() // 清空舊的按鈕（避免重複生成）
 
-        // **立即生成按鈕**
-        for (i in 0 until foodId.size) {
-            createDecorativeButton(this, sidebox, i)
-        }
-
-        // **非同步更新按鈕狀態**
-        lifecycleScope.launch {
-            val validButtons = withContext(Dispatchers.IO) {
-                // 模擬後端數據處理，僅返回可用按鈕索引
-                (0 until foodId.size).filter { food[it] > 0 }
-            }
-
-            // 更新 UI 上的按鈕（設置不可用的按鈕）
-            withContext(Dispatchers.Main) {
-                for (i in 0 until foodId.size) {
-                    val button = sidebox.findViewById<Button>(i)
-                    if (!validButtons.contains(i)) {
-                        button.isEnabled = false // 不可用
-                        button.alpha = 0.5f // 半透明
-                    }
-                }
-            }
-        }
-    }*/
     private fun showGiftOptions() {
-        // 隱藏底下文字框
+        // 隱藏其他 UI，顯示送禮選項
         messageBox.visibility = View.GONE
-        // 顯示送禮選項區域（即側邊欄）
         sideboxScroll.visibility = View.VISIBLE
-        // 隱藏互動按鈕
         hideAdditionalButtons()
 
-        // 獲取送禮按鈕的父布局
-        val sidebox = findViewById<LinearLayout>(R.id.sidebox)
-        sidebox.removeAllViews() // 清空舊的按鈕（避免重複生成）
+        // 更新禮物選項
+        updateGiftButtons()
+    }
 
-        // **僅生成數量大於 0 的按鈕**
-        (0 until foodId.size).forEach { i ->
-            if (food[i] > 0) { // 檢查該禮物的數量是否大於 0
-                createDecorativeButton(this, sidebox, i)
+
+    private fun updateGiftButtons() {
+        val sidebox = findViewById<LinearLayout>(R.id.sidebox)
+
+        // 確保只移除數量為 0 的按鈕，並更新其他按鈕的數量
+        for (i in 0 until foodId.size) {
+            val button = sidebox.findViewById<Button>(i) // 根據 ID 尋找現有按鈕
+            val foodQuantity = food[i] ?: 0
+
+            if (foodQuantity > 0) {
+                if (button == null) {
+                    // 如果按鈕不存在但數量 > 0，新增按鈕
+                    createDecorativeButton(this, sidebox, i)
+                } else {
+                    // 更新按鈕文字
+                    button.text = "食物 $i：$foodQuantity"
+                }
+            } else {
+                // 如果數量為 0，移除按鈕
+                button?.let { sidebox.removeView(it) }
             }
         }
     }
 
-
-
-    private fun openChatScreen() {
-        // 跳轉到聊天界面
-        val intent = Intent(this, ChatActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openTaskScreen() {
-        // 跳轉到任務界面
-        val intent = Intent(this, mission::class.java) // 假設任務活動名為 MissionActivity
-        startActivity(intent)
-    }
-
-    private fun openShopScreen() {
-        // 跳轉到商城界面
-        val intent = Intent(this, ShopActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openBackpackScreen() {
-        // 跳轉到背包界面
-        val intent = Intent(this, PackageActivity::class.java) // 假設背包活動名為 PackageActivity
-        startActivity(intent)
-    }
 
     private fun updateUI() {
         // 更新心形進度條、等級、金錢等顯示
         progressBar.progress = affectionLevel  // 使用當前好感度來更新進度條
         levelText.text = getString(R.string.level_text)  // 通過字符串資源動態顯示等級
-        moneyAmount.text = getString(R.string.money_amount)  // 通過字符串資源動態顯示金錢
+        moneyAmount.text = moneynumber.toString()  // 通過字符串資源動態顯示金錢
+    }
+
+    private fun sendChangToServer2(id: IntArray) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+
+        // 將 IntArray 轉換為 JSON 格式
+        val idJson = id.joinToString(prefix = "[", postfix = "]")
+
+        // 構建 JSON 請求資料
+        val json = """
+        {
+          "username": "$username",
+          "foods": $idJson
+        }
+        """
+
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/shop_food") // 如果使用模擬器，請使用正確的地址 or 10.0.2.2
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@GameActivity, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    when (response.code) {
+                        in 200..299 -> {
+                            Toast.makeText(this@GameActivity, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        }
+                        400 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 請求格式不正確 ($responseBody)", Toast.LENGTH_SHORT).show()
+                        }
+                        401 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 未授權存取", Toast.LENGTH_SHORT).show()
+                        }
+                        404 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 資源不存在", Toast.LENGTH_SHORT).show()
+                        }
+                        500 -> {
+                            Toast.makeText(this@GameActivity, "錯誤: 伺服器內部錯誤", Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            Toast.makeText(this@GameActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        })
     }
 }

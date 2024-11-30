@@ -24,10 +24,6 @@ import java.io.IOException
 
 
 class Choosecharac : ComponentActivity() {
-    var imgId: IntArray = intArrayOf(
-        R.drawable.jewel02_amethyst, R.drawable.jewel05_emerald,
-        R.drawable.jewel08_peridot, R.drawable.jewel10_pink_tourmaline, R.drawable.jewel03_aquamarine
-        , R.drawable.jewel12_tanzanite, R.drawable.jewel15_colorful);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -119,6 +115,32 @@ class Choosecharac : ComponentActivity() {
             sendSelectedButtonToServer(6)
             false
         }
+        val buttonProduct7: Button = findViewById(R.id.character_7)
+        buttonProduct7.setOnTouchListener{v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f // 按下时按钮变得透明
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f // 松开或取消时恢复透明度
+                }
+            }
+            sendSelectedButtonToServer(7)
+            false
+        }
+        val buttonProduct8: Button = findViewById(R.id.character_8)
+        buttonProduct8.setOnTouchListener{v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.alpha = 0.5f // 按下时按钮变得透明
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    v.alpha = 1f // 松开或取消时恢复透明度
+                }
+            }
+            sendSelectedButtonToServer(8)
+            false
+        }
         val buttonnext: Button = findViewById(R.id.nextstep)
         buttonnext.setOnClickListener{
             jumptoActivity(InitialActivity::class.java)
@@ -158,6 +180,8 @@ class Choosecharac : ComponentActivity() {
         startActivity(intent)
     }
     private fun sendSelectedButtonToServer(charac: Int) {
+        GlobalVariable.setCharac(charac)
+        GlobalVariable.setcurrentdecorate(99)
         val client = OkHttpClient()
         val username = GlobalVariable.getName()
         val json = """
@@ -175,7 +199,7 @@ class Choosecharac : ComponentActivity() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
                 runOnUiThread {
-                    Toast.makeText(this@Choosecharac, "註冊失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Choosecharac, "選擇角色失敗: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -183,9 +207,9 @@ class Choosecharac : ComponentActivity() {
                 val responseBody = response.body?.string()
                 runOnUiThread {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@Choosecharac, "註冊成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Choosecharac, "選擇角色成功: $responseBody", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@Choosecharac, "註冊失敗: $responseBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Choosecharac, "選擇角色失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
