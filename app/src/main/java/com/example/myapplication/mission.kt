@@ -1,4 +1,5 @@
 package com.example.myapplication
+
 import android.content.Intent
 import android.widget.ImageButton
 import android.os.Bundle
@@ -30,8 +31,6 @@ class mission : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //setContentView(R.layout.)
 
         // 呼叫方法來顯示彈跳視窗
         showAlertDialog()
@@ -84,6 +83,17 @@ class mission : AppCompatActivity() {
                 btnMission1.isEnabled = false
                 btnMission1.setBackgroundColor(ContextCompat.getColor(this, R.color.gray)) // 灰色背景
                 btnMission1.setTextColor(ContextCompat.getColor(this, R.color.light_gray)) // 文字變淺
+                if (missionbutton[0] == 0) {
+                    // 恢復按鈕樣式
+                    btnMission1.isEnabled = true
+                    btnMission1.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                    btnMission1.setTextColor(ContextCompat.getColor(this, R.color.black))
+                } else {
+                    // 禁用按鈕樣式
+                    btnMission1.isEnabled = false
+                    btnMission1.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+                    btnMission1.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+                }
             }
         }
 
@@ -97,13 +107,21 @@ class mission : AppCompatActivity() {
                 btnMission2.isEnabled = false
                 btnMission2.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                 btnMission2.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+                if (missionbutton[1] == 0) {
+                    // 恢復按鈕樣式
+                    btnMission2.isEnabled = true
+                    btnMission2.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                    btnMission2.setTextColor(ContextCompat.getColor(this, R.color.black))
+                } else {
+                    // 禁用按鈕樣式
+                    btnMission2.isEnabled = false
+                    btnMission2.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+                    btnMission2.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+                }
             }
         }
 
-
-
         btnMission3.setOnClickListener {
-            // 按下確認按鈕後的操作
             if(missionbutton[2] == 0) {
                 money += 25 // 增加25點
                 missionbutton[2] = 1
@@ -113,11 +131,21 @@ class mission : AppCompatActivity() {
                 btnMission3.isEnabled = false
                 btnMission3.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                 btnMission3.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+                if (missionbutton[2] == 0) {
+                    // 恢復按鈕樣式
+                    btnMission3.isEnabled = true
+                    btnMission3.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                    btnMission3.setTextColor(ContextCompat.getColor(this, R.color.black))
+                } else {
+                    // 禁用按鈕樣式
+                    btnMission3.isEnabled = false
+                    btnMission3.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+                    btnMission3.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+                }
             }
-
         }
+
         btnMission4.setOnClickListener {
-            // 按下確認按鈕後的操作
             if(missionbutton[3] == 0) {
                 money += 25 // 增加25點
                 missionbutton[3] = 1
@@ -127,10 +155,20 @@ class mission : AppCompatActivity() {
                 btnMission4.isEnabled = false
                 btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
                 btnMission4.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+                if (missionbutton[3] == 0) {
+                    // 恢復按鈕樣式
+                    btnMission4.isEnabled = true
+                    btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                    btnMission4.setTextColor(ContextCompat.getColor(this, R.color.black))
+                } else {
+                    // 禁用按鈕樣式
+                    btnMission4.isEnabled = false
+                    btnMission4.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
+                    btnMission4.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
+                }
             }
-
-
         }
+
         btnCancel.setOnClickListener {
             dialog.dismiss() // 關閉彈跳視窗
 
@@ -139,8 +177,8 @@ class mission : AppCompatActivity() {
             startActivity(intent)
             finish() // 可選，防止返回到此活動
         }
-
     }
+
     private fun sendSelectedButtonToServer(missionbutton: IntArray) {
         val client = OkHttpClient()
         val username = GlobalVariable.getName()
@@ -159,6 +197,7 @@ class mission : AppCompatActivity() {
             .url("http://140.136.151.129:3000/dailymission") // 如果使用模擬器，請使用這個地址
             .post(body)
             .build()
+
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
                 runOnUiThread {
@@ -178,19 +217,7 @@ class mission : AppCompatActivity() {
             }
         })
     }
-    private fun updateButtonState(button: Button, index: Int) {
-        if (missionbutton[index] == 0) {
-            // 恢復按鈕樣式
-            button.isEnabled = true
-            button.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
-            button.setTextColor(ContextCompat.getColor(this, R.color.black))
-        } else {
-            // 禁用按鈕樣式
-            button.isEnabled = false
-            button.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
-            button.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
-        }
-    }
+
     private fun SendMoneyToServer(id: Int) {
         val client = OkHttpClient()
         val username = GlobalVariable.getName()
@@ -206,24 +233,24 @@ class mission : AppCompatActivity() {
         val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
         Log.d("shop", "shop")
         val request = Request.Builder()
-            .url("http://140.136.151.129:3000/money") // 如果使用模擬器，請使用正確的地址140.136.151.129 or 10.0.2.2
+            .url("http://140.136.151.129:3000/dailymission") // 假設這是您的伺服器端點
             .post(body)
             .build()
 
         client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
                 runOnUiThread {
-                    Toast.makeText(this@mission, "請求失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@mission, "失敗: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onResponse(call: Call, response: Response) {
+            override fun onResponse(call: okhttp3.Call, response: Response) {
                 val responseBody = response.body?.string()
                 runOnUiThread {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@mission, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@mission, "成功: $responseBody", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@mission, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@mission, "失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
