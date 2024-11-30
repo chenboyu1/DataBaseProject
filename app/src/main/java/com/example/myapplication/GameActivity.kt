@@ -244,14 +244,22 @@ class GameActivity : AppCompatActivity() {
                     affectionLevel += 10
                     sendAffection2ToServer(affectionLevel)
                     hideGiftOptions()
-                    // 根據好感度顯示不同的回饋訊息
-                    val feedbackMessage = when {
-                        (affectionLevel % 100) < 30 -> getString(R.string.play_interaction_message_low, affectionLevel)
-                        (affectionLevel % 100) in 30..70 -> getString(R.string.play_interaction_message_medium, affectionLevel)
-                        (affectionLevel % 100) > 70 -> getString(R.string.play_interaction_message_high, affectionLevel)
-                        else -> getString(R.string.play_interaction_message_default, affectionLevel) // 預設訊息
+                    // 選擇禮物的回饋訊息
+                    val giftMessage = when(foodName[id]) {
+                        "刈包" -> getString(R.string.feedback_guibao)
+                        "肥宅快樂水" -> getString(R.string.feedback_soda)
+                        "義大利麵" -> getString(R.string.feedback_pasta)
+                        "甜甜圈" -> getString(R.string.feedback_donut)
+                        "布丁" -> getString(R.string.feedback_pudding)
+                        "馬卡龍" -> getString(R.string.feedback_macaron)
+                        "鯛魚燒冰淇淋" -> getString(R.string.feedback_taiyaki)
+                        "聖代" -> getString(R.string.feedback_sundae)
+                        "在地冰淇淋" -> getString(R.string.feedback_local_ice_cream)
+                        "豪華餐車" -> getString(R.string.feedback_luxury_food_truck)
+                        else -> getString(R.string.feedback_default)
                     }
-                    messageBox.text = feedbackMessage
+                    // 更新訊息框顯示回饋訊息
+                    messageBox.text = giftMessage
                     updateUI()
                 }
             }
@@ -294,11 +302,12 @@ class GameActivity : AppCompatActivity() {
         // 更新進度條和訊息框
         progressBar.progress = affectionLevel
         // 根據好感度顯示不同的回饋訊息
+        // 根據好感度顯示不同的回饋訊息
         val feedbackMessage = when {
-            (affectionLevel % 100) < 30 -> getString(R.string.play_interaction_message_low, affectionLevel)
-            (affectionLevel % 100) in 30..70 -> getString(R.string.play_interaction_message_medium, affectionLevel)
-            (affectionLevel % 100) > 70 -> getString(R.string.play_interaction_message_high, affectionLevel)
-            else -> getString(R.string.play_interaction_message_default, affectionLevel) // 預設訊息
+            (affectionLevel % 100) < 30 -> getString(R.string.feedback_low)
+            (affectionLevel % 100) in 30..70 -> getString(R.string.feedback_medium)
+            (affectionLevel % 100) > 70 -> getString(R.string.feedback_high)
+            else -> getString(R.string.feedback_default)
         }
         messageBox.text = feedbackMessage
         // 隱藏互動按鈕
