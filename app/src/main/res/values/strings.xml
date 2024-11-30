@@ -45,4 +45,9 @@
     <string name="gift_option_chocolate">感謝你送的巧克力！</string>
     <string name="gift_option_toy">感謝你送的玩具！</string>
 
+    <string name="play_interaction_message_low">好感度較低：目前為 %1$d</string>
+    <string name="play_interaction_message_medium">好感度中等：目前為 %1$d</string>
+    <string name="play_interaction_message_high">好感度很高：目前為 %1$d</string>
+    <string name="play_interaction_message_default">好感度為 %1$d</string>
+
 </resources>
