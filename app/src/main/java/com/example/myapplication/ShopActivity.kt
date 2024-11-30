@@ -18,6 +18,8 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import java.io.IOException
 import Manager
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class ShopActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,14 @@ class ShopActivity : ComponentActivity() {
         fun updateUI(money: Int) {
             //金錢顯示
             moneyAmount.text = money.toString()
+        }
+
+        lifecycleScope.launch {
+            // 同步更新資料
+            GlobalVariable.setbasicData()
+            Manager.money = GlobalVariable.getmoney()
+
+            updateUI(Manager.money)
         }
 
         Manager.onMoneyChanged = { updatedMoney ->
