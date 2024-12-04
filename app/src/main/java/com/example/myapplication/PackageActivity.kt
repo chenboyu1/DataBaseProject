@@ -58,7 +58,6 @@ class PackageActivity : ComponentActivity() {
 
         GlobalScope.launch(Dispatchers.Main) {
             // 等待 getcharac() 函式的返回結果
-            GlobalVariable.setName("b")
             charac = GlobalVariable.getCharac()
             currentdecorate = GlobalVariable.getcurrentdecorate()
             Log.d("currentdecorate", "$currentdecorate")

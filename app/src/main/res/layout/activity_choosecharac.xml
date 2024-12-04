@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1">
+    android:background="@drawable/background_layer">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:layout_width="400dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="#EDCDCE">
+        android:background="#99c9c7">
 
         <LinearLayout
             android:id="@+id/sidebox"
@@ -30,6 +30,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/jewel02_amethyst"
                 android:text=" " />
+
             <Button
                 android:id="@+id/character_2"
                 android:layout_width="300dp"
@@ -37,6 +38,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/jewel03_aquamarine"
                 android:text=" " />
+
             <Button
                 android:id="@+id/character_3"
                 android:layout_width="300dp"
@@ -44,6 +46,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/jewel05_emerald"
                 android:text=" " />
+
             <Button
                 android:id="@+id/character_4"
                 android:layout_width="300dp"
@@ -95,8 +98,7 @@
         app:layout_constraintEnd_toStartOf="@id/sidebox"
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
-        tools:ignore="NotSibling"
-        android:background="@drawable/choosecha_title"/>
+        tools:ignore="NotSibling" />
     <Button
         android:id="@+id/nextstep"
         android:layout_width="0dp"
@@ -109,6 +111,6 @@
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="20dp"
         tools:ignore="NotSibling"
-        android:background="@drawable/choosecha_title"/>
+        android:background="#99c9c7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

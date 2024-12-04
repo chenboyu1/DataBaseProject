@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1">
+    android:background="@drawable/background6">
 
     <View
         android:id="@+id/region"
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         android:layout_marginTop="200dp"
-        android:background="@drawable/choosecha_title"/>
+        android:background="#99c9c7"/>
 
 
     <TextView
@@ -29,8 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/region"
         android:layout_marginTop="200dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/choosecha_title"/>
+        android:layout_marginStart="20dp" />
 
     <Spinner
         android:id="@+id/spinner_country"
@@ -64,6 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/choosecha_title"/>
+        android:background="#99c9c7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
