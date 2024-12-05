@@ -8,6 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import org.json.JSONObject
+import java.io.IOException
 
 class ChatActivity : AppCompatActivity() {
 
@@ -43,13 +47,13 @@ class ChatActivity : AppCompatActivity() {
         buttonSend.setOnClickListener {
             val message = editTextMessage.text.toString() // 獲取使用者輸入的訊息
             if (message.isNotEmpty()) {
-                // 當訊息不為空時，將訊息添加到列表中，並通知 Adapter 更新顯示
+                // 添加用戶訊息到列表
                 messageList.add(Message(message, MessageType.USER))
                 chatAdapter.notifyDataSetChanged() // 通知 RecyclerView 更新
                 editTextMessage.text.clear() // 清空輸入框
 
-                // 模擬 AI 回覆
-                simulateAIResponse() // 呼叫模擬 AI 回覆的函數
+                // 發送用戶訊息到後端 API
+                sendMessageToApi(message)
             }
         }
 
@@ -65,5 +69,55 @@ class ChatActivity : AppCompatActivity() {
         val aiMessage = "這是模擬的 AI 回覆訊息。"  // 可以替換成真正的 AI 回覆邏輯
         messageList.add(Message(aiMessage, MessageType.AI)) // 添加 AI 回覆訊息到列表中
         chatAdapter.notifyDataSetChanged() // 通知 RecyclerView 更新顯示
+    }
+
+    // 用於發送訊息到後端並獲取 AI 回覆
+    private fun sendMessageToApi(userMessage: String) {
+        val url = "http://140.136.151.129:3000/sendMessage" // 替換為實際 API 地址
+        val client = OkHttpClient()
+
+        // 建立 JSON 請求體
+        val jsonBody = JSONObject()
+        jsonBody.put("message", userMessage)
+
+        // 使用 MediaType.toMediaType() 代替 get() 和 parse()
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+
+        val requestBody = RequestBody.create(mediaType, jsonBody.toString())
+
+        // 建立請求
+        val request = Request.Builder()
+            .url(url)
+            .post(requestBody)
+            .build()
+
+        // 發送請求
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    // 錯誤處理，例如通知用戶網路問題
+                    messageList.add(Message("無法連接到伺服器，請稍後再試。", MessageType.AI))
+                    chatAdapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body?.string()  // 這部分已經正確
+                    val aiMessage = responseBody ?: "無回應內容"
+                    runOnUiThread {
+                        // 更新 AI 的回覆到 RecyclerView
+                        messageList.add(Message(aiMessage, MessageType.AI))
+                        chatAdapter.notifyDataSetChanged()
+                    }
+                } else {
+                    runOnUiThread {
+                        // 處理伺服器錯誤
+                        messageList.add(Message("伺服器錯誤，請稍後再試。", MessageType.AI))
+                        chatAdapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        })
     }
 }
