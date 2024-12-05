@@ -108,12 +108,14 @@ class GameActivity : AppCompatActivity() {
 
             when (weather) {
                 "weather1" -> {
+                    gifView.alpha = 0.3F
                     Glide.with(this@GameActivity)
                         .asGif()
-                        .load(R.raw.stylish)
+                        .load(R.raw.sun)
                         .into(gifView)
                 }
                 "weather2" -> {
+                    gifView.alpha = 1.0F
                     Glide.with(this@GameActivity)
                         .asGif()
                         .load(R.raw.fog)
