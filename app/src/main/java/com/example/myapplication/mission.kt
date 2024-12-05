@@ -109,7 +109,7 @@ class mission : AppCompatActivity() {
         val json = """
         {
           "username": "$username",
-          "timer1": "${missionbutton[0]}",
+          "timer": "${missionbutton[0]}",
           "timer2": "${missionbutton[1]}",
           "timer3": "${missionbutton[2]}",
           "timer4": "${missionbutton[3]}"
