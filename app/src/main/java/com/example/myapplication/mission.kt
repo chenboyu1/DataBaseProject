@@ -108,7 +108,6 @@ class mission : AppCompatActivity() {
             button.setOnClickListener {
                 if (missionbutton[missionIndex] == 0) {
                     showError(this)
-                    disableButton(button)
                 }else if(missionbutton[missionIndex] == 2){
                     money += 25
                     missionbutton[missionIndex] = 1

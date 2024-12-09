@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.GlobalVariable.Companion.missionbutton
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -46,6 +49,10 @@ class ChatActivity : AppCompatActivity() {
         // 設置發送按鈕點擊事件
         buttonSend.setOnClickListener {
             val message = editTextMessage.text.toString() // 獲取使用者輸入的訊息
+            if(missionbutton[3] == 0){
+                missionbutton[3] = 2
+                sendSelectedButtonToServer(missionbutton)
+            }
             if (message.isNotEmpty()) {
                 // 添加用戶訊息到列表
                 messageList.add(Message(message, MessageType.USER))
@@ -115,6 +122,44 @@ class ChatActivity : AppCompatActivity() {
                         // 處理伺服器錯誤
                         messageList.add(Message("伺服器錯誤，請稍後再試。", MessageType.AI))
                         chatAdapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        })
+    }
+    private fun sendSelectedButtonToServer(missionbutton: IntArray) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+        val json = """
+        {
+          "username": "$username",
+          "timer": "${missionbutton[0]}",
+          "timer2": "${missionbutton[1]}",
+          "timer3": "${missionbutton[2]}",
+          "timer4": "${missionbutton[3]}"
+        }
+        """
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/dailymission")
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@ChatActivity, "失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@ChatActivity, "成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@ChatActivity, "失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
