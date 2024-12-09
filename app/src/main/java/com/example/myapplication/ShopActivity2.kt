@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.myapplication.GlobalVariable.Companion.food
+import com.example.myapplication.GlobalVariable.Companion.missionbutton
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -76,6 +77,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[0] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -102,6 +107,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[1] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -128,6 +137,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[2] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -154,6 +167,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[3] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -181,6 +198,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[4] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -207,6 +228,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[5] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -233,6 +258,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[6] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -259,6 +288,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[7] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -285,6 +318,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[8] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -311,6 +348,10 @@ class ShopActivity2 : ComponentActivity() {
                             sendMoney2ToServer(Manager.money)
                             food[9] += quantity// 更新商品數量
                             sendChangToServer2(food)
+                            if(missionbutton[2] == 0){
+                                missionbutton[2] = 2
+                                sendSelectedButtonToServer(missionbutton)
+                            }
                         }
                     }
                 }
@@ -408,6 +449,44 @@ class ShopActivity2 : ComponentActivity() {
                         Toast.makeText(this@ShopActivity2, "請求成功: $responseBody", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this@ShopActivity2, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+    private fun sendSelectedButtonToServer(missionbutton: IntArray) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+        val json = """
+        {
+          "username": "$username",
+          "timer": "${missionbutton[0]}",
+          "timer2": "${missionbutton[1]}",
+          "timer3": "${missionbutton[2]}",
+          "timer4": "${missionbutton[3]}"
+        }
+        """
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/dailymission")
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@ShopActivity2, "失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@ShopActivity2, "成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@ShopActivity2, "失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
