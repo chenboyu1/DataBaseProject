@@ -357,7 +357,7 @@
         android:elevation="6dp"
         android:gravity="center"
         android:padding="20dp"
-        android:text="這裡顯示訊息"
+        android:text="歡迎光臨~~~"
         android:textColor="#333333"
         android:textSize="28sp"
         android:textStyle="bold"

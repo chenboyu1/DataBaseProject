@@ -116,7 +116,7 @@ class GameActivity : AppCompatActivity() {
                         .into(gifView)
                 }
                 "weather2" -> {
-                    gifView.alpha = 1.0F
+                    gifView.alpha = 0.3F
                     Glide.with(this@GameActivity)
                         .asGif()
                         .load(R.raw.fog)
@@ -130,14 +130,14 @@ class GameActivity : AppCompatActivity() {
                         .into(gifView)
                 }
                 "weather4" -> {
-                    gifView.alpha = 1.0F
+                    gifView.alpha = 0.3F
                     Glide.with(this@GameActivity)
                         .asGif()
                         .load(R.raw.fog)
                         .into(gifView)
                 }
                 "weather5" -> {
-                    gifView.alpha = 1.0F
+                    gifView.alpha = 0.3F
                     Glide.with(this@GameActivity)
                         .asGif()
                         .load(R.raw.fog)
