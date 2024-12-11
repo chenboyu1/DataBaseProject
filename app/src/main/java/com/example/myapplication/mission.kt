@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.widget.ImageButton
 import android.os.Bundle
@@ -80,19 +82,39 @@ class mission : AppCompatActivity() {
     }
 
     private fun setupMissionButton(button: Button, missionIndex: Int) {
-        // 初始化按鈕外觀
-        if (missionbutton[missionIndex] == 1) {
-            disableButton(button)
-        }
-
-        // 設置按鈕的點擊行為
-        button.setOnClickListener {
-            if (missionbutton[missionIndex] == 0) {
-                money += 25
-                missionbutton[missionIndex] = 1
-                sendSelectedButtonToServer(missionbutton)
-                SendMoneyToServer(money)
+        if(missionIndex == 0){
+            // 初始化按鈕外觀
+            if (missionbutton[missionIndex] == 1) {
                 disableButton(button)
+            }
+
+            // 設置按鈕的點擊行為
+            button.setOnClickListener {
+                if (missionbutton[missionIndex] == 0) {
+                    money += 25
+                    missionbutton[missionIndex] = 1
+                    sendSelectedButtonToServer(missionbutton)
+                    SendMoneyToServer(money)
+                    disableButton(button)
+                }
+            }
+        }else{
+            // 初始化按鈕外觀
+            if (missionbutton[missionIndex] == 1) {
+                disableButton(button)
+            }
+
+            // 設置按鈕的點擊行為
+            button.setOnClickListener {
+                if (missionbutton[missionIndex] == 0) {
+                    showError(this)
+                }else if(missionbutton[missionIndex] == 2){
+                    money += 25
+                    missionbutton[missionIndex] = 1
+                    sendSelectedButtonToServer(missionbutton)
+                    SendMoneyToServer(money)
+                    disableButton(button)
+                }
             }
         }
     }
@@ -102,6 +124,18 @@ class mission : AppCompatActivity() {
         button.setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
         button.setTextColor(ContextCompat.getColor(this, R.color.light_gray))
     }
+
+    private fun showError(context: Context) {
+        val dialog = Dialog(context)
+        dialog.setContentView(R.layout.daily_mission_error)
+
+        val btnOk = dialog.findViewById<Button>(R.id.btn1k)
+        btnOk.setOnClickListener {
+            dialog.dismiss() // 關閉視窗
+        }
+
+        dialog.show()
+    }//任務未完成的訊息
 
     private fun sendSelectedButtonToServer(missionbutton: IntArray) {
         val client = OkHttpClient()

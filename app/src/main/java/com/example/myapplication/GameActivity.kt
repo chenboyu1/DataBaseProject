@@ -39,6 +39,7 @@ import okhttp3.Call
 import okhttp3.Response
 import java.io.IOException
 import com.bumptech.glide.Glide
+import com.example.myapplication.GlobalVariable.Companion.missionbutton
 
 class GameActivity : AppCompatActivity() {
     var charac = 0;
@@ -115,7 +116,7 @@ class GameActivity : AppCompatActivity() {
                         .into(gifView)
                 }
                 "weather2" -> {
-                    gifView.alpha = 1.0F
+                    gifView.alpha = 0.3F
                     Glide.with(this@GameActivity)
                         .asGif()
                         .load(R.raw.fog)
@@ -129,14 +130,14 @@ class GameActivity : AppCompatActivity() {
                         .into(gifView)
                 }
                 "weather4" -> {
-                    gifView.alpha = 1.0F
+                    gifView.alpha = 0.3F
                     Glide.with(this@GameActivity)
                         .asGif()
                         .load(R.raw.fog)
                         .into(gifView)
                 }
                 "weather5" -> {
-                    gifView.alpha = 1.0F
+                    gifView.alpha = 0.3F
                     Glide.with(this@GameActivity)
                         .asGif()
                         .load(R.raw.fog)
@@ -290,6 +291,10 @@ class GameActivity : AppCompatActivity() {
                 if (currentQuantity > 0) {
                     food[id] = currentQuantity - 1
                     sendChangToServer2(food)
+                    if(missionbutton[1] == 0){
+                        missionbutton[1] = 2
+                        sendSelectedButtonToServer(missionbutton)
+                    }
                     text = "剩餘數量：${food[id]}"
                     if (food[id] == 0) {
                         parentLayout.removeView(buttonContainer) // 移除數量為 0 的按鈕
@@ -506,6 +511,44 @@ class GameActivity : AppCompatActivity() {
                         else -> {
                             Toast.makeText(this@GameActivity, "伺服器錯誤: $responseBody", Toast.LENGTH_SHORT).show()
                         }
+                    }
+                }
+            }
+        })
+    }
+    private fun sendSelectedButtonToServer(missionbutton: IntArray) {
+        val client = OkHttpClient()
+        val username = GlobalVariable.getName()
+        val json = """
+        {
+          "username": "$username",
+          "timer": "${missionbutton[0]}",
+          "timer2": "${missionbutton[1]}",
+          "timer3": "${missionbutton[2]}",
+          "timer4": "${missionbutton[3]}"
+        }
+        """
+        val body = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json)
+
+        val request = Request.Builder()
+            .url("http://140.136.151.129:3000/dailymission")
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@GameActivity, "失敗: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: Response) {
+                val responseBody = response.body?.string()
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@GameActivity, "成功: $responseBody", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@GameActivity, "失敗: $responseBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

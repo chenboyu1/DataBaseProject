@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="任務未完成"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/btn1k"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="確認"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#fff" />
+</LinearLayout>
