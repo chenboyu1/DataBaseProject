@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -22,6 +23,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        // 一行代碼啟動背景音樂
+        MediaPlayer.create(this, R.raw.background_music).start();
+
         // 取得 UI 中的元件
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etPassword = findViewById<EditText>(R.id.etPassword)
