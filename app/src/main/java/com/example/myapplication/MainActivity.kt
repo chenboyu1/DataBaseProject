@@ -1,7 +1,6 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -15,6 +14,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.Response
 import java.io.IOException
 
 class MainActivity : ComponentActivity() {
@@ -23,8 +26,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        // 一行代碼啟動背景音樂
-        MediaPlayer.create(this, R.raw.background_music).start();
+
+        // 啟動背景音樂服務
+        val intent = Intent(this, MusicService::class.java)
+        startService(intent)
 
         // 取得 UI 中的元件
         val etUsername = findViewById<EditText>(R.id.etUsername)
