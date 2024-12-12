@@ -129,8 +129,8 @@ class InitialActivity : ComponentActivity() {
         buttonnext.setOnClickListener{
             GlobalScope.launch(Dispatchers.Main) { // 使用 lifecycleScope 代替 GlobalScope
                 saveRegion() // 保存地區
-                getWeather() // 獲取天氣
-                jumptoActivity(GameActivity::class.java) // 跳轉
+                //getWeather() // 獲取天氣
+                jumptoActivity(MainActivity::class.java) // 跳轉
             }
         }
     }

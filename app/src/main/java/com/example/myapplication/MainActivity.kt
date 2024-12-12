@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -41,12 +42,18 @@ class MainActivity : ComponentActivity() {
         btnRegister.setOnClickListener {
             val username = etUsername.text.toString()
             val password = etPassword.text.toString()
-
-            if (username.isNotEmpty() && password.isNotEmpty()) {
-                registerUser(username, password)
-                GlobalVariable.setName(username)
-            } else {
-                Toast.makeText(this, "請輸入帳號和密碼", Toast.LENGTH_SHORT).show()
+            if(btnRegister.text == "下一步"){
+                if (username.isNotEmpty() && password.isNotEmpty()) {
+                    registerUser(username, password)
+                    GlobalVariable.setName(username)
+                } else {
+                    Toast.makeText(this, "請輸入帳號和密碼", Toast.LENGTH_SHORT).show()
+                }
+            }else {
+                val btnLogin = findViewById<Button>(R.id.btnLogin)
+                val btnRegister = findViewById<Button>(R.id.btnRegister)
+                btnLogin.visibility = View.GONE
+                btnRegister.text = "下一步"
             }
         }
 
